@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('d46870f8b7c4c1636fca', {
+      encrypted: true
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(data.message);
+    });
+  </script>
+</head>
