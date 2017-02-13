@@ -5,32 +5,45 @@
   - Subscriptions
   - Messages
   - Channels through Subscriptions
-- username `string` `unique` `presence`
-- email `string` `unique` `presence`
-- photo_url `string`
-- password_digest `string` `presence`
-- session_token `string` `presence`
+
+  | column          | type     | attribute           |
+  |-----------------|----------|---------------------|
+  | username        | `string` | `unique` `presence` |
+  | email           | `string` | `unique` `presence` |
+  | photo_url       | `string` | `string`            |
+  | password_digest | `string` | `unique` `presence` |
+  | session_token   | `string` | `unique` `presence` |
 
 #### Channel
 - **Has Many**
   - Subscriptions
   - Messages
   - Users through Subscriptions
-- name `string` `unique` `presence`
-- description `string`
+
+  | column      | type      | attribute           |
+  |-------------|-----------|---------------------|
+  | name        | `string`  | `unique` `presence` |
+  | description | `string`  |                     |
+  | private     | `boolean` | `default: false`    |
 
 #### Message
 - **Belongs To**
   - User
   - Channel
-- content `string`
-- content_type `string`
-- user_id `string` `presence`
-- channel_id `string` `presence`
+
+  | column     | type      | attribute  |
+  |------------|-----------|------------|
+  | content    | `string`  |            |
+  | type       | `string`  | `presence` |
+  | user_id    | `integer` | `presence` |
+  | channel_id | `integer` | `presence` |
 
 #### Subscription
 - **Belongs To**
   - User
   - Channel
-- user_id `string` `presence`
-- channel_id `string` `presence`
+
+  | column     | type     | attribute  |
+  |------------|----------|------------|
+  | user_id    | `string` | `presence` |
+  | channel_id | `string` | `presence` |
