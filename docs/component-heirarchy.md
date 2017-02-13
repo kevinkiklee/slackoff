@@ -1,6 +1,6 @@
-## React Component Heirarchy
+# React Component Heirarchy
 
-### ApplicationContainer
+## ApplicationContainer
 
 **Header**
   - Channel
@@ -45,4 +45,4 @@
 
 ## AuthenticationContainer
 **AuthenticationForm**
-  -
+  - ???

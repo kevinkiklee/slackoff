@@ -1,6 +1,6 @@
-## SlackOff Development
+# SlackOff Development
 
-### Minimum Viable Product
+## Minimum Viable Product
 - Live chat
 - Channels
 - Direct Message
@@ -8,7 +8,7 @@
 - **Bonus:** Search Messages
 - **Bonus:** Notifications
 
-### Proposal
+## Proposal
 - MVP
 - Wireframes
 - React Components
@@ -17,7 +17,7 @@
 - API Endpoints
 - Timeline
 
-### Timeline
+## Timeline
 - #### **Day 0** - Sun - Feb 12th 2017 - W8D0
   - Prepare Proposal
 
@@ -42,16 +42,16 @@
   - Implement Style
 
 - #### **Day 6** - Sun - Feb 19th 2017 - W8D7
-  - abc
+  - ???
 
 - #### **Day 7** - Mon - Feb 20th 2017 - W9D1
   - **Peer Review**
 
 - #### **Day 8** - Tue - Feb 21st 2017 - W9D2
-  - abc
+  - ???
 
 - #### **Day 9** - Wed - Feb 22nd 2017 - W9D3
-  - abc
+  - ???
 
 - #### **Day 10** - Thu - Feb 23rd 2017 - W9D4
   - Conduct Application Testing

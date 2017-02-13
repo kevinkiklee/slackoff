@@ -1,6 +1,6 @@
-## DB Schema
+# DB Schema
 
-### User
+## User
 
 | column          | type     | attribute           |
 |-----------------|----------|---------------------|
@@ -16,7 +16,7 @@
   - Channels through Subscriptions
 
 
-### Channel
+## Channel
 
 | column      | type      | attribute           |
 |-------------|-----------|---------------------|
@@ -30,7 +30,7 @@
   - Users through Subscriptions
 
 
-### Message
+## Message
 
 | column     | type      | attribute  |
 |------------|-----------|------------|
@@ -44,7 +44,7 @@
   - Channel
 
 
-### Subscription
+## Subscription
 
 | column     | type     | attribute  |
 |------------|----------|------------|
