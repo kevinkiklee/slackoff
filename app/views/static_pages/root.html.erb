@@ -1,1 +1,16 @@
+<script type="text/javascript">
+  <% if logged_in? %>
+  window.currentUser = <%= render(
+    "api/users/user.json.jbuilder",
+    user: current_user
+  ).html_safe %>
+  <% end %>
+
+  window.assets = {
+    landingPageImage: "<%= asset_path('landing-page.jpg')%>",
+    landingPageVideoMP4: "<%= asset_path('landing-page.mp4')%>",
+    landingPageVideoWEBM: "<%= asset_path('landing-page.webm')%>"
+  }
+</script>
+
 <div id='root'></div>

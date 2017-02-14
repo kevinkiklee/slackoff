@@ -5,6 +5,12 @@ import configureStore from './store/store';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
-  const store = configureStore();
+  let store = configureStore();
+
+  if (window.currentUser) {
+    const preloadedState = { session: { currentUser: window.currentUser } };
+    store = configureStore(preloadedState);
+  }
+
   ReactDOM.render(<Root store={ store } />, root);
 });

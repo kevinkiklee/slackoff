@@ -5,3 +5,61 @@ html {
 h1 {
   font-size: 30px;
 }
+
+.landing-page-nav {
+  display: flex;
+  background-color: black;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  height: 30px;
+
+  .landing-page-logo {
+    font-size: 20px;
+    color: white;
+  }
+
+  .session-control-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .session-control-btn {
+      text-decoration: none;
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      height: 20px;
+
+      transition: all 0.3s ease 0s;
+      color: white;
+      background-color: #42c299;
+    }
+    .session-control-btn:hover {
+      background-color: #0e674b;
+    }
+  }
+}
+
+.session-form-container {
+  display: flex;
+  height: 600px;
+  align-items: center;
+  justify-content: center;
+  // z-index: 100;
+
+  .session-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #42c299;
+    border-radius: 10px;
+    width: 400px;
+    height: 300px;
+
+    .session-form-title {
+      font-size: 20px;
+    }
+  }
+}
