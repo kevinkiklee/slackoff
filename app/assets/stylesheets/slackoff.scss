@@ -6,6 +6,22 @@ h1 {
   font-size: 30px;
 }
 
+.shadow {
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         3px 3px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.shadow-sm {
+  -webkit-box-shadow: 1px 1px 0px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    1px 1px 0px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         1px 1px 0px 0px rgba(50, 50, 50, 0.75);
+}
+
+.app-container {
+  position: relative;
+}
+
 .landing-page-nav {
   display: flex;
   background-color: black;
@@ -43,10 +59,15 @@ h1 {
 
 .session-form-container {
   display: flex;
-  height: 600px;
   align-items: center;
   justify-content: center;
-  // z-index: 100;
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  z-index: 100;
+
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%);
 
   .session-form {
     display: flex;
@@ -56,10 +77,43 @@ h1 {
     border: 5px solid #42c299;
     border-radius: 10px;
     width: 400px;
-    height: 300px;
+    height: auto;
+    background-color: rgba(255,255,255, 0.95);
+    transition: all 0.3s ease 0s;
+    padding: 40px 10px;
 
     .session-form-title {
-      font-size: 20px;
+      font-size: 40px;
+      padding: 0px 0px 20px 0px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .session-form-label {
+      font-size: 16px;
+      padding: 10px 0px;
+    }
+
+    .session-form-input {
+      font-size: 14px;
+      margin: 10px 0px;
+      padding: 10px;
+      width: 250px;
+      border-radius: 5px;
+    }
+
+    input[type=submit] {
+      width: 100%;
+      margin-top: 20px;
+      padding:10px 15px;
+      background:#ccc;
+      border:0 none;
+      cursor:pointer;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #42c299;
+      color: white;
+      font-size: 14px;
     }
   }
 }

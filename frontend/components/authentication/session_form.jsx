@@ -35,40 +35,41 @@ class SessionForm extends React.Component {
 
   emailField() {
     return (
-      <label>Email<br />
-        <input type='text' onChange={ this.updateInput('email') } /><br />
-      </label>
+      <div>
+      <label className='session-form-label'>Email</label><br />
+      <input className='session-form-input' type='text' onChange={ this.updateInput('email') } /><br />
+      </div>
     );
   }
 
   render() {
-    let text = 'Login';
+    let text = 'LOGIN';
     let email = '';
 
     if(this.props.formType === 'signup') {
-      text = 'Signup';
+      text = 'SIGNUP';
       email = this.emailField();
     }
 
     const errors = this.props.errors.map((error, i) => <li key={i}>{ error }</li>);
 
     return (
-      <div className='session-form'>
-        <h3>{ text }</h3>
+      <div className='session-form shadow'>
+        <h3 className='session-form-title'>{ text }</h3>
         <ul>{ errors }</ul>
 
         <form onSubmit={ this.submitForm.bind(this) }>
-          <label>Username:<br />
-            <input type='text' onChange={ this.updateInput('username') } />
-          </label><br />
+          <label className='session-form-label'>Username</label><br />
+          <input className='session-form-input' type='text' onChange={ this.updateInput('username') } /><br />
 
           { email }
 
-          <label>Password:<br />
-            <input type='password' onChange={ this.updateInput('password') } />
-          </label><br />
+          <label className='session-form-label'>Password</label><br />
+          <input className='session-form-input' type='password' onChange={ this.updateInput('password') } /><br />
 
-          <input type='submit' value={ text } />
+          <div className='session-form-submit-button'>
+            <input className='shadow-sm' type='submit' value={ text } />
+          </div>
         </form>
       </div>
     );

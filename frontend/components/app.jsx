@@ -10,9 +10,18 @@ const App = ({ children }) => (
       <div className='session-control-container'>
         <SessionControl />
       </div>
-
-
     </nav>
+
+    <div className="homepage-hero-module">
+      <div className="video-container">
+        <div className="filter"></div>
+        <video autoPlay loop className="fillWidth">
+          <source src={ window.assets.landingPageVideoMP4 } type="video/mp4" />
+          <source src={ window.assets.landingPageVideoWEBM } type="video/webm" />
+        </video>
+
+      </div>
+    </div>
 
     <section className='session-form-container'>
       { children }
@@ -25,18 +34,6 @@ export default App;
 // <img src={ window.assets.landingPage } />
 
     //
-
-
-
-        // <div className="homepage-hero-module">
-        //   <div className="video-container">
-        //     <div className="filter"></div>
-        //     <video autoPlay loop className="fillWidth">
-        //       <source src={ window.assets.landingPageVideoMP4 } type="video/mp4" />
-        //       <source src={ window.assets.landingPageVideoWEBM } type="video/webm" />
-        //     </video>
-        //     <div className="poster hidden">
-        //       <img src={ window.assets.landingPageImage } alt="" />
-        //     </div>
-        //   </div>
-        // </div>
+    // <div className="poster hidden">
+    //   <img src={ window.assets.landingPageImage } alt="" />
+    // </div>
