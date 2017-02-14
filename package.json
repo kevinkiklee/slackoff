@@ -21,11 +21,18 @@
     "redux-thunk": "^2.2.0",
     "webpack": "^2.2.1"
   },
+
+  "engines": {
+    "node": "6.7.0",
+    "npm": "4.3.0"
+  },
+
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack",
-    "watch": "webpack -w"
+    "watch": "webpack -w",
+    "postinstall": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
