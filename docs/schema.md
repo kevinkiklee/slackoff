@@ -46,10 +46,10 @@
 
 ## Subscription
 
-| column     | type     | attribute  |
-|------------|----------|------------|
-| user_id    | `string` | `presence` |
-| channel_id | `string` | `presence` |
+| column     | type      | attribute  |
+|------------|-----------|------------|
+| user_id    | `integer` | `presence` |
+| channel_id | `integer` | `presence` |
 
 - **Belongs To**
   - User
