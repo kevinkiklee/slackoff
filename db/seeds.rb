@@ -15,3 +15,7 @@ nedstark.save
 daenerys = User.new(username: 'daenerys', email: 'daenerys@targaryen.com')
 daenerys.password = 'daenerys'
 daenerys.save
+
+guest = User.new(username: 'guest', email: 'guest@guest.com')
+guest.password = 'guestlogin'
+guest.save
