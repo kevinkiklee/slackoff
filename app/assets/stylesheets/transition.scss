@@ -1,0 +1,8 @@
+.session-form-appear {
+  opacity: 0.01;
+}
+
+.session-form-appear.session-form-appear-active {
+  opacity: 1;
+  transition: opacity .1s ease-in;
+}

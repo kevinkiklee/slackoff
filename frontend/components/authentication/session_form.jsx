@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login, signup } from '../../actions/session_actions';
+import { login, signup, clearErrors } from '../../actions/session_actions';
 import { withRouter } from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class SessionForm extends React.Component {
       password: '',
       email: ''
     };
+
+    this.errors = '';
 
     this.submitForm = this.submitForm.bind(this);
     this.updateInput = this.updateInput.bind(this);
@@ -30,17 +33,21 @@ class SessionForm extends React.Component {
   }
 
   redirect() {
-    this.props.router.push('/');
+    this.props.router.push('/chat');
   }
 
   emailField() {
     return (
       <div>
-      <label className='session-form-label'>Email</label><br />
-      <input className='session-form-input' type='text' onChange={ this.updateInput('email') } /><br />
+        <label className='session-form-label'>Email</label><br />
+        <input className='session-form-input' type='text' onChange={ this.updateInput('email') } /><br />
       </div>
     );
   }
+
+  // componentWillReceiveProps() {
+  //   this.props.clearErrors();
+  // }
 
   render() {
     let text = 'LOGIN';
@@ -51,30 +58,48 @@ class SessionForm extends React.Component {
       email = this.emailField();
     }
 
-    const errors = this.props.errors.map((error, i) => <li key={i}>{ error }</li>);
+    const errors = this.props.errors.map((error, i) => <li className='session-form-error' key={i}>{ error }</li>);
 
     return (
-      <div className='session-form shadow'>
-        <h3 className='session-form-title'>{ text }</h3>
-        <ul>{ errors }</ul>
+      <ReactCSSTransitionGroup
+        transitionName="session-form"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnter={true}
+        transitionEnterTimeout={500}
+        transitionLeave={true}
+        transitionLeaveTimeout={500}>
 
-        <form onSubmit={ this.submitForm.bind(this) }>
-          <label className='session-form-label'>Username</label><br />
-          <input className='session-form-input' type='text' onChange={ this.updateInput('username') } /><br />
+        <div className='modal' />
 
-          { email }
+        <div className='session-form shadow fade'>
+          <h3 className='session-form-title'>{ text }</h3>
 
-          <label className='session-form-label'>Password</label><br />
-          <input className='session-form-input' type='password' onChange={ this.updateInput('password') } /><br />
+          <ul className='session-form-error-container'>
+            { errors }
+          </ul>
 
-          <div className='session-form-submit-button'>
-            <input className='shadow-sm' type='submit' value={ text } />
-          </div>
-        </form>
-      </div>
+          <form onSubmit={ this.submitForm.bind(this) }>
+            <label className='session-form-label'>Username</label><br />
+            <input className='session-form-input' type='text' onChange={ this.updateInput('username') } /><br />
+
+            { email }
+
+            <label className='session-form-label'>Password</label><br />
+            <input className='session-form-input' type='password' onChange={ this.updateInput('password') } /><br />
+
+            <div className='session-form-submit-button'>
+              <input className='shadow-sm' type='submit' value={ text } />
+            </div>
+          </form>
+        </div>
+
+      </ReactCSSTransitionGroup>
     );
   }
 }
+
+// <i className="fa fa-2 fa-arrow-circle-right" aria-hidden="true" />
 
 const mapStateToProps = (state, ownProps) => {
   const loggedIn = state.session.currentUser === null ? false: true;
@@ -92,7 +117,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const action = ownProps.location.pathname === '/signup' ? signup : login;
 
   return {
-    processForm: (user) => dispatch(action(user))
+    processForm: (user) => dispatch(action(user)),
+    clearErrors: () => dispatch(clearErrors())
   };
 };
 

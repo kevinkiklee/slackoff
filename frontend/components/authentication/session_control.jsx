@@ -11,7 +11,7 @@ class SessionControl extends React.Component {
   }
 
   signout() {
-    this.props.logout().then(() => this.props.router.push('/login'));
+    this.props.logout().then(() => this.props.router.push('/'));
   }
 
   render() {
@@ -25,8 +25,8 @@ class SessionControl extends React.Component {
     }
 
     return (
-      <section>
-        <button className='logout-button' onClick={ this.signout }>Logout</button>
+      <section className='session-control'>
+        <button className='session-control-btn' onClick={ this.signout }>LOGOUT</button>
       </section>
     );
   }

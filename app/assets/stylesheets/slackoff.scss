@@ -6,6 +6,36 @@ h1 {
   font-size: 30px;
 }
 
+// .modal {
+//   z-index: 5;
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background-color: rgba(0, 0, 0, 0.8);
+// }
+
+.btn {
+  font-size: 12px;
+  text-decoration: none;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.3s ease 0s;
+  color: white;
+  background-color: #42c299;
+}
+
+.btn:hover {
+  background-color: #0e674b;
+}
+
+.fade {
+  transition: all 0.3s ease 0s;
+}
+
 .shadow {
   -webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow:    3px 3px 5px 0px rgba(50, 50, 50, 0.75);
@@ -30,7 +60,8 @@ h1 {
   padding: 10px;
   height: 30px;
 
-  .landing-page-logo {
+  .landing-page-logo a {
+    text-decoration: none;
     font-size: 20px;
     color: white;
   }
@@ -41,19 +72,69 @@ h1 {
     justify-content: center;
 
     .session-control-btn {
+      font-size: 12px;
       text-decoration: none;
       padding: 10px;
       margin: 5px;
       border-radius: 5px;
-      height: 20px;
+      border: none;
 
       transition: all 0.3s ease 0s;
       color: white;
       background-color: #42c299;
     }
+
     .session-control-btn:hover {
       background-color: #0e674b;
     }
+  }
+}
+
+.banner-container {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  z-index: 100;
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%);
+  color: white;
+  letter-spacing: 1px;
+
+  .banner-logo {
+    width: 200px;
+    margin-bottom: 25px;
+  }
+
+  .banner-title h1 {
+    font-weight: 700;
+    padding: 10px;
+    font-size: 60px;
+  }
+
+  .banner-subtitle {
+    text-align: right;
+    padding: 10px;
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  .banner-btn {
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 45px;
+    margin: 25px;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s ease 0s;
+    color: white;
+    background-color: #42c299;
+  }
+
+  .banner-btn:hover {
+    background-color: #0e674b;
   }
 }
 
@@ -114,6 +195,12 @@ h1 {
       background-color: #42c299;
       color: white;
       font-size: 14px;
+      transition: all 0.3s ease 0s;
+    }
+
+    input[type=submit]:hover {
+      transition: all 0.3s ease 0s;
+      background-color: #0e674b;
     }
   }
 }
