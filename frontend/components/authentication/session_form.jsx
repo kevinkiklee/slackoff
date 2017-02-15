@@ -123,8 +123,6 @@ class SessionForm extends React.Component {
   }
 }
 
-// <i className="fa fa-2 fa-arrow-circle-right" aria-hidden="true" />
-
 const mapStateToProps = (state, ownProps) => {
   let user = {
     username: '',
@@ -132,9 +130,10 @@ const mapStateToProps = (state, ownProps) => {
     email: ''
   };
 
+  let formType = 'login';
+
   const loggedIn = state.session.currentUser === null ? false: true;
   const errors = state.session.errors || [];
-  let formType = 'login';
 
   if (ownProps.location.pathname === '/signup') {
     formType = 'signup';
