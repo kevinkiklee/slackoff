@@ -8,16 +8,13 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      username: '',
-      password: '',
-      email: ''
-    };
+    this.state = this.props.user;
 
     this.errors = '';
 
     this.submitForm = this.submitForm.bind(this);
     this.updateInput = this.updateInput.bind(this);
+    this.errorItems = this.errorItems.bind(this);
   }
 
   updateInput(field) {
@@ -45,9 +42,23 @@ class SessionForm extends React.Component {
     );
   }
 
-  // componentWillReceiveProps() {
-  //   this.props.clearErrors();
-  // }
+  componentWillReceiveProps(newProps) {
+    if (this.props.formType !== newProps.formType) {
+      this.props.clearErrors();
+    }
+  }
+
+  errorItems() {
+    if(this.props.errors.length > 0) {
+      const errors = this.props.errors.map((error, i) => <li className='session-form-error' key={i}>{ error }</li>);
+
+      return (
+        <ul className='session-form-error-container'>
+          { errors }
+        </ul>
+      );
+    }
+  }
 
   render() {
     let text = 'LOGIN';
@@ -57,8 +68,6 @@ class SessionForm extends React.Component {
       text = 'SIGNUP';
       email = this.emailField();
     }
-
-    const errors = this.props.errors.map((error, i) => <li className='session-form-error' key={i}>{ error }</li>);
 
     return (
       <ReactCSSTransitionGroup
@@ -70,29 +79,29 @@ class SessionForm extends React.Component {
         transitionLeave={true}
         transitionLeaveTimeout={500}>
 
-        <div className='modal' />
+        <div className='modal' onClick={ () => this.props.router.push('/') }/>
 
-        <div className='session-form shadow fade'>
-          <h3 className='session-form-title'>{ text }</h3>
+        <section className='session-form-container fade'>
+          <div className='session-form shadow fade'>
+            <h3 className='session-form-title'>{ text }</h3>
 
-          <ul className='session-form-error-container'>
-            { errors }
-          </ul>
+            { this.errorItems.call(this) }
 
-          <form onSubmit={ this.submitForm.bind(this) }>
-            <label className='session-form-label'>Username</label><br />
-            <input className='session-form-input' type='text' onChange={ this.updateInput('username') } /><br />
+            <form onSubmit={ this.submitForm }>
+              <label className='session-form-label'>Username</label><br />
+              <input className='session-form-input' type='text' onChange={ this.updateInput('username') } /><br />
 
-            { email }
+              { email }
 
-            <label className='session-form-label'>Password</label><br />
-            <input className='session-form-input' type='password' onChange={ this.updateInput('password') } /><br />
+              <label className='session-form-label'>Password</label><br />
+              <input className='session-form-input' type='password' onChange={ this.updateInput('password') } /><br />
 
-            <div className='session-form-submit-button'>
-              <input className='shadow-sm' type='submit' value={ text } />
-            </div>
-          </form>
-        </div>
+              <div className='session-form-submit-button'>
+                <input className='shadow-sm' type='submit' value={ text } />
+              </div>
+            </form>
+          </div>
+        </section>
 
       </ReactCSSTransitionGroup>
     );
@@ -102,6 +111,12 @@ class SessionForm extends React.Component {
 // <i className="fa fa-2 fa-arrow-circle-right" aria-hidden="true" />
 
 const mapStateToProps = (state, ownProps) => {
+  let user = {
+    username: '',
+    password: '',
+    email: ''
+  };
+
   const loggedIn = state.session.currentUser === null ? false: true;
   const errors = state.session.errors || [];
   let formType = 'login';
@@ -110,7 +125,7 @@ const mapStateToProps = (state, ownProps) => {
     formType = 'signup';
   }
 
-  return { loggedIn, errors, formType };
+  return { user, loggedIn, errors, formType };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
