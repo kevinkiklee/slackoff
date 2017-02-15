@@ -1,0 +1,31 @@
+.channel-section {
+  min-width: 415px;
+  width: 415px;
+  float: right;
+  border: 1px solid black;
+
+  .search-container {
+    border: 1px solid black;
+    height: 60px;
+  }
+
+  .channel-container {
+    border: 1px solid black;
+  }
+
+  .channel-details {
+    padding: 15px;
+
+    .channel-description {
+      border: 1px solid black;
+    }
+
+    .channel-information {
+      border: 1px solid black;
+    }
+  }
+
+  .channel-members {
+    border: 1px solid black;
+  }
+}
