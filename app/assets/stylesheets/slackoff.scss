@@ -6,6 +6,14 @@ h1 {
   font-size: 30px;
 }
 
+h1, h2, h3, h4 {
+  letter-spacing: 1px;
+}
+
+button {
+  cursor:pointer;
+}
+
 .modal {
   z-index: 5;
   position: absolute;

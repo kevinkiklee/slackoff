@@ -30,7 +30,7 @@
       margin: 5px;
       border-radius: 5px;
       border: none;
-
+      letter-spacing: 1px;
       transition: all 0.3s ease 0s;
       color: white;
       background-color: #42c299;
@@ -38,6 +38,23 @@
 
     .session-control-btn:hover {
       background-color: #25a67e;
+    }
+
+    .session-control-guest-btn {
+      font-size: 12px;
+      text-decoration: none;
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      border: none;
+      letter-spacing: 1px;
+      transition: all 0.3s ease 0s;
+      color: white;
+      background-color: #EAA22F;
+    }
+
+    .session-control-guest-btn:hover {
+      background-color: #E09112;
     }
   }
 }
@@ -94,7 +111,6 @@
     font-size: 18px;
     text-decoration: none;
     padding: 10px 52px;
-    margin: 50px 25px 25px 25px;
     border-radius: 5px;
     border: none;
     transition: all 0.3s ease 0s;
@@ -105,8 +121,6 @@
   .guest-btn:hover {
     background-color: #E09112;
   }
-
-
 }
 
 .info-container {

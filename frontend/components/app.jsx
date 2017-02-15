@@ -1,7 +1,9 @@
 import React from 'react';
-import SessionControl from './authentication/session_control';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link, withRouter } from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+import SessionControl from './authentication/session_control';
+import Banner from './frontpage/banner';
 
 const App = ({ children }) => (
   <div className='app-container'>
@@ -24,18 +26,7 @@ const App = ({ children }) => (
       </div>
     </div>
 
-    <section className='banner-container'>
-      <img className='banner-logo' src={ window.assets.bannerLogo }/>
-      <div className='banner-title'>
-        <h1>Where work happens</h1>
-      </div>
-      <div className='banner-subtitle'>
-        <h2>...sometimes</h2>
-      </div>
-
-      <Link className='banner-btn shadow' to='/signup'>Join SlackOff</Link><br /><br /><br /><br />
-      <Link className='guest-btn shadow' to='/login?guest=true'>Guest Login</Link>
-    </section>
+    <Banner />
 
     <section className='info-container'>
       <div className='info-columns-wrapper'>
@@ -61,9 +52,3 @@ const App = ({ children }) => (
 );
 
 export default App;
-// <img src={ window.assets.landingPage } />
-
-    //
-    // <div className="poster hidden">
-    //   <img src={ window.assets.landingPageImage } alt="" />
-    // </div>

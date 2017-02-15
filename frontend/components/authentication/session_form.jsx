@@ -1,16 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login, signup, clearErrors } from '../../actions/session_actions';
 import { withRouter } from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+import { login, signup, clearErrors } from '../../actions/session_actions';
 
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this.props.user;
+    if (this.props.guest) {
+      const user = {
+        username: 'guest',
+        password: 'guestlogin',
+        email: 'guest@guest.com'
+      };
 
-    this.errors = '';
+      this.props.processForm(user).then(() => this.redirect());
+    }
+
+    this.state = this.props.user;
 
     this.submitForm = this.submitForm.bind(this);
     this.updateInput = this.updateInput.bind(this);
@@ -58,6 +67,12 @@ class SessionForm extends React.Component {
         </ul>
       );
     }
+  }
+
+  guestButton() {
+    return (
+      <button className='guest-btn shadow' onClick={ this.guestLogin }>Guest Login</button>
+    );
   }
 
   render() {
@@ -133,7 +148,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     processForm: (user) => dispatch(action(user)),
-    clearErrors: () => dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
+    login: (user) => dispatch(login(user))
   };
 };
 

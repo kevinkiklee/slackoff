@@ -8,10 +8,21 @@ class SessionControl extends React.Component {
   constructor(props) {
     super(props);
     this.signout = this.signout.bind(this);
+    this.guestLogin = this.guestLogin.bind(this);
   }
 
   signout() {
     this.props.logout().then(() => this.props.router.push('/'));
+  }
+
+  guestLogin() {
+    const user = {
+      username: 'guest',
+      password: 'guestlogin',
+      email: 'guest@guest.com'
+    };
+
+    this.props.login(user).then(() => this.props.router.push('/chat'));
   }
 
   render() {
@@ -20,6 +31,7 @@ class SessionControl extends React.Component {
         <section className='session-control'>
           <Link className='session-control-btn' to='/signup'>SIGNUP</Link>
           <Link className='session-control-btn' to='/login'>LOGIN</Link>
+          <button className='session-control-guest-btn' onClick={ this.guestLogin }>GUEST</button>
         </section>
       );
     }
