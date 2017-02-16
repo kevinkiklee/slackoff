@@ -53,59 +53,159 @@ const testState = {
     id: '1',
     name: 'westeros',
     description: 'description for westeros channel',
+    userCount: 5,
 
     messages: [
       {
-        user: {
+        author: {
           id: '1',
           username: 'jon.snow',
           email: 'i.know.nothing@gmail.com',
-          photo_url: 'abc.com/abc.jpg',
-          timestamp: '1:57 PM'
+          photo_url: 'abc.com/abc.jpg'
         },
 
-        content: 'first message in westeros channel from jon.snow',
+        timestamp: '1:57 PM',
+        content: 'Never forget what you are, for surely the world will not. Make it your strength. Then it can never be your weakness. Armour yourself in it, and it will never be used to hurt you.',
         type: 'regular'
       },
 
       {
-        user: {
+        author: {
           id: '2',
           username: 'tyrion',
           email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg',
-          timestamp: '1:59 PM'
+          photo_url: 'abc.com/abc.jpg'
         },
 
+        timestamp: '1:59 PM',
         content: 'second message in westeros channel from tyrion',
         type: 'media'
       },
 
       {
-        user: {
+        author: {
           id: '3',
           username: 'ned.stark',
           email: 'eddard@stark.com',
-          photo_url: 'abc.com/abc.jpg',
-          timestamp: '2:17 PM'
+          photo_url: 'abc.com/abc.jpg'
         },
 
+        timestamp: '2:17 PM',
         content: 'third message in westeros channel from ned',
         type: 'link'
       },
 
       {
-        user: {
+        author: {
           id: '2',
           username: 'tyrion',
           email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg',
-          timestamp: '2:31 PM'
+          photo_url: 'abc.com/abc.jpg'
         },
 
+        timestamp: '2:31 PM',
         content: 'fourth message in westeros channel from tyrion',
         type: 'regular'
-      }
+      },
+
+      {
+        author: {
+          id: '2',
+          username: 'tyrion',
+          email: 'tyrion@lannister.com',
+          photo_url: 'abc.com/abc.jpg'
+        },
+
+        timestamp: '2:31 PM',
+        content: 'fourth message in westeros channel from tyrion',
+        type: 'regular'
+      },
+
+      {
+        author: {
+          id: '2',
+          username: 'tyrion',
+          email: 'tyrion@lannister.com',
+          photo_url: 'abc.com/abc.jpg'
+        },
+
+        timestamp: '2:31 PM',
+        content: 'fourth message in westeros channel from tyrion',
+        type: 'regular'
+      },
+
+      {
+        author: {
+          id: '2',
+          username: 'tyrion',
+          email: 'tyrion@lannister.com',
+          photo_url: 'abc.com/abc.jpg'
+        },
+
+        timestamp: '2:31 PM',
+        content: 'fourth message in westeros channel from tyrion',
+        type: 'regular'
+      },
+      {
+        author: {
+          id: '2',
+          username: 'tyrion',
+          email: 'tyrion@lannister.com',
+          photo_url: 'abc.com/abc.jpg'
+        },
+
+        timestamp: '2:31 PM',
+        content: 'fourth message in westeros channel from tyrion',
+        type: 'regular'
+      },
+      {
+        author: {
+          id: '1',
+          username: 'jon.snow',
+          email: 'i.know.nothing@gmail.com',
+          photo_url: 'abc.com/abc.jpg'
+        },
+
+        timestamp: '1:57 PM',
+        content: 'Never forget what you are, for surely the world will not. Make it your strength. Then it can never be your weakness. Armour yourself in it, and it will never be used to hurt you.',
+        type: 'regular'
+      },
+      {
+        author: {
+          id: '1',
+          username: 'jon.snow',
+          email: 'i.know.nothing@gmail.com',
+          photo_url: 'abc.com/abc.jpg'
+        },
+
+        timestamp: '1:57 PM',
+        content: 'Never forget what you are, for surely the world will not. Make it your strength. Then it can never be your weakness. Armour yourself in it, and it will never be used to hurt you.',
+        type: 'regular'
+      },
+      {
+        author: {
+          id: '2',
+          username: 'tyrion',
+          email: 'tyrion@lannister.com',
+          photo_url: 'abc.com/abc.jpg'
+        },
+
+        timestamp: '2:31 PM',
+        content: 'fourth message in westeros channel from tyrion',
+        type: 'regular'
+      },
+      {
+        author: {
+          id: '2',
+          username: 'tyrion',
+          email: 'tyrion@lannister.com',
+          photo_url: 'abc.com/abc.jpg'
+        },
+
+        timestamp: '2:31 PM',
+        content: 'fourth message in westeros channel from tyrion',
+        type: 'regular'
+      },
     ]
   },
 };

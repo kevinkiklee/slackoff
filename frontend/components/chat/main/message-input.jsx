@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
-// import { login, logout, signup } from '../../actions/session_actions';
-
 class MessageInput extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +11,7 @@ class MessageInput extends React.Component {
   render() {
     return (
       <section className='message-input-container'>
-        <h4>Message Input</h4>
+        <input type='text' placeholder='Message #westeros'></input>
       </section>
     );
   }
