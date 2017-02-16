@@ -13,7 +13,7 @@ class UserDMItem extends React.Component {
   render() {
     return (
       <li className='user-dm-friend'>
-        <div className='user-dm-friend'>
+        <div className='user-dm-friend-container'>
           <img src={ window.assets.iconOnline } />
           <p>{ this.props.friend }</p>
         </div>

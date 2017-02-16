@@ -57,6 +57,10 @@ class SessionForm extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   errorItems() {
     if(this.props.errors.length > 0) {
       const errors = this.props.errors.map((error, i) => <li className='session-form-error' key={i}>{ error }</li>);

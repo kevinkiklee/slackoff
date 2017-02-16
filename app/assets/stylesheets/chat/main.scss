@@ -5,14 +5,14 @@
   .header-container {
     height: 60px;
     min-height: 60px;
-    border: 1px solid black;
+    // border: 1px solid black;
   }
 
   .messages-container {
-    top: 63px;
-    bottom: 80px;
+    top: 60px;
+    bottom: 81px;
     left: 220px;
-    right: 418px;
+    right: 414px;
     position: absolute;
     border: 1px solid black;
   }
@@ -20,7 +20,7 @@
   .message-input-container {
     border: 1px solid black;
     bottom: 0px;
-    right: 415px;
+    right: 414px;
     left: 220px;
     position: fixed;
     height: 80px;
