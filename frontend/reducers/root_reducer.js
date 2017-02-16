@@ -1,8 +1,11 @@
-import SessionReducer from './session_reducer';
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({
+import SessionReducer from './session_reducer';
+import CurrentChannelReducer from './current_channel_reducer';
+
+const RootReducer = combineReducers({
   session: SessionReducer,
+  currentChannel: CurrentChannelReducer
 });
 
-export default rootReducer;
+export default RootReducer;

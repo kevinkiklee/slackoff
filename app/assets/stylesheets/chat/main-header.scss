@@ -1,0 +1,113 @@
+@import '../presets';
+
+.header-container {
+  height: 60px;
+  min-height: 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  padding-left: 20px;
+  padding-right: 5px;
+  padding-top: 9px;
+  padding-bottom: 13px;
+
+  .channel-info-container {
+    display: flex;
+    flex-direction: column;
+
+    .channel-info-name {
+      margin-top: 0px;
+      margin-bottom: 3px;
+
+      h2 {
+        font-size: 19px;
+        font-weight: 700;
+        color: black;
+        letter-spacing: 0px;
+      }
+    }
+
+    .channel-info-details-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      font-size: 14px;
+      font-weight: 300;
+      color: gray;
+
+      .channel-info-details-count {
+        button {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding-right: 6px;
+          border-right: 1px solid gray;
+          transition: all 0.3s ease 0s;
+
+          img {
+            padding-top: 2px;
+          }
+
+          &:hover {
+            color: $blue;
+            transition: all 0.3s ease 0s;
+          }
+        }
+      }
+
+      .channel-info-details-description {
+        display: inline-block;
+        float: left;
+        padding-left: 6px;
+        padding-right: 6px;
+        box-sizing: border-box;
+
+        transition: all 0.3s ease 0s;
+
+        &:hover {
+          // box-sizing: border-box;
+          // transition: all 0.3s ease 0s;
+          // border: 1px solid gray;
+          color: $blue;
+          transition: all 0.3s ease 0s;
+        }
+      }
+    }
+  }
+
+  .header-icons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 24px;
+
+    color: gray;
+
+    .channel-settings-icon {
+      padding: 5px;
+      transition: all 0.3s ease 0s;
+
+      &:hover {
+        color: $blue;
+        transition: all 0.3s ease 0s;
+      }
+    }
+
+    .sidebar-toggle-icon {
+      padding-left: 5px;
+
+      transition: all 0.3s ease 0s;
+
+      &:hover {
+        color: $blue;
+        transition: all 0.3s ease 0s;
+      }
+    }
+  }
+
+}

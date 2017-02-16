@@ -34,6 +34,7 @@
       transition: all 0.3s ease 0s;
       color: white;
       background-color: #42c299;
+      width: inherit;
     }
 
     .session-control-btn:hover {
@@ -41,6 +42,7 @@
     }
 
     .session-control-guest-btn {
+      width: inherit;
       font-size: 12px;
       text-decoration: none;
       padding: 10px;
@@ -116,6 +118,7 @@
     transition: all 0.3s ease 0s;
     color: white;
     background-color: #EAA22F;
+    width: inherit;
   }
 
   .guest-btn:hover {

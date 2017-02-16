@@ -11,19 +11,18 @@ class UserChannelItem extends React.Component {
   }
 
   render() {
-    // debugger
-    if (this.props.currentChannel === this.props.channel) {
+    if (this.props.currentChannel.id == this.props.channel.id) {
       return (
         <li className='user-channels-item selected-channel'>
           <span className='channel-tag'># </span>
-          { this.props.channel }
+          { this.props.channel.name }
         </li>
       );
     } else {
       return (
         <li className='user-channels-item'>
           <span className='channel-tag'># </span>
-          { this.props.channel }
+          { this.props.channel.name }
         </li>
       );
     }

@@ -8,18 +8,26 @@ class UserControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.state;
+    this.displayUserMenu = this.displayUserMenu.bind(this);
+  }
+
+  displayUserMenu() {
+    console.log('Display User Menu');
   }
 
   render() {
     return (
       <section className='user-control-container'>
-        <div className='user-control-title'>
-          <h2>SlackOff</h2>
-        </div>
-        <div className='user-control-name'>
-          <img src={ window.assets.iconOnline } />
-          <p>jon.snow</p>
-        </div>
+        <button onClick={ this.displayUserMenu }>
+          <div className='user-control-title'>
+            <h2>SlackOff</h2>
+          </div>
+
+          <div className='user-control-name'>
+            <img src={ window.assets.iconOnline } />
+            <p>jon.snow</p>
+          </div>
+        </button>
       </section>
     );
   }

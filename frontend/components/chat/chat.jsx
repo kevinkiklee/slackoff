@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router';
 
 // import SessionControl from '../authentication/session_control';
 import UserSection from './user/user-section';
+import MainSection from './main/main-section';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -14,23 +15,7 @@ class Chat extends React.Component {
     return (
       <div className='chat-container'>
         <UserSection />
-
-        <section className='main-section'>
-          <section className='header-container'>
-            <h4>Header</h4>
-          </section>
-
-          <section className='messages-container'>
-            <h4>Messages</h4>
-          </section>
-
-          <section className='message-input-container'>
-            <h4>Message Input</h4>
-          </section>
-        </section>
-
-
-
+        <MainSection />
         <section className='channel-section'>
           <section className='search-container'>
             <h4>Search</h4>
@@ -61,8 +46,6 @@ class Chat extends React.Component {
             </section>
           </section>
         </section>
-
-
       </div>
     );
   }

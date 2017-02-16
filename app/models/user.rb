@@ -31,6 +31,11 @@ class User < ApplicationRecord
 		@password = password
 	end
 
+  def photo_url=(url)
+    self.photo_url = url
+    self.save
+  end
+
 	def self.find_by_credentials(username, password)
 		user = User.find_by(username: username)
 		return nil unless user

@@ -20,12 +20,21 @@ class UserDMs extends React.Component {
 
     // this.state = this.props.state;
     this.buildDMItems = this.buildDMItems.bind(this);
+    this.messageFriend = this.messageFriend.bind(this);
+  }
+
+  messageFriend(friend) {
+    return (e) => {
+      console.log('Friend: ' + friend);
+    };
   }
 
   buildDMItems() {
-    return this.state.dms.map((friend, i) => <UserDMItem key={ i }
-                                                          friend={ friend }
-                                                    />);
+    return this.state.dms.map((friend, i) => (
+      <button key={ i } onClick={ this.messageFriend(friend) }>
+        <UserDMItem key={ i } friend={ friend } />
+      </button>
+    ));
   }
 
   render() {

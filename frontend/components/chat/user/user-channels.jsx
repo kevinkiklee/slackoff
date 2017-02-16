@@ -2,31 +2,34 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
+import { switchChannel } from '../../../actions/current_channel_actions';
+
 import UserChannelItem from './user-channel-item';
 
 class UserChannels extends React.Component {
   constructor(props) {
     super(props);
-    const channels = ['westeros',
-                      'the-wall',
-                      'winterfell',
-                      'winter-is-coming'];
-
-    const currentChannel = 'westeros';
 
     this.state = {
-      channels,
-      currentChannel
+      channels: this.props.channels,
+      currentChannel: this.props.currentChannel
     };
 
     this.buildChannelItems = this.buildChannelItems.bind(this);
     this.changeChannel = this.changeChannel.bind(this);
+    this.displayAllChannels = this.displayAllChannels.bind(this);
   }
 
   changeChannel(channel) {
-    return (e) => (
-      this.setState({ currentChannel: channel })
-    );
+    return (e) => {
+      console.log('Current Channel: ' + channel.name);
+      this.props.switchChannel(channel);
+      this.setState({ currentChannel: channel });
+    };
+  }
+
+  displayAllChannels() {
+    console.log('All Channels: ' + this.state.channels);
   }
 
   buildChannelItems() {
@@ -41,9 +44,14 @@ class UserChannels extends React.Component {
   }
 
   render() {
+    const channelCount = this.state.channels.length;
+
     return (
       <section className='user-channels-container'>
-        <h4>CHANNELS <span className='user-channels-count'>(47)</span></h4>
+        <button onClick={ this.displayAllChannels }>
+          <h4>CHANNELS <span className='user-channels-count'>({ channelCount })</span></h4>
+        </button>
+
         <ul className='user-channels-list'>
           { this.buildChannelItems() }
         </ul>
@@ -52,12 +60,17 @@ class UserChannels extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+  const stateChannels = state.session.currentUser.subscriptions;
 
-});
+  return {
+    channels: stateChannels,
+    currentChannel: state.currentChannel
+  };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  // clearErrors: () => dispatch(clearErrors())
+  switchChannel: (channel) => dispatch(switchChannel(channel))
 });
 
 export default connect(
