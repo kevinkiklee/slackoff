@@ -23,6 +23,9 @@ class User < ApplicationRecord
 	validates :username, :email, uniqueness: true
 	validates :password, { length: { minimum: 6 }, allow_nil: :true }
 
+  has_many :subscriptions
+  has_many :channels, through: :subscriptions
+
 	after_initialize :ensure_session_token
 	before_validation :ensure_session_token_uniqueness
 
@@ -30,11 +33,6 @@ class User < ApplicationRecord
 		self.password_digest = BCrypt::Password.create(password)
 		@password = password
 	end
-
-  # def photo_url=(url)
-  #   self.photo_url = url
-  #   self.save
-  # end
 
 	def self.find_by_credentials(username, password)
 		user = User.find_by(username: username)

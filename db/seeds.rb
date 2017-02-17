@@ -1,3 +1,5 @@
+#### USERS ####
+
 User.destroy_all
 
 guest = User.new(username: 'guest', email: 'guest@guest.com')
@@ -23,4 +25,50 @@ users.each do |user|
                  )
   char.password = user
   char.save
+end
+
+#### CHANNELS ####
+
+Channel.destroy_all
+
+channels = %w(westeros
+              essos
+              winterfell
+              the-wall
+              riverrun
+              kings-landing
+              casterly-rock
+              dorne
+              storms-end
+              harrenhal
+              highgarden
+              iron-throne
+              lannisters
+              starks
+              targaryens
+              cute-wolf-pics
+              )
+
+norris = ['Chuck Norris can binary search unsorted data',
+          "When Chuck Norris\' code fails to compile the compiler apologises",
+          "There is nothing regular about Chuck Norris' expressions",
+          "The class object inherits from Chuck Norris",
+          "Chuck Norris' preferred IDE is hexedit",
+          "Chuck Norris can't test for equality because he has no equal",
+          "Chuck Norris hosting is 101% uptime guaranteed",
+          "Chuck Norris can compile syntax errors",
+          "Chuck Norris programs do not accept input",
+          "Chuck Norris's beard can type 140 wpm",
+          "When Chuck Norris points to null, null quakes in fear",
+          "Chuck Norris doesn't pair program",
+          "Chuck Norris went out of an infinite loop",
+          "Chuck Norris can instantiate an abstract class",
+          "When Chuck Norris gives a method an argument, the method loses",
+          "Chuck Norris' beard is immutable"
+          ]
+
+channels.each.with_index do |channel, i|
+  ch = Channel.new(name: channel,
+                   description: norris[i])
+  ch.save
 end
