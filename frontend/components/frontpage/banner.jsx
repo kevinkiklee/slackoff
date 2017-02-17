@@ -14,9 +14,8 @@ class Banner extends React.Component {
 
   guestLogin() {
     const user = {
-      username: 'guest',
-      password: 'guestlogin',
-      email: 'guest@guest.com'
+      "username": "guest",
+      "password": "guestlogin",
     };
 
     this.props.login(user).then(() => this.props.router.push('/chat'));

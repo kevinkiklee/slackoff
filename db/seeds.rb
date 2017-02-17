@@ -1,55 +1,3 @@
-require 'byebug'
-
-#### USERS ####
-
-User.destroy_all
-
-guest = User.new(username: 'guest', email: 'guest@guest.com')
-guest.password = 'guestlogin'
-guest.save
-
-users = %w(jon.snow
-           ned.stark
-           tyrion.lannister
-           daenerys.targaryen
-           jaime.lannister
-           petyr.baelish
-           arya.stark
-           sandor.clegane
-           theon.greyjoy
-           samwell.tarly
-           sansa.stark
-           robb.stark
-           cersei.lannister
-           joffrey.baratheon
-           ramsay.bolton
-           brienne.of.tarth
-           ygritte
-           lord.varys
-           stannis.baratheon
-           oberyn.martell
-           jorah.mormont
-           khal.drogo
-           maester.aemon
-           podrick.payne
-           jojen.reed
-           davos.seaworth
-           catelyn.stark
-           melisandre
-           gilly
-           daario.naharis
-           roose.bolton
-          )
-
-users.each do |user|
-  char = User.new(username: user,
-                  email: Faker::Internet.email,
-                  photo_url: Faker::Avatar.image(user, "50x50")
-                 )
-  char.password = user
-  char.save
-end
-
 #### CHANNELS ####
 
 Channel.destroy_all
@@ -96,22 +44,90 @@ channels.each.with_index do |channel, i|
   ch.save
 end
 
-### Subscriptions
+ch_start = Channel.first.id
+ch_end = Channel.last.id
 
-Subscription.destroy_all
+#### USERS ####
+
+User.destroy_all
+
+guest = User.new(username: 'guest',
+                 email: 'guest@guest.com',
+                 photo_url: Faker::Avatar.image('guest', "50x50"),
+                 current_channel: Channel.first.id
+                )
+
+guest.password = 'guestlogin'
+guest.save
+
+users = %w(jon.snow
+           ned.stark
+           tyrion.lannister
+           daenerys.targaryen
+           jaime.lannister
+           petyr.baelish
+           arya.stark
+           sandor.clegane
+           theon.greyjoy
+           samwell.tarly
+           sansa.stark
+           robb.stark
+           cersei.lannister
+           joffrey.baratheon
+           ramsay.bolton
+           brienne.of.tarth
+           ygritte
+           lord.varys
+           stannis.baratheon
+           oberyn.martell
+           jorah.mormont
+           khal.drogo
+           maester.aemon
+           podrick.payne
+           jojen.reed
+           davos.seaworth
+           catelyn.stark
+           melisandre
+           gilly
+           daario.naharis
+           roose.bolton
+          )
+
+users.each do |user|
+  char = User.new(username: user,
+                  email: Faker::Internet.email,
+                  photo_url: Faker::Avatar.image(user, "50x50"),
+                  current_channel: (ch_start..ch_end).to_a.sample.to_i
+                 )
+  char.password = user
+  char.save
+end
 
 user_start = User.first.id
 user_end = User.last.id
 
-ch_start = Channel.first.id
-ch_end = Channel.last.id
+### Subscriptions
+
+Subscription.destroy_all
 
 (user_start..user_end).to_a.each do |i|
-  (3..10).to_a.sample.times do
-    Subscription.create(user_id: User.find(i).id,
-                        channel_id: Channel.find((ch_start..ch_end).to_a.sample).id
+  user = User.find(i)
+  channels = []
+
+  n = (3..10).to_a.sample.to_i
+
+  until channels.length == n
+    channels << (ch_start..ch_end).to_a.sample.to_i
+    channels.uniq!
+  end
+
+  n.times do
+    Subscription.create(user_id: user.id,
+                        channel_id: channels.shift
                         )
   end
+
+  user.current_channel = user.channels.sample.id
 end
 
 ### Messages
@@ -120,7 +136,7 @@ Message.destroy_all
 
 200.times do
   i = (user_start..user_end).to_a.sample.to_i
-  
+
   user_id = User.find(i).id
   ch_id = (ch_start..ch_end).to_a.sample.to_i
   content = Faker::Hacker.say_something_smart

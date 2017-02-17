@@ -13,7 +13,7 @@ class MessageItem extends React.Component {
       <li className=''>
         <div className='message-container'>
           <div className='message-avatar-container'>
-            <img src={ window.assets.logoSq } />
+            <img src={ this.props.message.author.photo_url } />
           </div>
           <div className='message-main-container'>
             <div className='message-info-container'>

@@ -5,212 +5,6 @@ import configureStore from './store/store';
 
 import merge from 'lodash/merge';
 
-const testState = {
-  session: {
-    currentUser: {
-      id: '1',
-      username: 'guest',
-      email: 'i.know.nothing@gmail.com',
-      photo_url: 'abc.com/abc.jpg',
-
-      currentChannel: 1,
-
-      subscriptions: [
-        {
-          id: 1,
-          name: "westeros",
-          description: 'description for westeros channel'
-        },
-
-        {
-          id: 2,
-          name: "the-wall",
-          description: 'description for the-wall channel'
-        },
-
-        {
-          id: 3,
-          name: "winterfell",
-          description: 'description for winterfell channel'
-        },
-
-        {
-          id: 4,
-          name: "winter-is-coming",
-          description: 'description for winter-is-coming channel'
-        }
-      ]
-    }
-  },
-
-  currentChannel: {
-    id: 1,
-    name: "westeros",
-    description: 'description for westeros channel'
-  },
-
-  channel: {
-    id: '1',
-    name: 'westeros',
-    description: 'description for westeros channel',
-    userCount: 5,
-
-    messages: [
-      {
-        author: {
-          id: '1',
-          username: 'jon.snow',
-          email: 'i.know.nothing@gmail.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '1:57 PM',
-        content: 'Never forget what you are, for surely the world will not. Make it your strength. Then it can never be your weakness. Armour yourself in it, and it will never be used to hurt you.',
-        type: 'regular'
-      },
-
-      {
-        author: {
-          id: '2',
-          username: 'tyrion',
-          email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '1:59 PM',
-        content: 'second message in westeros channel from tyrion',
-        type: 'media'
-      },
-
-      {
-        author: {
-          id: '3',
-          username: 'ned.stark',
-          email: 'eddard@stark.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '2:17 PM',
-        content: 'third message in westeros channel from ned',
-        type: 'link'
-      },
-
-      {
-        author: {
-          id: '2',
-          username: 'tyrion',
-          email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '2:31 PM',
-        content: 'fourth message in westeros channel from tyrion',
-        type: 'regular'
-      },
-
-      {
-        author: {
-          id: '2',
-          username: 'tyrion',
-          email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '2:31 PM',
-        content: 'fourth message in westeros channel from tyrion',
-        type: 'regular'
-      },
-
-      {
-        author: {
-          id: '2',
-          username: 'tyrion',
-          email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '2:31 PM',
-        content: 'fourth message in westeros channel from tyrion',
-        type: 'regular'
-      },
-
-      {
-        author: {
-          id: '2',
-          username: 'tyrion',
-          email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '2:31 PM',
-        content: 'fourth message in westeros channel from tyrion',
-        type: 'regular'
-      },
-      {
-        author: {
-          id: '2',
-          username: 'tyrion',
-          email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '2:31 PM',
-        content: 'fourth message in westeros channel from tyrion',
-        type: 'regular'
-      },
-      {
-        author: {
-          id: '1',
-          username: 'jon.snow',
-          email: 'i.know.nothing@gmail.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '1:57 PM',
-        content: 'Never forget what you are, for surely the world will not. Make it your strength. Then it can never be your weakness. Armour yourself in it, and it will never be used to hurt you.',
-        type: 'regular'
-      },
-      {
-        author: {
-          id: '1',
-          username: 'jon.snow',
-          email: 'i.know.nothing@gmail.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '1:57 PM',
-        content: 'Never forget what you are, for surely the world will not. Make it your strength. Then it can never be your weakness. Armour yourself in it, and it will never be used to hurt you.',
-        type: 'regular'
-      },
-      {
-        author: {
-          id: '2',
-          username: 'tyrion',
-          email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '2:31 PM',
-        content: 'fourth message in westeros channel from tyrion',
-        type: 'regular'
-      },
-      {
-        author: {
-          id: '2',
-          username: 'tyrion',
-          email: 'tyrion@lannister.com',
-          photo_url: 'abc.com/abc.jpg'
-        },
-
-        timestamp: '2:31 PM',
-        content: 'fourth message in westeros channel from tyrion',
-        type: 'regular'
-      },
-    ]
-  },
-};
-
-
 document.addEventListener('DOMContentLoaded', () => {
   // console.log('%cYour surveillance activity has been recorded.', 'background: #ff0000; color: #ffffff');
   // console.log('%cYour IP has been submitted to FBI/NSA for further investigation.', 'background: #ffffff; color: #ff0000');
@@ -220,17 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let store = configureStore();
 
   if (window.currentUser) {
-    // const preloadedState = { session: { currentUser: window.currentUser } };
-    store = configureStore(testState);
+    const preloadedState = {
+      currentChannel: {
+        id: 1,
+        name: "westeros",
+        description: 'description for westeros channel'
+      },
+
+      session: { currentUser: window.currentUser }
+    };
+
+    store = configureStore(preloadedState);
   }
-
-
-  // if (window.currentUser) {
-  //   const preloadedState = { session: { currentUser: window.currentUser } };
-  //   let store = configureStore(preloadedState);
-  // } else {
-  //   let store = configureStore();
-  // }
 
   window.store = store;
 

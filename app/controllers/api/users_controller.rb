@@ -1,4 +1,13 @@
 class Api::UsersController < ApplicationController
+  def index
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @channels = @user.channels
+    render "api/users/show"
+  end
+
   def create
     @user = User.new(user_params)
 

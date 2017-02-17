@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
+import { fetchChannel } from '../../../actions/channel_actions';
+
 import Header from './header';
 import Messages from './messages';
 import MessageInput from './message-input';
@@ -12,6 +14,11 @@ class MainSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.state;
+  }
+
+  componentWillMount() {
+    // debugger
+    this.props.fetchChannel(this.props.user.id, this.props.user.current_channel);
   }
 
   render() {
@@ -27,12 +34,15 @@ class MainSection extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.session.currentUser,
+    channel: state.channel
+  };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  // clearErrors: () => dispatch(clearErrors())
+  fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId))
 });
 
 export default connect(

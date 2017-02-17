@@ -61,6 +61,7 @@ class UserChannels extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  // debugger
   const stateChannels = state.session.currentUser.subscriptions;
 
   return {
