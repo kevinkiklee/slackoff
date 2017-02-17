@@ -1,3 +1,5 @@
+require 'byebug'
+
 #### USERS ####
 
 User.destroy_all
@@ -16,6 +18,27 @@ users = %w(jon.snow
            sandor.clegane
            theon.greyjoy
            samwell.tarly
+           sansa.stark
+           robb.stark
+           cersei.lannister
+           joffrey.baratheon
+           ramsay.bolton
+           brienne.of.tarth
+           ygritte
+           lord.varys
+           stannis.baratheon
+           oberyn.martell
+           jorah.mormont
+           khal.drogo
+           maester.aemon
+           podrick.payne
+           jojen.reed
+           davos.seaworth
+           catelyn.stark
+           melisandre
+           gilly
+           daario.naharis
+           roose.bolton
           )
 
 users.each do |user|
@@ -84,9 +107,25 @@ ch_start = Channel.first.id
 ch_end = Channel.last.id
 
 (user_start..user_end).to_a.each do |i|
-  (3..6).to_a.sample.times do
+  (3..10).to_a.sample.times do
     Subscription.create(user_id: User.find(i).id,
                         channel_id: Channel.find((ch_start..ch_end).to_a.sample).id
                         )
   end
+end
+
+### Messages
+
+Message.destroy_all
+
+200.times do
+  i = (user_start..user_end).to_a.sample.to_i
+  
+  user_id = User.find(i).id
+  ch_id = (ch_start..ch_end).to_a.sample.to_i
+  content = Faker::Hacker.say_something_smart
+
+  Message.create(user_id: user_id,
+                 channel_id: ch_id,
+                 content: content)
 end

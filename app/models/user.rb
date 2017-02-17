@@ -24,6 +24,7 @@ class User < ApplicationRecord
 	validates :password, { length: { minimum: 6 }, allow_nil: :true }
 
   has_many :subscriptions
+  has_many :messages
   has_many :channels, through: :subscriptions
 
 	after_initialize :ensure_session_token
