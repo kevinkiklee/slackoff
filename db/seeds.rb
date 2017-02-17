@@ -72,3 +72,21 @@ channels.each.with_index do |channel, i|
                    description: norris[i])
   ch.save
 end
+
+### Subscriptions
+
+Subscription.destroy_all
+
+user_start = User.first.id
+user_end = User.last.id
+
+ch_start = Channel.first.id
+ch_end = Channel.last.id
+
+(user_start..user_end).to_a.each do |i|
+  (3..6).to_a.sample.times do
+    Subscription.create(user_id: User.find(i).id,
+                        channel_id: Channel.find((ch_start..ch_end).to_a.sample).id
+                        )
+  end
+end
