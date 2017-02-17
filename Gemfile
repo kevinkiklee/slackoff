@@ -32,7 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'faker'
 gem 'pusher'
 
 # group :production do
@@ -55,7 +55,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'annotate'
-  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
