@@ -1,3 +1,5 @@
+@import '../presets';
+
 .messages-container {
   position: absolute;
   top: 60px;
@@ -63,6 +65,7 @@
       }
 
       .message-content {
+        // font-family: 'LatoSlack';
         font-size: 16px;
         letter-spacing: 0px;
         font-weight: 300;
