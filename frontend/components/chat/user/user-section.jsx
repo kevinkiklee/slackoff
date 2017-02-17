@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
 import { fetchChannel } from '../../../actions/channel_actions';
+import { setChannel } from '../../../actions/current_channel_actions';
 
 import UserControl from './user-control';
 import UserChannels from './user-channels';
@@ -16,7 +17,16 @@ class UserSection extends React.Component {
 
   componentWillMount() {
     // debugger
-    this.props.fetchChannel(this.props.user.id, this.props.user.current_channel);
+    this.props.fetchChannel(this.props.user.id, this.props.user.current_channel)
+              .then(() => {
+                const channel = {
+                  id: this.props.channel.id,
+                  name: this.props.channel.name,
+                  description: this.props.channel.description
+                };
+
+                this.props.setChannel(channel);
+              });
   }
 
   render() {
@@ -34,12 +44,14 @@ class UserSection extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   // debugger
-  return { user: state.session.currentUser };
+  return { user: state.session.currentUser,
+           channel: state.channel };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   // clearErrors: () => dispatch(clearErrors())
-  fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId))
+  fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
+  setChannel: (channel) => dispatch(setChannel(channel))
 });
 
 export default connect(

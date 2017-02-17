@@ -16,9 +16,9 @@ class Messages extends React.Component {
     this.buildMessageItems = this.buildMessageItems.bind(this);
   }
 
-  componentWillMount() {
-    this.props.fetchChannel(this.props.user.id, this.props.user.current_channel);
-  }
+  // componentWillMount() {
+  //   this.props.fetchChannel(this.props.user.id, this.props.user.current_channel);
+  // }
 
   buildMessageItems() {
     if (this.props.channel.messages) {

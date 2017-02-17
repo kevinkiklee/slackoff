@@ -6,3 +6,12 @@ export const switchChannel = (channel) => ({
   name: channel.name,
   description: channel.description
 });
+
+export const SET_CHANNEL = 'SET_CHANNEL';
+
+export const setChannel = (channel) => ({
+  type: SET_CHANNEL,
+  id: channel.id,
+  name: channel.name,
+  description: channel.description
+});

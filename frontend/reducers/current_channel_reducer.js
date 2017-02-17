@@ -1,4 +1,5 @@
-import { SWITCH_CHANNEL } from '../actions/current_channel_actions';
+import { SWITCH_CHANNEL,
+         SET_CHANNEL } from '../actions/current_channel_actions';
 
 import merge from 'lodash/merge';
 
@@ -13,6 +14,10 @@ const CurrentChannelReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SWITCH_CHANNEL:
+      return merge({}, initialState, { id: action.id,
+                                       name: action.name,
+                                       description: action.description });
+    case SET_CHANNEL:
       return merge({}, initialState, { id: action.id,
                                        name: action.name,
                                        description: action.description });

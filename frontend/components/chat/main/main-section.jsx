@@ -16,10 +16,10 @@ class MainSection extends React.Component {
     this.state = this.props.state;
   }
 
-  componentWillMount() {
-    // debugger
-    this.props.fetchChannel(this.props.user.id, this.props.user.current_channel);
-  }
+  // componentWillMount() {
+  //   // debugger
+  //   this.props.fetchChannel(this.props.user.id, this.props.user.current_channel);
+  // }
 
   render() {
     return (

@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
-import { switchChannel } from '../../../actions/current_channel_actions';
+import { setChannel } from '../../../actions/current_channel_actions';
+import { fetchChannel } from '../../../actions/channel_actions';
 
 import UserChannelItem from './user-channel-item';
 
@@ -21,10 +22,25 @@ class UserChannels extends React.Component {
   }
 
   changeChannel(channel) {
+    // const user = this.props.user;
+
     return (e) => {
-      console.log('Current Channel: ' + channel.name);
-      this.props.switchChannel(channel);
-      this.setState({ currentChannel: channel });
+      // debugger
+      this.props.fetchChannel(this.props.user.id, channel.id)
+                .then((newChannel) => {
+                  // debugger
+                  const channel = {
+                    id: newChannel.channel.id,
+                    name: newChannel.channel.name,
+                    description: newChannel.channel.description
+                  };
+
+                  this.props.setChannel(channel);
+                  this.setState({ currentChannel: channel });
+                });
+
+      // console.log('Current Channel: ' + channel.name);
+      // this.props.setChannel(channel);
     };
   }
 
@@ -34,7 +50,7 @@ class UserChannels extends React.Component {
 
   buildChannelItems() {
     return this.state.channels.map((channel, i) => (
-      <button key={i} onClick={ this.changeChannel(channel) }>
+      <button key={i} onClick={ this.changeChannel(channel).bind(this) }>
         <UserChannelItem key={ i }
           channel={ channel }
           currentChannel={ this.state.currentChannel }
@@ -61,17 +77,18 @@ class UserChannels extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
   const stateChannels = state.session.currentUser.subscriptions;
 
   return {
+    user: state.session.currentUser,
     channels: stateChannels,
     currentChannel: state.currentChannel
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  switchChannel: (channel) => dispatch(switchChannel(channel))
+  fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
+  setChannel: (channel) => dispatch(setChannel(channel))
 });
 
 export default connect(
