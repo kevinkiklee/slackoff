@@ -1,11 +1,13 @@
 @import '../presets';
 
 .messages-container {
-  position: absolute;
-  top: 60px;
-  bottom: 70px;
-  left: 220px;
-  right: 414px;
+  // position: absolute;
+  // top: 60px;
+  // bottom: 70px;
+  // left: 220px;
+  // right: 414px;
+
+  height: 85%;
 
   border-top: 1px solid lightgray;
   border-right: 1px solid lightgray;
@@ -20,6 +22,8 @@
   flex-direction: column-reverse;
 
   overflow-y: scroll;
+
+  margin-bottom: 9px;
 
   .message-container {
     padding-left: 20px;
