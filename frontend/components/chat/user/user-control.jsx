@@ -25,7 +25,7 @@ class UserControl extends React.Component {
 
           <div className='user-control-name'>
             <img src={ window.assets.iconOnline } />
-            <p>jon.snow</p>
+            <p>{ this.props.user.username }</p>
           </div>
         </button>
       </section>
@@ -34,7 +34,7 @@ class UserControl extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-
+  user: state.session.currentUser
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

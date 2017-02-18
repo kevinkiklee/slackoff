@@ -15,12 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (window.currentUser) {
     const preloadedState = {
-      // currentChannel: {
-      //   id: 1,
-      //   name: "westeros",
-      //   description: 'description for westeros channel'
-      // },
-
       session: { currentUser: window.currentUser }
     };
 

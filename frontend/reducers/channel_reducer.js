@@ -1,4 +1,5 @@
 import { RECEIVE_CHANNEL } from '../actions/channel_actions';
+import { RECEIVE_MESSAGE } from '../actions/message_actions';
 
 import merge from 'lodash/merge';
 
@@ -9,6 +10,7 @@ const ChannelReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case RECEIVE_CHANNEL:
+      // debugger
       return merge({}, {
         id: action.channel.id,
         name: action.channel.name,
@@ -16,6 +18,13 @@ const ChannelReducer = (state = initialState, action) => {
         userCount: 5,
         messages: action.channel.messages
       });
+
+    // case RECEIVE_MESSAGE:
+    //   return  merge({}, state, {
+    //     messages: {
+    //
+    //     }
+    //   });
 
     default:
       return state;

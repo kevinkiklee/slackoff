@@ -1,4 +1,5 @@
 import * as ChannelAPIUtil from '../util/channel_api_util';
+import * as MessageAPIUtil from '../util/message_api_util';
 
 export const RECEIVE_CHANNEL = 'RECEIVE_CHANNEL';
 
@@ -16,15 +17,14 @@ export const receiveChannel = (channel) => ({
 //   type: CLEAR_ERRORS
 // });
 
-export const signup = (user) => dispatch => {
-  return SessionAPIUtil.signup(user).then(
-    (user) => (dispatch(receiveCurrentUser(user))),
-    (errors) => (dispatch(receiveErrors(errors.responseJSON)))
+export const fetchChannel = (userId, channelId) => dispatch => {
+  return ChannelAPIUtil.fetchChannel(userId, channelId).then(
+    (channel) => (dispatch(receiveChannel(channel)))
   );
 };
 
-export const fetchChannel = (userId, channelId) => dispatch => {
-  return ChannelAPIUtil.fetchChannel(userId, channelId).then(
+export const createMessage = (message) => dispatch => {
+  return MessageAPIUtil.createMessage(message).then(
     (channel) => (dispatch(receiveChannel(channel)))
   );
 };

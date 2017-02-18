@@ -22,13 +22,9 @@ class UserChannels extends React.Component {
   }
 
   changeChannel(channel) {
-    // const user = this.props.user;
-
     return (e) => {
-      // debugger
       this.props.fetchChannel(this.props.user.id, channel.id)
                 .then((newChannel) => {
-                  // debugger
                   const channel = {
                     id: newChannel.channel.id,
                     name: newChannel.channel.name,
@@ -38,9 +34,6 @@ class UserChannels extends React.Component {
                   this.props.setChannel(channel);
                   this.setState({ currentChannel: channel });
                 });
-
-      // console.log('Current Channel: ' + channel.name);
-      // this.props.setChannel(channel);
     };
   }
 
@@ -53,7 +46,7 @@ class UserChannels extends React.Component {
       <button key={i} onClick={ this.changeChannel(channel).bind(this) }>
         <UserChannelItem key={ i }
           channel={ channel }
-          currentChannel={ this.state.currentChannel }
+          currentChannel={ this.props.currentChannel }
         />
       </button>
     ));
