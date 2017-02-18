@@ -16,7 +16,6 @@ class UserSection extends React.Component {
   }
 
   componentWillMount() {
-    // debugger
     this.props.fetchChannel(this.props.user.id, this.props.user.current_channel)
               .then(() => {
                 const channel = {
@@ -43,13 +42,11 @@ class UserSection extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
   return { user: state.session.currentUser,
            channel: state.channel };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  // clearErrors: () => dispatch(clearErrors())
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
   setChannel: (channel) => dispatch(setChannel(channel))
 });

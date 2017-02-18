@@ -25,7 +25,7 @@ class Banner extends React.Component {
     if (this.props.currentUser) {
       return (
         <div>
-          <Link className='banner-btn shadow' to='/chat'>Return to the Chat</Link><br /><br /><br />
+          <Link className='banner-btn shadow' to='/chat'>Return to Chat</Link><br /><br /><br />
         </div>
       );
     } else {
@@ -41,17 +41,19 @@ class Banner extends React.Component {
   render() {
     return (
       <section className='banner-container'>
-        <img className='banner-logo' src={ window.assets.bannerLogo }/>
+        <div className='banner-wrapper'>
+          <img className='banner-logo' src={ window.assets.bannerLogo }/>
 
-        <div className='banner-title'>
-          <h1>Where work happens</h1>
+          <div className='banner-title'>
+            <h1>Where work happens</h1>
+          </div>
+
+          <div className='banner-subtitle'>
+            <h2>...sometimes</h2>
+          </div>
+
+          { this.buildButtons() }
         </div>
-
-        <div className='banner-subtitle'>
-          <h2>...sometimes</h2>
-        </div>
-
-        { this.buildButtons() }
       </section>
     );
   }

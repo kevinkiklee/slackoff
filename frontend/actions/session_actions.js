@@ -32,9 +32,6 @@ export const login = user => dispatch => (
     (user) => (dispatch(receiveCurrentUser(user))),
     (errors) => (dispatch(receiveErrors(errors.responseJSON)))
   )
-  // .then(
-  //   (user) => dispatch(fetchChannel(user.id, user.current_channel))
-  // )
 );
 
 export const logout = () => dispatch => {

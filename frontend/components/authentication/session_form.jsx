@@ -24,6 +24,7 @@ class SessionForm extends React.Component {
     this.submitForm = this.submitForm.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.errorItems = this.errorItems.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
 
   updateInput(field) {

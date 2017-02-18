@@ -2,7 +2,8 @@
 
 Channel.destroy_all
 
-channels = %w(westeros
+channels = %w(general
+              westeros
               essos
               winterfell
               the-wall
@@ -20,7 +21,8 @@ channels = %w(westeros
               cute-wolf-pics
               )
 
-norris = ['Chuck Norris can binary search unsorted data',
+norris = ['Channel for all members on SlackOff~',
+          'Chuck Norris can binary search unsorted data',
           "When Chuck Norris\' code fails to compile the compiler apologises",
           "There is nothing regular about Chuck Norris' expressions",
           "The class object inherits from Chuck Norris",
@@ -44,8 +46,9 @@ channels.each.with_index do |channel, i|
   ch.save
 end
 
-ch_start = Channel.first.id
+ch_start = Channel.first.id + 1
 ch_end = Channel.last.id
+ch_general = Channel.first.id
 
 #### USERS ####
 
@@ -54,7 +57,7 @@ User.destroy_all
 guest = User.new(username: 'guest',
                  email: 'guest@guest.com',
                  photo_url: Faker::Avatar.image('guest', "50x50"),
-                 current_channel: Channel.first.id
+                 current_channel: ch_general
                 )
 
 guest.password = 'guestlogin'
@@ -97,7 +100,7 @@ users.each do |user|
   char = User.new(username: user,
                   email: Faker::Internet.email,
                   photo_url: Faker::Avatar.image(user, "50x50"),
-                  current_channel: (ch_start..ch_end).to_a.sample.to_i
+                  current_channel: ch_general
                  )
   char.password = user
   char.save
@@ -112,7 +115,7 @@ Subscription.destroy_all
 
 (user_start..user_end).to_a.each do |i|
   user = User.find(i)
-  channels = []
+  channels = [ch_general]
 
   n = (3..10).to_a.sample.to_i
 
@@ -134,7 +137,18 @@ end
 
 Message.destroy_all
 
-200.times do
+15.times do 
+  i = (user_start..user_end).to_a.sample.to_i
+
+  user_id = User.find(i).id
+  content = Faker::Hacker.say_something_smart
+
+  Message.create(user_id: user_id,
+                 channel_id: ch_general,
+                 content: content)
+end
+
+300.times do
   i = (user_start..user_end).to_a.sample.to_i
 
   user_id = User.find(i).id

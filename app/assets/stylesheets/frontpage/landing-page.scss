@@ -6,6 +6,9 @@
   justify-content: space-between;
   padding: 10px;
   height: 30px;
+  z-index: 500;
+  // position: absolute;
+  // width: 99%;
 
   .landing-page-logo img {
     height: 25px;
@@ -46,13 +49,16 @@
       font-size: 12px;
       text-decoration: none;
       padding: 10px;
-      margin: 5px;
+      // margin: 5px;
+      margin-left: 5px;
+      // margin-right: 25px;
       border-radius: 5px;
       border: none;
       letter-spacing: 1px;
       transition: all 0.3s ease 0s;
       color: white;
       background-color: #EAA22F;
+
     }
 
     .session-control-guest-btn:hover {
@@ -61,16 +67,38 @@
   }
 }
 
+#banner-video {
+  // overflow: hidden;
+  // width: 100%;
+  // height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+ // background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+ //  background-size: cover;
+  transition: 1s opacity;
+}
+
 .banner-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  height: 90vh;
+  // position: absolute;
   transition: all 0.3s ease 0s;
   z-index: 3;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%);
+  // top: 15%;
+  // left: 50%;
+  // transform: translate(-50%);
   color: white;
   letter-spacing: 1px;
 
@@ -80,13 +108,15 @@
   }
 
   .banner-title h1 {
+    // color: black;
     font-weight: 700;
     padding: 10px;
     font-size: 60px;
   }
 
   .banner-subtitle {
-    text-align: right;
+    // color: black;
+    text-align: center;
     padding: 10px;
     font-size: 40px;
     margin-bottom: 40px;

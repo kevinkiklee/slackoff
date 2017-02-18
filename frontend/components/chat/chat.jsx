@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 
-// import SessionControl from '../authentication/session_control';
 import UserSection from './user/user-section';
 import MainSection from './main/main-section';
 
