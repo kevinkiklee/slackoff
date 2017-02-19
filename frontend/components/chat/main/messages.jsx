@@ -21,22 +21,43 @@ class Messages extends React.Component {
     // debugger
   }
 
+  componentDidMount() {
+    var pusher = new Pusher('5f7c22c0e58bdb98abba', {
+      encrypted: true
+    });
+
+    var channel = pusher.subscribe(this.props.channel.name);
+    console.log('inside pusher set');
+    channelSet = true;
+    // channel.bind('new_message', (data) => {
+    //   this.setState(data.messages);
+    // }, this);
+
+    channel.bind('message', (message) => {
+      this.props.receiveMessage(message);
+    }, this);
+  }
+
   componentWillReceiveProps(newProps) {
-    // debugger
-    // if (newProps.channel.messages) {
-      var pusher = new Pusher('d46870f8b7c4c1636fca', {
-        encrypted: true
-      });
+    // let channelSet = false;
 
-      var channel = pusher.subscribe(newProps.channel.name);
-
-      // channel.bind('new_message', (data) => {
-      //   this.setState(data.messages);
-      // }, this);
-
-      channel.bind('message', (message) => {
-        this.props.receiveMessage(message);
-      }, this);
+    // if (!channelSet) {
+    //   var pusher = new Pusher('d46870f8b7c4c1636fca', {
+    //     encrypted: true
+    //   });
+    //
+    //   var channel = pusher.subscribe(newProps.channel.name);
+    //   console.log('inside pusher set');
+    //   channelSet = true;
+    //   // channel.bind('new_message', (data) => {
+    //   //   this.setState(data.messages);
+    //   // }, this);
+    //
+    //   channel.bind('message', (message) => {
+    //     this.props.receiveMessage(message);
+    //   }, this);
+    //
+    //
     // }
     // debugger
     this.setState(newProps.channel);
