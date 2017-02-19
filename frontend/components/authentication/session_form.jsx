@@ -46,8 +46,7 @@ class SessionForm extends React.Component {
   emailField() {
     return (
       <div>
-        <label className='session-form-label'>Email</label><br />
-        <input className='session-form-input' type='text' onChange={ this.updateInput('email') } /><br />
+        <input className='session-form-input' placeholder='E-mail Address' type='text' onChange={ this.updateInput('email') } /><br />
       </div>
     );
   }
@@ -81,11 +80,16 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    let text = 'LOGIN';
+    let titleText = 'Login to SlackOff';
+    let directionText = <span>Enter your <b>username</b> and <b>password</b></span>;
+    let buttonText = 'Login';
+
     let email = '';
 
     if(this.props.formType === 'signup') {
-      text = 'SIGNUP';
+      titleText = 'Join SlackOff';
+      directionText = <span>Enter your <b>username</b>, <b>e-mail</b> and <b>password</b></span>;
+      buttonText = 'Join';
       email = this.emailField();
     }
 
@@ -103,21 +107,22 @@ class SessionForm extends React.Component {
 
         <section className='session-form-container fade'>
           <div className='session-form shadow fade'>
-            <h3 className='session-form-title'>{ text }</h3>
+            <h3 className='session-form-title'>{ titleText }</h3>
+            <div className='session-form-direction'>
+              { directionText }
+            </div>
 
             { this.errorItems.call(this) }
 
             <form onSubmit={ this.submitForm }>
-              <label className='session-form-label'>Username</label><br />
-              <input className='session-form-input' type='text' onChange={ this.updateInput('username') } /><br />
+              <input className='session-form-input' placeholder='Username' type='text' onChange={ this.updateInput('username') } /><br />
 
               { email }
 
-              <label className='session-form-label'>Password</label><br />
-              <input className='session-form-input' type='password' onChange={ this.updateInput('password') } /><br />
+              <input className='session-form-input' placeholder='Password' type='password' onChange={ this.updateInput('password') } /><br />
 
               <div className='session-form-submit-button'>
-                <input className='shadow-sm' type='submit' value={ text } />
+                <input className='shadow-sm' type='submit' value={ buttonText } />
               </div>
             </form>
           </div>

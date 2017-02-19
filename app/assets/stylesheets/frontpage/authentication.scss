@@ -1,3 +1,5 @@
+@import '../presets';
+
 .session-form-container {
   display: flex;
   align-items: center;
@@ -11,23 +13,37 @@
   transform: translate(-50%);
 
   .session-form {
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 5px solid #42c299;
-    border-radius: 10px;
-    width: 400px;
+    border: 1px solid $green-bright;
+    // border: 1px solid white;
+    border-radius: 3px;
+    width: 500px;
     height: auto;
-    background-color: rgba(255,255,255, 0.95);
+    background-color: rgba(255,255,255, 1);
     transition: all 0.3s ease 0s;
     padding: 40px 10px;
 
     .session-form-title {
-      font-size: 40px;
+      font-size: 32px;
+      letter-spacing: 0px;
       padding: 0px 0px 20px 0px;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      color: #555459;
+    }
+
+    .session-form-direction {
+      font-size: 15px;
+      color: #555459;
+      padding-bottom: 15px;
+
+      b {
+        font-weight: 900;
+      }
     }
 
     .session-form-label {
@@ -36,31 +52,39 @@
     }
 
     .session-form-input {
-      font-size: 14px;
-      margin: 10px 0px;
-      padding: 10px;
-      width: 250px;
+      font-size: 16px;
+      font-weight: 300;
+      margin: 5px 0px;
+      padding: 15px;
+      width: 280px;
+      border: 1px solid lightgray;
       border-radius: 5px;
+      transition: all 0.3s ease 0s;
+
+      &:focus {
+        outline: none;
+        border: 1px solid $blue;
+        transition: all 0.3s ease 0s;
+      }
     }
 
     input[type=submit] {
       width: 100%;
-      margin-top: 20px;
-      padding:10px 15px;
-      background:#ccc;
+      margin-top: 10px;
+      padding: 13px 15px;
       border:0 none;
       cursor:pointer;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      background-color: #42c299;
+      border-radius: 3px;
+      background-color: $green-bright;
       color: white;
-      font-size: 14px;
+      font-size: 18px;
+      letter-spacing: 1px;
       transition: all 0.3s ease 0s;
     }
 
     input[type=submit]:hover {
       transition: all 0.3s ease 0s;
-      background-color: #0e674b;
+      background-color: $green-dark;
     }
 
     .session-form-error-container {
