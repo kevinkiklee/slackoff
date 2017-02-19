@@ -29,7 +29,7 @@ class SessionControl extends React.Component {
     if (this.props.currentUser === null) {
       return (
         <section className='session-control'>
-          <Link className='session-control-btn' to='/signup'>JOIN</Link>
+          <Link className='session-control-btn join-btn' to='/signup'>JOIN</Link>
           <Link className='session-control-btn' to='/login'>LOGIN</Link>
           <button className='session-control-guest-btn' onClick={ this.guestLogin }>GUEST</button>
         </section>

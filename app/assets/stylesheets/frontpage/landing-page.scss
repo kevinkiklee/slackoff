@@ -25,10 +25,15 @@
     align-items: center;
     justify-content: center;
 
+    .join-btn {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+
     .session-control-btn {
       font-size: 12px;
       text-decoration: none;
-      padding: 10px;
+      padding: 11px;
       margin: 5px;
       border-radius: 5px;
       border: none;
