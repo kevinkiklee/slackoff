@@ -14,7 +14,7 @@ const Root = ({ store }) => {
 
   const redirectUnlessLoggedIn = (nextState, replace) => {
     if (!store.getState().session.currentUser)
-    replace('/session/new');
+    replace('/login');
   }
 
   return (
@@ -24,7 +24,7 @@ const Root = ({ store }) => {
           <Route path='/login' component={ SessionForm } onEnter={ redirectIfLoggedIn } />
           <Route path='/signup' component={ SessionForm } onEnter={ redirectIfLoggedIn } />
         </Route>
-        <Route path='/chat' component={ Chat } />
+        <Route path='/chat' component={ Chat } onEnter={ redirectUnlessLoggedIn }/>
       </Router>
     </Provider>
   )

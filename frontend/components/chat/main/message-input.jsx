@@ -17,12 +17,13 @@ class MessageInput extends React.Component {
   }
 
   handleInput(e) {
+    e.preventDefault();
     this.setState({ message: e.target.value });
   }
 
-  submitMessage() {
-    console.log(this.state.message);
-
+  submitMessage(e) {
+    e.preventDefault();
+    
     const message = {
       channel_id: this.props.channel.id,
       user_id: this.props.user.id,
