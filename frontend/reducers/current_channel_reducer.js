@@ -3,24 +3,14 @@ import { SWITCH_CHANNEL,
 
 import merge from 'lodash/merge';
 
-const initialState = {
-  id: null,
-  name: null,
-  description: null
-};
+const initialState = {};
 
 const CurrentChannelReducer = (state = initialState, action) => {
   Object.freeze();
 
   switch (action.type) {
-    case SWITCH_CHANNEL:
-      return merge({}, initialState, { id: action.id,
-                                       name: action.name,
-                                       description: action.description });
     case SET_CHANNEL:
-      return merge({}, initialState, { id: action.id,
-                                       name: action.name,
-                                       description: action.description });
+      return merge({}, action.channel);
 
     default:
       return state;

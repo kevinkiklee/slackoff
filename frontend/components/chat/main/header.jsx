@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
-// import { login, logout, signup } from '../../actions/session_actions';
-
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +19,7 @@ class Header extends React.Component {
 
           <div className='channel-info-name'>
             <button>
-              <h2>#{ this.state.name }</h2>
+              <h2>#{ this.props.currentChannel.name }</h2>
             </button>
           </div>
 
@@ -35,7 +33,7 @@ class Header extends React.Component {
 
               <div className='channel-info-details-description'>
                 <button>
-                  <p>{ this.state.description }</p>
+                  <p>{ this.props.currentChannel.description }</p>
                 </button>
               </div>
           </div>

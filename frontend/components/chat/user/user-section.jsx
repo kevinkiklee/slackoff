@@ -12,20 +12,6 @@ import UserDMs from './user-dms';
 class UserSection extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props;
-  }
-
-  componentWillMount() {
-    this.props.fetchChannel(this.props.user.id, this.props.user.current_channel)
-              .then(() => {
-                const channel = {
-                  id: this.props.channel.id,
-                  name: this.props.channel.name,
-                  description: this.props.channel.description
-                };
-
-                this.props.setChannel(channel);
-              });
   }
 
   render() {
@@ -52,6 +38,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  null, null
 )(withRouter(UserSection));

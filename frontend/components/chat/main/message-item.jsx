@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
 class MessageItem extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = this.props.message;
-  // }
-
   render() {
     return (
       <li className=''>
