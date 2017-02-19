@@ -1,3 +1,4 @@
+
 npm install
 bundle install
 bundle exec rake db:setup

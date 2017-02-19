@@ -1,6 +1,6 @@
 {
   "name": "slackoff",
-  "version": "1.0.0",
+  "version": "0.0.4",
   "description": "SlackOff is a clone of a popular chat client, Slack.  SlackOff utilizes Rails, React and Pusher.",
   "main": "webpack.config.js",
   "directories": {
