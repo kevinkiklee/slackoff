@@ -26,7 +26,7 @@ class UserControl extends React.Component {
     // debugger
 
     this.props.logout().then(() => {
-      // debugger
+
       this.props.router.push('/')
     });
   }

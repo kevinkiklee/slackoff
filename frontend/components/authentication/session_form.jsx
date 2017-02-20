@@ -137,7 +137,8 @@ const mapStateToProps = (state, ownProps) => {
   let user = {
     username: '',
     password: '',
-    email: ''
+    email: '',
+    photo_url: window.assets.logoSq
   };
 
   let formType = 'login';
