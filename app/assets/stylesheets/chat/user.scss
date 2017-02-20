@@ -22,11 +22,84 @@ button {
   }
 }
 
+.user-control-menu-container {
+  display: flex;
+  flex-direction: column;
+
+  .user-control-menu-info-container {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid lightgray;
+
+    img {
+      height: 40px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .user-name-container {
+      .user-username {
+        font-size: 20px;
+        font-weight: 700;
+        color: #585858;
+        margin-bottom: 3px;
+      }
+
+      .user-channelname {
+        font-size: 16px;
+        font-weight: 300;
+        color: lightgray;
+      }
+    }
+  }
+
+  .user-control-menu-profile-container {
+    font-weight: 300;
+    padding: 7px 10px;
+    border-bottom: 1px solid lightgray;
+    font-size: 16px;
+
+    button {
+      padding: 3px 6px;
+      border-radius: 5px;
+      transition: all 0.3s ease 0s;
+
+      &:hover {
+        background-color: $blue;
+        color: white;
+        transition: all 0.3s ease 0s;
+      }
+    }
+  }
+
+  .user-control-menu-logout-container {
+    font-weight: 300;
+    padding: 7px 10px;
+
+    button {
+      padding: 3px 6px;
+      border-radius: 5px;
+      transition: all 0.3s ease 0s;
+
+      &:hover {
+        background-color: $blue;
+        color: white;
+        transition: all 0.3s ease 0s;
+      }
+    }
+  }
+
+}
+
+
+
 .user-section {
   min-width: 220px;
   width: 220px;
-  float: left;
-  box-sizing: border-box;
+  // box-sizing: border-box;
+
+  position: relative;
 
   background-color: $main-color;
   color: $main-color-light;
@@ -53,6 +126,11 @@ button {
       .user-control-name p {
         transition: all 0.3s ease 0s;
         color: white;
+      }
+
+      i {
+        color: white;
+        transition: all 0.3s ease 0s;
       }
     }
 
@@ -87,6 +165,19 @@ button {
         transition: all 0.3s ease 0s;
       }
     }
+
+    .user-control-icon {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+
+    }
+
+    i {
+      font-size: 20px;
+    }
+
+
   }
 
   .user-channels-container {
