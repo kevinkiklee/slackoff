@@ -22,11 +22,7 @@ class UserControl extends React.Component {
   }
 
   logout() {
-    console.log('logout button clicked');
-    // debugger
-
     this.props.logout().then(() => {
-
       this.props.router.push('/')
     });
   }
@@ -36,12 +32,10 @@ class UserControl extends React.Component {
   }
 
   openUserMenu() {
-    console.log('open usermenu');
     this.setState({ userMenu: true });
   }
 
   closeUserMenu() {
-    console.log('close usermenu');
     this.setState({ userMenu: false });
   }
 

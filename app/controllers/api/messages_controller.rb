@@ -7,26 +7,6 @@ class Api::MessagesController < ApplicationController
       @messages = @channel.messages.order(:created_at).reverse
       author = User.find(@message.user_id)
 
-      # new_messages = {
-      #   "messages" => @messages.map do |msg|
-      #     {
-      #       "id" => msg.id,
-      #       "content" => msg.content,
-      #       "content_type" => msg.content_type,
-      #       "updated_at" => msg.updated_at,
-      #       "author"  => {
-      #         "id" => User.find(msg.user_id).id,
-      #         "username" => User.find(msg.user_id).username,
-      #         "photo_url" => User.find(msg.user_id).photo_url
-      #       }
-      #     }
-      #   end
-      # }
-      #
-      # Pusher.trigger(@channel.name, 'new_message', {
-      #   messages: new_messages
-      # })
-
       new_message = {
         "id" => @message.id,
         "content" => @message.content,
@@ -43,12 +23,6 @@ class Api::MessagesController < ApplicationController
         messages: new_message
       })
 
-      # Pusher.trigger(@channel.name, 'triggerFetch', {
-      #   params: { channelId: @channel.id,
-      #             userId: author.id }
-      # })
-
-      # render 'api/channels/show'
     else
       render json: @message.errors.full_messages, status: 422
     end

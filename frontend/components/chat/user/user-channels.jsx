@@ -1,24 +1,33 @@
 import React from 'react';
+import Modal from 'react-modal';
+
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
+
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { setChannel } from '../../../actions/current_channel_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
 
 import UserChannelItem from './user-channel-item';
+import ChannelsView from '../channels/channels-view.jsx';
 
 class UserChannels extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      channels: this.props.channels,
-      currentChannel: this.props.currentChannel
+      userChannels: this.props.userChannels,
+      currentChannel: this.props.currentChannel,
+      channelsView: false
     };
 
     this.buildChannelItems = this.buildChannelItems.bind(this);
     this.changeChannel = this.changeChannel.bind(this);
-    this.displayAllChannels = this.displayAllChannels.bind(this);
+
+    this.channelsView = this.channelsView.bind(this);
+    this.openChannelsView = this.openChannelsView.bind(this);
+    this.closeChannelsView = this.closeChannelsView.bind(this);
   }
 
   changeChannel(channel) {
@@ -37,12 +46,55 @@ class UserChannels extends React.Component {
     };
   }
 
-  displayAllChannels() {
-    console.log('All Channels: ' + this.state.channels);
+  openChannelsView() {
+    this.setState({ channelsView: true });
+  }
+
+  closeChannelsView() {
+    this.setState({ channelsView: false });
+  }
+
+  channelsView() {
+    const style = {
+      overlay : {
+        backgroundColor : 'rgba(255, 255, 255, 0.9)',
+        zIndex          : 10
+      },
+      content : {
+        position        : 'fixed',
+        boxSizing       : 'border-box',
+        boxShadow       : '1px 1px 5px 0px rgba(50, 50, 50, 0.3)',
+        top             : '100px',
+        bottom          : '100px',
+        left            : '100px',
+        right           : '100px',
+        border          : '1px solid #ccc',
+        borderRadius    : '5px',
+        paddingTop      : '50px',
+        paddingBottom   : '50px',
+        transition      : 'all 0.3s ease 0s',
+        zIndex          : 11
+      }
+    };
+
+    return(
+      <Modal isOpen={ this.state.channelsView }
+             onRequestClose={ this.closeChannelsView }
+             contentLabel='ChannelsView'
+             style={ style }>
+        <ChannelsView />
+      </Modal>
+    );
+  }
+
+  allChannelItems() {
+    return (
+      <li>Channel</li>
+    )
   }
 
   buildChannelItems() {
-    return this.state.channels.map((channel, i) => (
+    return this.state.userChannels.map((channel, i) => (
       <button key={i} onClick={ this.changeChannel(channel).bind(this) }>
         <UserChannelItem key={ i }
           channel={ channel }
@@ -53,11 +105,13 @@ class UserChannels extends React.Component {
   }
 
   render() {
-    const channelCount = this.state.channels.length;
+    const channelCount = this.state.userChannels.length;
 
     return (
       <section className='user-channels-container'>
-        <button onClick={ this.displayAllChannels }>
+        { this.channelsView() }
+
+        <button onClick={ this.openChannelsView }>
           <h4>CHANNELS <span className='user-channels-count'>({ channelCount })</span></h4>
         </button>
 
@@ -74,7 +128,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     user: state.session.currentUser,
-    channels: stateChannels,
+    userChannels: stateChannels,
     currentChannel: state.currentChannel
   };
 };

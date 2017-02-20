@@ -6,8 +6,11 @@ Rails.application.routes.draw do
       resources :channels, only: [:show]
     end
 
+    resources :channels, only: [:index]
+    get 'channels/public' => 'channels#public'
+
     resources :messages, only: [:create]
-    
+
     resource :session, only: [:create, :destroy, :show]
   end
 end

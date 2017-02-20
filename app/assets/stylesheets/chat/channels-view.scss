@@ -1,0 +1,112 @@
+@import '../presets';
+
+.channels-view-container {
+  // padding: 50px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 34px;
+    margin-bottom: 25px;
+  }
+
+  .channels-view-search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      box-sizing: border-box;
+      width: 324px;
+      padding: 10px;
+      margin-bottom: 25px;
+
+      font-size: 15px;
+      font-weight: 100;
+
+      border: 1px solid lightgray;
+      border-radius: 5px;
+
+      transition: all 0.3s ease 0s;
+
+      &:focus {
+        border-radius: 5px;
+        transition: all 0.3s ease 0s;
+        border: 1px solid $blue;
+        outline: none;
+      }
+    }
+  }
+
+  .channels-view-list {
+    width: 55%;
+    min-width: 400px;
+    height: 100%;
+    overflow-y: scroll;
+
+    .channels-view-item-container {
+      border-top: 1px solid #ddd;
+
+      // border-left: 1px solid #fff;
+      // border-right: 1px solid #fff;
+
+      .channels-view-item-btn {
+        padding: 10px 20px 10px 10px;
+        display: flex;
+        justify-content: space-between;
+        transition: all 0.3s ease 0s;
+
+        &:hover {
+          background-color: #f3f3f3;
+          transition: all 0.3s ease 0s;
+        }
+
+        h2, h3, h4 {
+          letter-spacing: 0px;
+        }
+
+        h2 {
+          font-size: 16px;
+          color: #666;
+          font-weight: 700;
+          margin-bottom: 5px;
+        }
+
+        h3 {
+          font-size: 13px;
+          color: #999;
+          font-weight: 300;
+          font-style: italic;
+          margin-bottom: 2px;
+        }
+
+        h4 {
+          color: #999;
+          font-size: 14px;
+          font-weight: 300;
+        }
+
+        .channels-view-item-user-count {
+          display: flex;
+          align-items: center;
+
+          img {
+            margin-right: 3px;
+            height: 13px
+          }
+
+          h4 {
+            width: 10px
+          }
+        }
+      }
+    }
+  }
+}
