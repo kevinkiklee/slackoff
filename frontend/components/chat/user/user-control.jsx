@@ -22,9 +22,9 @@ class UserControl extends React.Component {
   }
 
   logout() {
-    this.props.logout().then(() => {
-      this.props.router.push('/');
-    });
+    this.props.logout().then(() => (
+      this.props.router.push('/')
+    ));
   }
 
   editProfile() {
