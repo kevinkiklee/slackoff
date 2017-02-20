@@ -14,15 +14,23 @@ class UserControl extends React.Component {
 
     this.logout = this.logout.bind(this);
 
+    this.editProfile = this.editProfile.bind(this);
+
     this.openUserMenu = this.openUserMenu.bind(this);
     this.closeUserMenu = this.closeUserMenu.bind(this);
     this.userMenu = this.userMenu.bind(this);
   }
 
   logout() {
-    this.props.logout(this.props.user).then(() => {
-      this.props.router.push('/');
+    // debugger
+    this.props.logout().then(() => {
+      // debugger
+      this.props.router.replace('/');
     });
+  }
+
+  editProfile() {
+    console.log('edit profile button clicked');
   }
 
   openUserMenu() {
@@ -44,6 +52,7 @@ class UserControl extends React.Component {
       content : {
         position        : 'fixed',
         boxSizing       : 'border-box',
+        boxShadow       : '1px 1px 5px 0px rgba(50, 50, 50, 0.3)',
         top             : '55px',
         left            : '15px',
         width           : '230px',
@@ -126,7 +135,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  // clearErrors: () => dispatch(clearErrors())
   logout: () => dispatch(logout())
 });
 
