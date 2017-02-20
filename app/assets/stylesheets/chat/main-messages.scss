@@ -6,31 +6,27 @@
   // bottom: 70px;
   // left: 220px;
   // right: 414px;
+  display: flex;
+  flex-direction: column-reverse;
 
-
-  margin-bottom: 10px;
   position: absolute;
   right: 0px;
   left: 220px;
   bottom: 60px;
+  top: 60px;
 
-  height: 85%;
+  margin-bottom: 10px;
+  padding-top: 5px;
 
   border-top: 1px solid lightgray;
   border-right: 1px solid lightgray;
-
-  padding-top: 5px;
 
   font-size: 16px;
   letter-spacing: 0px;
   list-style: none;
 
-  display: flex;
-  flex-direction: column-reverse;
 
   overflow-y: scroll;
-
-  margin-bottom: 9px;
 
   .message-container {
     padding-left: 20px;
