@@ -22,10 +22,8 @@ class UserControl extends React.Component {
   }
 
   logout() {
-    // debugger
     this.props.logout().then(() => {
-      // debugger
-      this.props.router.replace('/');
+      this.props.router.push('/');
     });
   }
 
@@ -65,14 +63,11 @@ class UserControl extends React.Component {
       }
     };
 
-    // debugger
-
     return(
       <Modal isOpen={ this.state.userMenu }
              onRequestClose={ this.closeUserMenu }
              contentLabel='UserMenu'
-             style={ style }
-             >
+             style={ style }>
         <section className='user-control-menu-container'>
           <section className='user-control-menu-info-container'>
             <img src={ this.props.user.photo_url } />
