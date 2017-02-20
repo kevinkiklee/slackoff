@@ -36,6 +36,7 @@ class SessionForm extends React.Component {
   submitForm(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
+    // debugger
     this.props.processForm(user).then(() => this.redirect());
   }
 
@@ -138,7 +139,7 @@ const mapStateToProps = (state, ownProps) => {
     username: '',
     password: '',
     email: '',
-    photo_url: window.assets.logoSq
+    photo_url: window.assetsUrl.logoSq
   };
 
   let formType = 'login';
