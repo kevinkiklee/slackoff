@@ -22,9 +22,13 @@ class UserControl extends React.Component {
   }
 
   logout() {
-    this.props.logout().then(() => (
+    console.log('logout button clicked');
+    // debugger
+
+    this.props.logout().then(() => {
+      // debugger
       this.props.router.push('/')
-    ));
+    });
   }
 
   editProfile() {
@@ -63,41 +67,45 @@ class UserControl extends React.Component {
       }
     };
 
-    return(
-      <Modal isOpen={ this.state.userMenu }
-             onRequestClose={ this.closeUserMenu }
-             contentLabel='UserMenu'
-             style={ style }>
-        <section className='user-control-menu-container'>
-          <section className='user-control-menu-info-container'>
-            <img src={ this.props.user.photo_url } />
+    if(this.props.user) {
+      return(
+        <Modal isOpen={ this.state.userMenu }
+               onRequestClose={ this.closeUserMenu }
+               contentLabel='UserMenu'
+               style={ style }>
+          <section className='user-control-menu-container'>
+            <section className='user-control-menu-info-container'>
+              <img src={ this.props.user.photo_url } />
 
-            <div className='user-name-container'>
-              <div className='user-username'>
-                { this.props.user.username }
+              <div className='user-name-container'>
+                <div className='user-username'>
+                  { this.props.user.username }
+                </div>
+                <div className='user-channelname'>
+                  @{ this.props.user.username }
+                </div>
               </div>
-              <div className='user-channelname'>
-                @{ this.props.user.username }
-              </div>
-            </div>
 
-          </section>
+            </section>
 
-          <section className='user-control-menu-profile-container'>
-            <button className='user-control-menu-edit-profile-btn'
-                    onClick={ this.editProfile }>
-              Edit Profile
-            </button>
+            <section className='user-control-menu-profile-container'>
+              <button className='user-control-menu-edit-profile-btn'
+                      onClick={ this.editProfile }>
+                Edit Profile
+              </button>
+            </section>
+            <section className='user-control-menu-logout-container'>
+              <button className='user-menu-edit-logout-btn'
+                      onClick={ this.logout }>
+                Logout from SlackOff
+              </button>
+            </section>
           </section>
-          <section className='user-control-menu-logout-container'>
-            <button className='user-menu-edit-logout-btn'
-                    onClick={ this.logout }>
-              Logout from SlackOff
-            </button>
-          </section>
-        </section>
-      </Modal>
-    );
+        </Modal>
+      );
+    } else {
+      this.props.router.push('/');
+    }
   }
 
   render() {

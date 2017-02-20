@@ -9,12 +9,12 @@ import Chat from './chat/chat';
 const Root = ({ store }) => {
   const redirectIfLoggedIn = (nextState, replace) => {
     if (store.getState().session.currentUser)
-    replace('/');
+      replace('/');
   }
 
   const redirectUnlessLoggedIn = (nextState, replace) => {
     if (!store.getState().session.currentUser)
-    replace('/login');
+      replace('/login');
   }
 
   return (
