@@ -6,14 +6,14 @@ class Api::ChannelsController < ApplicationController
 
   def public
     @channels = Channel.all.where(private: false).order(:name)
-    @userCount = 5
     render 'api/channels/index'
   end
 
   def show
-    @channel = Channel.find(params[:id])
+    @channel = Channel.includes(:users).find(params[:id])
+    @users = @channel.users.order(:username)
     @messages = @channel.messages.order(:created_at).reverse
-
+    @user_count = @channel.users.count
     render 'api/channels/show'
   end
 end

@@ -1,33 +1,155 @@
 @import '../presets';
 
 .channel-section {
-  min-width: 415px;
-  width: 415px;
+  min-width: 350px;
+  width: 350px;
+  position: absolute;
+  right: 0px;
 
-  display: none;
-
-  .search-container {
-    border-left: 1px solid black;
+  .channel-action-container {
+    display: flex;
+    justify-content: center;
     height: 60px;
+    font-size: 12px;
+    align-items: flex-end;
+    flex-direction: column;
+
+    .channel-action-create-btn {
+      margin-bottom: 5px;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-right: 15px;
+      padding: 3px;
+
+      width: 100px;
+      border-radius: 5px;
+
+      color: white;
+      background-color: $green-dark;
+      transition: all 0.3s ease 0s;
+
+      &:hover {
+        background-color: rgb(76, 150, 137);
+        transition: all 0.3s ease 0s;
+      }
+    }
   }
 
   .channel-container {
-    border: 1px solid black;
+    height: 100%;
+    border-left: 1px solid #e8e8e8;
+    border-top: 1px solid lightgray;
+  }
+
+  .channel-name {
+    background-color: #F7F7F7;
+    padding: 23px 13px;
+    border-bottom: 1px solid #e8e8e8;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0px;
+    }
   }
 
   .channel-details {
-    padding: 15px;
+    padding: 23px 13px;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0px;
+      color: #5d5d5d;
+      margin-bottom: 23px;
+    }
 
     .channel-description {
-      border: 1px solid black;
+      h4 {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0px;
+        color: #5d5d5d;
+        margin-bottom: 5px;
+      }
+
+      p {
+        font-size: 15px;
+        font-family: 'Raleway';
+        font-weight: 400;
+        margin-bottom: 15px;
+        line-height: 1.2;
+        width: 320px;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
     }
 
     .channel-information {
-      border: 1px solid black;
+      font-size: 13px;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0px;
+      color: #5d5d5d;
     }
   }
 
   .channel-members {
-    border: 1px solid black;
+    border-top: 1px solid lightgray;
+    padding: 23px 13px;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0px;
+      color: #5d5d5d;
+      margin-bottom: 23px;
+    }
+
+    .channel-members-list {
+      position: fixed;
+      top: 335px;
+      overflow-y: auto;
+      bottom: 20px;
+      transition: all 0.3s ease 0s;
+
+      .user-action-btn {
+
+
+        .user-action-item {
+          padding: 3px 10px 5px 0px;
+          margin-right: 10px;
+          display: flex;
+          align-items: center;
+          border-radius: 5px;
+          transition: all 0.3s ease 0s;
+
+          img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+          }
+
+          p {
+            font-size: 15px;
+            font-weight: 300;
+          }
+
+          &:hover {
+            background-color: #f3f3f3;
+            transition: all 0.3s ease 0s;
+          }
+        }
+
+
+      }
+    }
   }
 }

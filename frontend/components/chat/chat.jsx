@@ -7,6 +7,7 @@ import { setChannel } from '../../actions/current_channel_actions';
 
 import UserSection from './user/user-section';
 import MainSection from './main/main-section';
+import ChannelSection from './channel/channel-section';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -32,37 +33,8 @@ class Chat extends React.Component {
       <div className='chat-container'>
         <UserSection />
         <MainSection />
+        <ChannelSection />
 
-          <section className='channel-section'>
-            <section className='search-container'>
-              <h4>Search</h4>
-            </section>
-
-            <section className='channel-container'>
-              <section className='channel-name'>
-                <h4>Channel Name</h4>
-              </section>
-
-              <section className='channel-details'>
-                <div className='channel-description'>
-                  <h4>Description</h4>
-                </div>
-                <div className='channel-information'>
-                  <h4>Information</h4>
-                </div>
-              </section>
-
-              <section className='channel-members'>
-                <h4>Channel Members</h4>
-                  <ul>
-                    <li>* member 1</li>
-                    <li>* member 2</li>
-                    <li>* member 3</li>
-                    <li>* member 4</li>
-                  </ul>
-              </section>
-            </section>
-          </section>
       </div>
     );
   }

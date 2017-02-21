@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
@@ -74,11 +73,9 @@ class UserChannels extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const stateChannels = state.session.currentUser.subscriptions;
-
   return {
     user: state.session.currentUser,
-    userChannels: stateChannels,
+    userChannels: state.session.currentUser.subscriptions,
     currentChannel: state.currentChannel,
   };
 };

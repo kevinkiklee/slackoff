@@ -1,6 +1,10 @@
-json.extract! channel, :id, :name, :description
+json.extract! channel, :id, :name, :description, :created_at
 
-# channel_messages = channel.messages.reverse
+json.userCount user_count
+
+json.users @users do |user|
+  json.extract! user, :id, :username, :photo_url
+end
 
 json.messages messages do |message|
   json.extract! message, :id, :content, :content_type, :updated_at

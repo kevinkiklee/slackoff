@@ -97,7 +97,6 @@ button {
 .user-section {
   min-width: 220px;
   width: 220px;
-  // box-sizing: border-box;
 
   position: relative;
 
@@ -176,12 +175,9 @@ button {
     i {
       font-size: 20px;
     }
-
-
   }
 
   .user-channels-container {
-    // border: 1px solid black;
     padding: 15px 0px;
 
     span {
@@ -289,11 +285,7 @@ button {
       }
 
       &:hover {
-        p {
-
-        }
         background-color: $purple-dark;
-
         transition: all 0.1s ease 0s;
       }
     }

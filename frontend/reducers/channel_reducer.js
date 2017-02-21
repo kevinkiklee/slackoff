@@ -14,8 +14,10 @@ const ChannelReducer = (state = initialState, action) => {
         id: action.channel.id,
         name: action.channel.name,
         description: action.channel.description,
-        userCount: 5,
-        messages: action.channel.messages
+        messages: action.channel.messages,
+        createdAt: action.channel.created_at,
+        userCount: action.channel.userCount,
+        users: action.channel.users
       });
 
     case RECEIVE_MESSAGE:

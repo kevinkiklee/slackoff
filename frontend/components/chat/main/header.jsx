@@ -27,7 +27,7 @@ class Header extends React.Component {
               <div className='channel-info-details-count'>
                 <button>
                   <img src={ window.assets.iconMemberCount } />
-                  <span>13</span>
+                  <span>{ this.props.userCount }</span>
                 </button>
               </div>
 
@@ -58,7 +58,8 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  currentChannel: state.currentChannel
+  currentChannel: state.currentChannel,
+  userCount: state.channel.userCount
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
