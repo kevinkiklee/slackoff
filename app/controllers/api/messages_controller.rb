@@ -3,7 +3,7 @@ class Api::MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      @channel = Channel.find(params[:message][:channel_id])
+      @channel = Channel.includes(:messages).find(params[:message][:channel_id])
       @messages = @channel.messages.order(:created_at).reverse
       author = User.find(@message.user_id)
 

@@ -6,7 +6,7 @@ class Api::SubscriptionsController < ApplicationController
     # debugger
 
     if @existing_subscription
-      @channel = Channel.find(@existing_subscription.channel_id)
+      @channel = Channel.includes(:messages).find(@existing_subscription.channel_id)
       @messages = @channel.messages.order(:created_at).reverse
 
       render 'api/channels/show'
@@ -16,7 +16,7 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = current_user.subscriptions.new(sub_params)
 
     if @subscription.save
-      @channel = Channel.find(@subscription.channel_id)
+      @channel = Channel.includes(:messages).find(@subscription.channel_id)
       @messages = @channel.messages.order(:created_at).reverse
 
       render 'api/channels/show'
@@ -26,7 +26,7 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @subscription = Subscription.find_by(user_id: current_user.id,
+    @subscription = Subscription.includes(:user).find_by(user_id: current_user.id,
                                          channel_id: params[:channel_id])
 
     @subscription.destroy

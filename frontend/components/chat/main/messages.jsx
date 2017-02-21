@@ -4,6 +4,8 @@ import { Link, withRouter } from 'react-router';
 
 import merge from 'lodash/merge';
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import { fetchChannel,
          receiveMessage } from '../../../actions/channel_actions';
 

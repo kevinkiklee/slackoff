@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:channels).find(params[:id])
     @channels = @user.channels
     render "api/users/show"
   end

@@ -48,3 +48,25 @@
   transform: translateY(500%);
   transition: opacity 150ms ease-in, transform 150ms ease-in;
 }
+
+.message-enter {
+  opacity: 0.01;
+  transform: translateY(500%);
+}
+
+.message-enter.message-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
+}
+
+.message-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.message-leave.message-leave-active {
+  opacity: 0.01;
+  transform: translateY(500%);
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
+}

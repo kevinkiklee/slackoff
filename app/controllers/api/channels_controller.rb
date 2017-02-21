@@ -1,16 +1,16 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = Channel.all
+    @channels = Channel.all.includes(:messages)
     render 'api/channels/index'
   end
 
   def public
-    @channels = Channel.all.where(private: false).order(:name)
+    @channels = Channel.includes(:messages).all.where(private: false).order(:name)
     render 'api/channels/index'
   end
 
   def show
-    @channel = Channel.includes(:users).find(params[:id])
+    @channel = Channel.includes(:messages).find(params[:id])
     @users = @channel.users.order(:username)
     @messages = @channel.messages.order(:created_at).reverse
     @user_count = @channel.users.count
