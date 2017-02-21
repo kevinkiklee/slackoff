@@ -103,7 +103,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   createPublicSubscription: (channelId) => dispatch(createPublicSubscription(channelId))
 });
 
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps

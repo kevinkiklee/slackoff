@@ -71,9 +71,9 @@ class UserChannels extends React.Component {
         zIndex          : 11
       }
     };
-    debugger
+    // debugger
     return(
-      <Modal isOpen={ this.props.channelsView }
+      <Modal isOpen={ this.props.channelView }
              onRequestClose={ this.props.closeChannelViewModal }
              contentLabel='ChannelsView'
              style={ style }>
