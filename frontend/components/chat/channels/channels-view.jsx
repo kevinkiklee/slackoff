@@ -1,4 +1,6 @@
 import React from 'react';
+import Modal from 'react-modal';
+
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
@@ -9,7 +11,8 @@ import { fetchPublicChannels,
 
 import { setChannel } from '../../../actions/current_channel_actions';
 import { updateSubscription } from '../../../actions/session_actions';
-import { closeChannelViewModal } from '../../../actions/modal_actions';
+import { openChannelsViewModal,
+         closeChannelsViewModal } from '../../../actions/modal_actions';
 
 class ChannelsView extends React.Component {
   constructor(props) {
@@ -32,11 +35,9 @@ class ChannelsView extends React.Component {
     return (e) => {
       e.preventDefault();
 
-      console.log(channel);
-      // debugger
       this.props.createPublicSubscription({ channel_id: channel.id })
           .then((newChannel) => {
-            // debugger
+
             const channel = {
               id: newChannel.channel.id,
               name: newChannel.channel.name,
@@ -48,7 +49,7 @@ class ChannelsView extends React.Component {
           }).then((channel) => {
             this.props.updateSubscription(channel);
           }).then(() => {
-            this.props.closeChannelViewModal();
+            this.props.closeChannelsViewModal();
           });
     };
   }
@@ -74,32 +75,63 @@ class ChannelsView extends React.Component {
   }
 
   render() {
+    const style = {
+      overlay : {
+        backgroundColor : 'rgba(255, 255, 255, 0.9)',
+        zIndex          : 10
+      },
+      content : {
+        position        : 'fixed',
+        boxSizing       : 'border-box',
+        boxShadow       : '1px 1px 5px 0px rgba(50, 50, 50, 0.3)',
+        top             : '100px',
+        bottom          : '100px',
+        left            : '100px',
+        right           : '100px',
+        border          : '1px solid #ccc',
+        borderRadius    : '5px',
+        paddingTop      : '50px',
+        paddingBottom   : '50px',
+        transition      : 'all 0.3s ease 0s',
+        zIndex          : 11
+      }
+    };
+
     return (
-      <section className='channels-view-container'>
-        <h1>Browse all channels</h1>
+      <Modal isOpen={ this.props.channelsView }
+             onRequestClose={ this.props.closeChannelsViewModal }
+             contentLabel='ChannelsView'
+             style={ style }>
+        <section className='channels-view-container'>
+          <h1>Browse all channels</h1>
 
-        <form className='channels-view-search-form'>
-          <input className='channels-view-search-input'
-                 placeholder='Search channels' type='text' />
-        </form>
+          <form className='channels-view-search-form'>
+            <input className='channels-view-search-input'
+                   placeholder='Search channels' type='text' />
+          </form>
 
-        <ul className='channels-view-list'>
-          { this.buildChannelItems() }
-        </ul>
-      </section>
+          <ul className='channels-view-list'>
+            { this.buildChannelItems() }
+          </ul>
+        </section>
+      </Modal>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
+  channelsView: state.modal.channelsView,
   userId: state.session.currentUser.id
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  closeChannelViewModal: () => dispatch(closeChannelViewModal()),
   fetchPublicChannels: () => dispatch(fetchPublicChannels()),
-  updateSubscription: (channel) => dispatch(updateSubscription(channel)),
   setChannel: (channel) => dispatch(setChannel(channel)),
+
+  closeChannelsViewModal: () => dispatch(closeChannelsViewModal()),
+  openChannelsViewModal: () => dispatch(openChannelsViewModal()),
+
+  updateSubscription: (channel) => dispatch(updateSubscription(channel)),
   createPublicSubscription: (channelId) => dispatch(createPublicSubscription(channelId))
 });
 

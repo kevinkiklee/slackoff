@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from 'react-modal';
+
 
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
@@ -9,8 +9,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { setChannel } from '../../../actions/current_channel_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
 
-import { openChannelViewModal,
-         closeChannelViewModal } from '../../../actions/modal_actions';
+import { openChannelsViewModal } from '../../../actions/modal_actions';
 
 import UserChannelItem from './user-channel-item';
 import ChannelsView from '../channels/channels-view.jsx';
@@ -21,16 +20,11 @@ class UserChannels extends React.Component {
 
     this.state = {
       userChannels: this.props.userChannels,
-      currentChannel: this.props.currentChannel,
-      channelsView: false
+      currentChannel: this.props.currentChannel
     };
 
     this.buildChannelItems = this.buildChannelItems.bind(this);
     this.changeChannel = this.changeChannel.bind(this);
-
-    this.channelsView = this.channelsView.bind(this);
-    // this.openChannelsView = this.openChannelsView.bind(this);
-    // this.closeChannelsView = this.closeChannelsView.bind(this);
   }
 
   changeChannel(channel) {
@@ -49,45 +43,6 @@ class UserChannels extends React.Component {
     };
   }
 
-  channelsView() {
-    const style = {
-      overlay : {
-        backgroundColor : 'rgba(255, 255, 255, 0.9)',
-        zIndex          : 10
-      },
-      content : {
-        position        : 'fixed',
-        boxSizing       : 'border-box',
-        boxShadow       : '1px 1px 5px 0px rgba(50, 50, 50, 0.3)',
-        top             : '100px',
-        bottom          : '100px',
-        left            : '100px',
-        right           : '100px',
-        border          : '1px solid #ccc',
-        borderRadius    : '5px',
-        paddingTop      : '50px',
-        paddingBottom   : '50px',
-        transition      : 'all 0.3s ease 0s',
-        zIndex          : 11
-      }
-    };
-    // debugger
-    return(
-      <Modal isOpen={ this.props.channelView }
-             onRequestClose={ this.props.closeChannelViewModal }
-             contentLabel='ChannelsView'
-             style={ style }>
-        <ChannelsView />
-      </Modal>
-    );
-  }
-
-  allChannelItems() {
-    return (
-      <li>Channel</li>
-    );
-  }
-
   buildChannelItems() {
     return this.props.userChannels.map((channel, i) => (
       <button key={i} onClick={ this.changeChannel(channel).bind(this) }>
@@ -104,9 +59,9 @@ class UserChannels extends React.Component {
 
     return (
       <section className='user-channels-container'>
-        { this.channelsView() }
+        <ChannelsView />
 
-        <button onClick={ this.props.openChannelViewModal }>
+        <button onClick={ this.props.openChannelsViewModal }>
           <h4>CHANNELS <span className='user-channels-count'>({ channelCount })</span></h4>
         </button>
 
@@ -125,13 +80,11 @@ const mapStateToProps = (state, ownProps) => {
     user: state.session.currentUser,
     userChannels: stateChannels,
     currentChannel: state.currentChannel,
-    channelView: state.modal.channelView
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  openChannelViewModal: () => dispatch(openChannelViewModal()),
-  closeChannelViewModal: () => dispatch(closeChannelViewModal()),
+  openChannelsViewModal: () => dispatch(openChannelsViewModal()),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
   setChannel: (channel) => dispatch(setChannel(channel))
 });
