@@ -1,4 +1,4 @@
-@import '../presets';
+@import './presets';
 
 .session-form-appear {
   opacity: 0.01;
@@ -25,4 +25,26 @@
 .session-form-leave.session-form-leave-active {
   opacity: 1;
   transition: opacity .2s ease-in;
+}
+
+.list-enter {
+  opacity: 0.01;
+  transform: translateY(500%);
+}
+
+.list-enter.list-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
+}
+
+.list-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.list-leave.list-leave-active {
+  opacity: 0.01;
+  transform: translateY(500%);
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
 }

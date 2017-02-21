@@ -49,7 +49,21 @@
     width: 60%;
     min-width: 400px;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+
+    .channels-view-no-match {
+      text-align: center;
+
+      img {
+        padding: 15px;
+      }
+
+      h4 {
+        font-weight: 700;
+        font-size: 20px;
+        color: $green;
+      }
+    }
 
     .channels-view-item-container {
       border-top: 1px solid #ddd;
