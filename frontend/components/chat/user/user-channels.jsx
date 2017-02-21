@@ -54,7 +54,7 @@ class UserChannels extends React.Component {
   }
 
   render() {
-    const channelCount = this.state.userChannels.length;
+    const channelCount = this.props.user.subscriptions.length;
 
     return (
       <section className='user-channels-container'>
@@ -76,7 +76,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     user: state.session.currentUser,
     userChannels: state.session.currentUser.subscriptions,
-    currentChannel: state.currentChannel,
+    currentChannel: state.channel,
   };
 };
 

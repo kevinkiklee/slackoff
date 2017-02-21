@@ -79,7 +79,7 @@
       }
 
       p {
-        font-size: 15px;
+        font-size: 14px;
         font-family: 'Raleway';
         font-weight: 400;
         margin-bottom: 15px;
@@ -115,13 +115,12 @@
 
     .channel-members-list {
       position: fixed;
-      top: 335px;
+      top: 340px;
       overflow-y: auto;
       bottom: 20px;
       transition: all 0.3s ease 0s;
 
       .user-action-btn {
-
 
         .user-action-item {
           padding: 3px 10px 5px 0px;

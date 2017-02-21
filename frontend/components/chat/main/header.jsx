@@ -5,11 +5,11 @@ import { Link, withRouter } from 'react-router';
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.currentChannel;
+    this.state = this.props.channel;
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(nextProps.currentChannel);
+    this.setState(nextProps.channel);
   }
 
   render() {
@@ -19,7 +19,7 @@ class Header extends React.Component {
 
           <div className='channel-info-name'>
             <button>
-              <h2>#{ this.props.currentChannel.name }</h2>
+              <h2>#{ this.props.channel.name }</h2>
             </button>
           </div>
 
@@ -33,7 +33,7 @@ class Header extends React.Component {
 
               <div className='channel-info-details-description'>
                 <button>
-                  <p>{ this.props.currentChannel.description }</p>
+                  <p>{ this.props.channel.description }</p>
                 </button>
               </div>
           </div>
@@ -58,7 +58,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  currentChannel: state.currentChannel,
+  channel: state.channel,
   userCount: state.channel.userCount
 });
 

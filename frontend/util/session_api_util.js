@@ -27,3 +27,11 @@ export const getUser = (id) => {
     url: `api/users/${id}`
   });
 };
+
+export const deleteSubscription = (channel_id) => {
+  return $.ajax({
+    method: 'delete',
+    url: `api/subscriptions/`,
+    data: { channel_id }
+  });
+};

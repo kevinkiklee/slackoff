@@ -13,6 +13,17 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def destroy
+    # debugger
+    @subscription = Subscription.find_by(user_id: current_user.id,
+                                         channel_id: params[:channel_id])
+    # debugger
+
+    @subscription.destroy
+
+    @user = current_user
+    @channels = @user.channels
+
+    render 'api/users/show'
   end
 
   def sub_params

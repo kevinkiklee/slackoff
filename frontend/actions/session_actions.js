@@ -51,3 +51,28 @@ export const getUser = (id) => dispatch => {
     dispatch(receiveCurrentUser(user))
   ));
 };
+
+export const deleteSubscription = (channelId) => dispatch => {
+  // debugger
+  return SessionAPIUtil.deleteSubscription(channelId)
+    .then((user) => {
+      // debugger
+      dispatch(receiveCurrentUser(user));
+      return user;
+    });
+
+    // .then((user) => {
+    //   debugger
+    //   dispatch(fetchChannel(user.id, user.current_channel))
+    //             .then(() => {
+    //               debugger
+    //               const channel = {
+    //                 id: this.props.user.current_channel.id,
+    //                 name: this.props.user.current_channel.name,
+    //                 description: this.props.user.current_channel.description
+    //               };
+    //
+    //               setChannel(channel);
+    //             });
+    // });
+};
