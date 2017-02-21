@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
+import AlertContainer from 'react-alert';
+
 import { deleteSubscription } from '../../../actions/session_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
 
@@ -9,8 +11,14 @@ class ChannelSection extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      generalChatError: ""
+    };
+
     this.buildMemberList = this.buildMemberList.bind(this);
     this.openUserActionMenu = this.openUserActionMenu.bind(this);
+
+    this.buildGeneralChatError = this.buildGeneralChatError.bind(this);
 
     this.createChannel = this.createChannel.bind(this);
     this.leaveChannel = this.leaveChannel.bind(this);
@@ -22,16 +30,15 @@ class ChannelSection extends React.Component {
   }
 
   leaveChannel() {
-    // check if the channel is general
-    // remove the subscription on the db
-    // remove the channel for the current user
-    // set general as the current channel
-
-    console.log('leave channel button clicked');
     const fetch = this.props.fetchChannel;
 
     if (this.props.channel.name === 'general') {
-      console.log('general chat cannot be removed');
+      // this.setState({
+      //   generalChatError: "You cannot leave the #general channel"
+      // });
+
+      this.showAlert();
+
     } else {
       this.props.deleteSubscription(this.props.channel.id)
           .then((user) => this.props.fetchChannel(user.id, user.current_channel));
@@ -59,18 +66,48 @@ class ChannelSection extends React.Component {
     }
   }
 
+  showAlert(){
+    msg.show('You cannot remove the #general channel', {
+      time: 2000,
+      type: 'info',
+      icon: <img src={ window.assets.logoSq35 } />
+    });
+  }
+
+  buildGeneralChatError() {
+    const alertOptions = {
+      offset: 20,
+      position: 'top right',
+      theme: 'light',
+      time: 2000,
+      transition: 'scale'
+    };
+
+    // <button onClick={this.showAlert}>Show Alert</button>
+    return(
+      <div>
+        <AlertContainer ref={(a) => global.msg = a} {...alertOptions} />
+      </div>
+    );
+  }
+
   render() {
     return (
       <section className='channel-section'>
         <section className='channel-action-container'>
-          <button className='channel-action-create-btn'
-                  onClick={ this.createChannel }>
-            Create Channel
-          </button>
-          <button className='channel-action-leave-btn'
-                  onClick={ this.leaveChannel }>
-            Leave Channel
-          </button>
+          <div className='channel-action-warning'>
+            { this.buildGeneralChatError() }
+          </div>
+          <div className='channel-action-buttons'>
+            <button className='channel-action-create-btn'
+                    onClick={ this.createChannel }>
+              Create Channel
+            </button>
+            <button className='channel-action-leave-btn'
+                    onClick={ this.leaveChannel }>
+              Leave Channel
+            </button>
+          </div>
         </section>
 
         <section className='channel-container'>

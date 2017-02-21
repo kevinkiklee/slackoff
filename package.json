@@ -15,6 +15,7 @@
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
+    "react-alert": "^1.0.14",
     "react-dom": "^15.4.2",
     "react-modal": "^1.6.5",
     "react-redux": "^5.0.2",
