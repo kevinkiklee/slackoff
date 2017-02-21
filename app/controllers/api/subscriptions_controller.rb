@@ -1,5 +1,18 @@
 class Api::SubscriptionsController < ApplicationController
   def create
+    @existing_subscription = Subscription.find_by(user_id: current_user.id,
+                                                  channel_id: sub_params[:channel_id])
+
+    # debugger
+
+    if @existing_subscription
+      @channel = Channel.find(@existing_subscription.channel_id)
+      @messages = @channel.messages.order(:created_at).reverse
+
+      render 'api/channels/show'
+      return
+    end
+
     @subscription = current_user.subscriptions.new(sub_params)
 
     if @subscription.save

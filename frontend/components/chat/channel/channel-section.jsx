@@ -11,10 +11,6 @@ class ChannelSection extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      generalChatError: ""
-    };
-
     this.buildMemberList = this.buildMemberList.bind(this);
     this.openUserActionMenu = this.openUserActionMenu.bind(this);
 
@@ -33,10 +29,6 @@ class ChannelSection extends React.Component {
     const fetch = this.props.fetchChannel;
 
     if (this.props.channel.name === 'general') {
-      // this.setState({
-      //   generalChatError: "You cannot leave the #general channel"
-      // });
-
       this.showAlert();
 
     } else {
@@ -83,7 +75,6 @@ class ChannelSection extends React.Component {
       transition: 'scale'
     };
 
-    // <button onClick={this.showAlert}>Show Alert</button>
     return(
       <div>
         <AlertContainer ref={(a) => global.msg = a} {...alertOptions} />

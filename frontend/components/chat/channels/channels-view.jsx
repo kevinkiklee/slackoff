@@ -32,25 +32,29 @@ class ChannelsView extends React.Component {
   }
 
   joinChannel(channel) {
+    // debugger
+
     return (e) => {
       e.preventDefault();
 
       this.props.createPublicSubscription({ channel_id: channel.id })
-          .then((newChannel) => {
+      .then((newChannel) => {
 
-            const channel = {
-              id: newChannel.channel.id,
-              name: newChannel.channel.name,
-              description: newChannel.channel.description
-            };
+        const channel = {
+          id: newChannel.channel.id,
+          name: newChannel.channel.name,
+          description: newChannel.channel.description
+        };
 
-            this.props.setChannel(channel);
-            return channel;
-          }).then((channel) => {
-            this.props.updateSubscription(channel);
-          }).then(() => {
-            this.props.closeChannelsViewModal();
-          });
+        this.props.setChannel(channel);
+        return channel;
+      }).then((channel) => {
+        if (!this.props.subscriptionIds.includes(channel.id)) {
+          this.props.updateSubscription(channel);
+        }
+      }).then(() => {
+        this.props.closeChannelsViewModal();
+      });
     };
   }
 
@@ -121,7 +125,9 @@ class ChannelsView extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
   channelsView: state.modal.channelsView,
-  userId: state.session.currentUser.id
+  userId: state.session.currentUser.id,
+  subscriptionIds: Object.keys(state.session.currentUser.subscriptions)
+                         .map((i) => (state.session.currentUser.subscriptions[i].id))
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
