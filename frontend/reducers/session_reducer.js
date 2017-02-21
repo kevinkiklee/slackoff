@@ -1,6 +1,7 @@
 import { RECEIVE_ERRORS,
          RECEIVE_CURRENT_USER,
-         CLEAR_ERRORS } from '../actions/session_actions';
+         CLEAR_ERRORS,
+         UPDATE_SUBSCRIPTION } from '../actions/session_actions';
 
 import merge from 'lodash/merge';
 
@@ -20,6 +21,12 @@ const SessionReducer = (state = initialState, action) => {
     case RECEIVE_ERRORS:
       return merge({}, initialState, { errors: action.errors,
                                        currentUser: null });
+
+    case UPDATE_SUBSCRIPTION:
+      let newState = merge({}, state);
+      newState.currentUser.subscriptions.push(action.channel);
+      return newState;
+
     case CLEAR_ERRORS:
       return merge({}, state, { errors: [] });
 

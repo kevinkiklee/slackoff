@@ -41,3 +41,9 @@ export const fetchChannel = (userId, channelId) => dispatch => {
 export const createMessage = (message) => dispatch => {
   return MessageAPIUtil.createMessage(message);
 };
+
+export const createPublicSubscription = (channelId) => dispatch => {
+  return ChannelAPIUtil.createPublicSubscription(channelId).then(
+    (channel) => (dispatch(receiveChannel(channel)))
+  );
+};

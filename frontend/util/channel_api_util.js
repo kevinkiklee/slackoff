@@ -18,3 +18,11 @@ export const fetchChannel = (userId, channelId) => {
     url: `api/users/${userId}/channels/${channelId}`
   });
 };
+
+export const createPublicSubscription = (channel_id) => {
+  return $.ajax({
+    method: 'post',
+    url: `api/subscriptions`,
+    data: { sub: channel_id }
+  });
+};

@@ -95,14 +95,10 @@ class SessionForm extends React.Component {
     }
 
     return (
-      <ReactCSSTransitionGroup
-        transitionName="session-form"
-        transitionAppear={true}
-        transitionAppearTimeout={500}
-        transitionEnter={true}
-        transitionEnterTimeout={500}
-        transitionLeave={true}
-        transitionLeaveTimeout={500}>
+      <ReactCSSTransitionGroup transitionName="session-form"
+        transitionAppear={true} transitionAppearTimeout={500}
+        transitionEnter={true} transitionEnterTimeout={500}
+        transitionLeave={true} transitionLeaveTimeout={500}>
 
         <div className='modal' onClick={ () => this.props.router.push('/') }/>
 

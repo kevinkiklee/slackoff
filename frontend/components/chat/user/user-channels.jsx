@@ -9,6 +9,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { setChannel } from '../../../actions/current_channel_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
 
+import { openChannelViewModal,
+         closeChannelViewModal } from '../../../actions/modal_actions';
+
 import UserChannelItem from './user-channel-item';
 import ChannelsView from '../channels/channels-view.jsx';
 
@@ -26,8 +29,8 @@ class UserChannels extends React.Component {
     this.changeChannel = this.changeChannel.bind(this);
 
     this.channelsView = this.channelsView.bind(this);
-    this.openChannelsView = this.openChannelsView.bind(this);
-    this.closeChannelsView = this.closeChannelsView.bind(this);
+    // this.openChannelsView = this.openChannelsView.bind(this);
+    // this.closeChannelsView = this.closeChannelsView.bind(this);
   }
 
   changeChannel(channel) {
@@ -44,14 +47,6 @@ class UserChannels extends React.Component {
                   this.setState({ currentChannel: channel });
                 });
     };
-  }
-
-  openChannelsView() {
-    this.setState({ channelsView: true });
-  }
-
-  closeChannelsView() {
-    this.setState({ channelsView: false });
   }
 
   channelsView() {
@@ -76,10 +71,10 @@ class UserChannels extends React.Component {
         zIndex          : 11
       }
     };
-
+    debugger
     return(
-      <Modal isOpen={ this.state.channelsView }
-             onRequestClose={ this.closeChannelsView }
+      <Modal isOpen={ this.props.channelsView }
+             onRequestClose={ this.props.closeChannelViewModal }
              contentLabel='ChannelsView'
              style={ style }>
         <ChannelsView />
@@ -90,11 +85,11 @@ class UserChannels extends React.Component {
   allChannelItems() {
     return (
       <li>Channel</li>
-    )
+    );
   }
 
   buildChannelItems() {
-    return this.state.userChannels.map((channel, i) => (
+    return this.props.userChannels.map((channel, i) => (
       <button key={i} onClick={ this.changeChannel(channel).bind(this) }>
         <UserChannelItem key={ i }
           channel={ channel }
@@ -111,7 +106,7 @@ class UserChannels extends React.Component {
       <section className='user-channels-container'>
         { this.channelsView() }
 
-        <button onClick={ this.openChannelsView }>
+        <button onClick={ this.props.openChannelViewModal }>
           <h4>CHANNELS <span className='user-channels-count'>({ channelCount })</span></h4>
         </button>
 
@@ -129,11 +124,14 @@ const mapStateToProps = (state, ownProps) => {
   return {
     user: state.session.currentUser,
     userChannels: stateChannels,
-    currentChannel: state.currentChannel
+    currentChannel: state.currentChannel,
+    channelView: state.modal.channelView
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  openChannelViewModal: () => dispatch(openChannelViewModal()),
+  closeChannelViewModal: () => dispatch(closeChannelViewModal()),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
   setChannel: (channel) => dispatch(setChannel(channel))
 });
