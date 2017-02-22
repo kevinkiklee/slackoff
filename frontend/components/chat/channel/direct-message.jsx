@@ -6,14 +6,14 @@ import { Link, withRouter } from 'react-router';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { createPublicSubscription } from '../../../actions/channel_actions';
-
+import { createChannel } from '../../../actions/channel_actions';
 import { fetchUsers } from '../../../actions/user_actions';
 
 import { setChannel } from '../../../actions/current_channel_actions';
 import { updateSubscription } from '../../../actions/session_actions';
 import { openDirectMessageModal,
          closeDirectMessageModal } from '../../../actions/modal_actions';
+import { getUser } from '../../../actions/session_actions';
 
 class DirectMessage extends React.Component {
   constructor(props) {
@@ -28,6 +28,9 @@ class DirectMessage extends React.Component {
     this.joinChannel = this.joinChannel.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.matches = this.matches.bind(this);
+    this.buildUserList = this.buildUserList.bind(this);
+
+    this.createDirectMessage = this.createDirectMessage.bind(this);
   }
 
   componentDidMount() {
@@ -38,8 +41,34 @@ class DirectMessage extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      this.setState({searchInput: ''});
+      this.setState({ searchInput: '', selectedUsers: [] });
     }
+  }
+
+  createDirectMessage() {
+    const channelName = Object.keys(this.state.selectedUsers)
+                              .map((i) => (this.state.selectedUsers[i].username))
+                              .join('').replace(/\./g, '');
+
+    const currentUser = {
+      id: this.props.currentUser.id,
+      username: this.props.currentUser.username,
+      photo_url: this.props.currentUser.photo_url
+    };
+
+    let selectedUsers = [currentUser, ...this.state.selectedUsers];
+    // selectedUsers.unshift(this.props.currentUser);
+
+    // debugger
+    const channel = {
+      name: channelName,
+      description: 'Direct Message~',
+      private: true,
+      users: selectedUsers
+    };
+
+    debugger
+    this.props.createChannel(channel);
   }
 
   joinChannel(channel) {
@@ -77,7 +106,27 @@ class DirectMessage extends React.Component {
   }
 
   selectUser(user) {
+    return (e) => {
+      if (user.id !== this.props.currentUser.id) {
+        let users = [...this.state.selectedUsers];
+        users.push(user);
+        this.setState({ selectedUsers: users });
+      }
+    };
+  }
 
+  buildUserList() {
+    if (this.state.selectedUsers.length === 0) {
+      return '';
+    } else {
+      return this.state.selectedUsers.map((user) => {
+        return (
+          <span className='dm-user-list-item' key={ user.id }>
+            { user.username }
+          </span>
+        );
+      });
+    }
   }
 
   buildUserItems() {
@@ -92,14 +141,16 @@ class DirectMessage extends React.Component {
       );
     } else {
       return matches.map((user, i) => {
-        return (
-          <li className='dm-item-container' key={ i }>
-            <button className='dm-item-btn' onClick={ this.joinChannel(user) }>
-              <img src={ user.photo_url } />
-              <h2>@{ user.username }</h2>
-            </button>
-          </li>
-        );
+        if (user.id !== this.props.currentUser.id) {
+          return (
+            <li className='dm-item-container' key={ i }>
+              <button className='dm-item-btn' onClick={ this.selectUser(user) }>
+                <img src={ user.photo_url } />
+                <h2>@{ user.username }</h2>
+              </button>
+            </li>
+          );
+        }
       });
     }
   }
@@ -137,16 +188,33 @@ class DirectMessage extends React.Component {
 
           <form className='dm-search-form'>
             <input className='dm-search-input'
-                   placeholder='Search channels'
-                   onChange={ this.handleInput } type='text' />
+                   placeholder='Search users'
+                   onChange={ this.handleInput } type='text'>
+            </input>
+            <button onClick={ this.createDirectMessage }>
+              GO
+            </button>
           </form>
+
+          <section className='dm-user-list'>
+            <ReactCSSTransitionGroup
+              transitionName='list'
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={500}>
+
+              { this.buildUserList() }
+
+            </ReactCSSTransitionGroup>
+          </section>
 
           <ul className='dm-list'>
             <ReactCSSTransitionGroup
               transitionName='list'
               transitionEnterTimeout={500}
               transitionLeaveTimeout={500}>
+
               { this.buildUserItems() }
+
             </ReactCSSTransitionGroup>
           </ul>
         </section>
@@ -156,16 +224,19 @@ class DirectMessage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
+
   allChannels: state.allChannels,
   directMessageForm: state.modal.directMessageForm,
-  userId: state.session.currentUser.id,
+  currentUser: state.session.currentUser,
   subscriptionIds: Object.keys(state.session.currentUser.subscriptions)
                          .map((i) => (state.session.currentUser.subscriptions[i].id))
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchUsers: () => dispatch(fetchUsers()),
+  getUser: (userId) => dispatch(getUser(userId)),
 
+  createChannel: (channel) => dispatch(createChannel(channel)),
   setChannel: (channel) => dispatch(setChannel(channel)),
 
   openDirectMessageModal: () => dispatch(openDirectMessageModal()),

@@ -17,21 +17,21 @@
 
   .dm-search-form {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 
+    margin-bottom: 25px;
+
     input {
       box-sizing: border-box;
-      width: 324px;
+      width: 475px;
       padding: 10px;
-      margin-bottom: 25px;
-
-      font-size: 15px;
-      font-weight: 100;
 
       border: 1px solid lightgray;
       border-radius: 5px;
+
+      font-size: 15px;
+      font-weight: 100;
 
       transition: all 0.3s ease 0s;
 
@@ -41,6 +41,47 @@
         border: 1px solid $blue;
         outline: none;
       }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px;
+      margin-left: 10px;
+      width: 50px;
+      border: 2px solid #4C9689;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      transition: all 0.3s ease 0s;
+
+      &:hover {
+        background-color: #f3f3f3;
+        transition: all 0.3s ease 0s;
+      }
+    }
+  }
+
+  .dm-user-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 534px;
+    height: 55px;
+    padding-top: 3px;
+    padding-bottom: 1px;
+    overflow-x: scroll;
+
+    .dm-user-list-item {
+      font-weight: 300;
+      padding: 3px 7px;
+      margin-right: 5px;
+      background-color: $green;
+      color: white;
+      border-radius: 5px;
     }
   }
 

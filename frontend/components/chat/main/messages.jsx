@@ -38,6 +38,12 @@ class Messages extends React.Component {
 
     if(channelLoaded && notInitialChannel && this.props.channel.name !== newProps.channel.name){
       // debugger
+      this.pusher.disconnect();
+
+      this.pusher = new Pusher('6dff216f2c5d022ed6ae', {
+        encrypted: true
+      });
+
       this.channel = this.pusher.subscribe(newProps.channel.id.toString());
       // debugger
       this.channel.bind('message', (message) => {

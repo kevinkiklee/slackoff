@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:create]
     resource :subscriptions, only: [:destroy]
 
-    resources :channels, only: [:index]
+    resources :channels, only: [:index, :create]
     get 'channels/public' => 'channels#public'
 
     resources :messages, only: [:create]

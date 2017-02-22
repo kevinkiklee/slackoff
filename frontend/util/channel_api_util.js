@@ -5,13 +5,6 @@ export const fetchPublicChannels = () => {
   });
 };
 
-export const fetchPrivateChannels = () => {
-  return $.ajax({
-    method: 'get',
-    url: `api/users/${userId}/channels/private`
-  });
-};
-
 export const fetchChannel = (userId, channelId) => {
   return $.ajax({
     method: 'get',
@@ -20,9 +13,10 @@ export const fetchChannel = (userId, channelId) => {
 };
 
 export const createChannel = (channel) => {
+  debugger
   return $.ajax({
     method: 'post',
-    url: 'api/channels/public',
+    url: 'api/channels',
     data: { channel }
   });
 };

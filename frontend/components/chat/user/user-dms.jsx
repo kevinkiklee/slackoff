@@ -9,6 +9,7 @@ import { openDirectMessageModal } from '../../../actions/modal_actions';
 import { setChannel } from '../../../actions/current_channel_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
 
+
 class UserDMs extends React.Component {
   constructor(props) {
     super(props);

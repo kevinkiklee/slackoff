@@ -7,7 +7,9 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create
-    @channel = Channel.new(channel_params)
+    debugger
+
+    # @channel = Channel.new(channel_params)
 
     if @channel.save
       @users = [current_user]
@@ -34,6 +36,6 @@ class Api::ChannelsController < ApplicationController
   end
 
   def channel_params
-    params.permit(:channel).require(:name, :description, :private)
+    params.require(:channel).permit(:name, :description, :private, users: [])
   end
 end
