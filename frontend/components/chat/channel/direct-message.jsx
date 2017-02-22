@@ -74,7 +74,8 @@ class DirectMessage extends React.Component {
     };
 
     this.props.createChannel(channel)
-              .then(() => (this.props.getUser(currentUser.id)));
+              .then(() => (this.props.getUser(currentUser.id)))
+              .then(() => (this.props.closeDirectMessageModal()));
   }
 
   joinChannel(channel) {
