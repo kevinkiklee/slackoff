@@ -1,7 +1,23 @@
+# belong to a user/creator?
+
 class Api::ChannelsController < ApplicationController
   def index
     @channels = Channel.all.includes(:messages => [:user])
     render 'api/channels/index'
+  end
+
+  def create
+    @channel = Channel.new(channel_params)
+
+    if @channel.save
+      @users = [current_user]
+      @messages = []
+      @user_count = 1
+
+      render 'api/channel/show'
+    else
+      render json: @user.errors.full_messages, status: 422
+    end
   end
 
   def public
@@ -15,5 +31,9 @@ class Api::ChannelsController < ApplicationController
     @messages = @channel.messages.order(:created_at).reverse
     @user_count = @channel.users.count
     render 'api/channels/show'
+  end
+
+  def channel_params
+    params.permit(:channel).require(:name, :description, :private)
   end
 end

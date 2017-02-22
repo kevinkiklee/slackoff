@@ -19,6 +19,14 @@ export const fetchChannel = (userId, channelId) => {
   });
 };
 
+export const createChannel = (channel) => {
+  return $.ajax({
+    method: 'post',
+    url: 'api/channels/public',
+    data: { channel }
+  });
+};
+
 export const createPublicSubscription = (channel_id) => {
   return $.ajax({
     method: 'post',

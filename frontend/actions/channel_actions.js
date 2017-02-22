@@ -38,6 +38,12 @@ export const fetchChannel = (userId, channelId) => dispatch => {
   );
 };
 
+export const createChannel = (channel) => dispatch => {
+  return ChannelAPIUtil.createChannel().then(
+    (channel) => (dispatch(receiveChannel(channel)))
+  );
+};
+
 export const createMessage = (message) => dispatch => {
   return MessageAPIUtil.createMessage(message);
 };

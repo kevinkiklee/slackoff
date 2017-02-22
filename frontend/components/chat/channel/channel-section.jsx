@@ -7,6 +7,10 @@ import AlertContainer from 'react-alert';
 import { deleteSubscription } from '../../../actions/session_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
 
+import { openChannelFormModal } from '../../../actions/modal_actions';
+
+import ChannelForm from '../channel/channel-form.jsx';
+
 class ChannelSection extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +26,7 @@ class ChannelSection extends React.Component {
 
   createChannel() {
     console.log('create channel button clicked');
-    // open the create channel modal
+    this.props.openChannelFormModal();
   }
 
   leaveChannel() {
@@ -85,6 +89,7 @@ class ChannelSection extends React.Component {
   render() {
     return (
       <section className='channel-section'>
+        <ChannelForm />
         <section className='channel-action-container'>
           <div className='channel-action-warning'>
             { this.buildGeneralChatError() }
@@ -135,6 +140,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  openChannelFormModal: () => dispatch(openChannelFormModal()),
   deleteSubscription: (channelId) => dispatch(deleteSubscription(channelId)),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId))
 });
