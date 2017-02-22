@@ -14,7 +14,7 @@ import { updateSubscription } from '../../../actions/session_actions';
 import { openChannelsViewModal,
          closeChannelsViewModal } from '../../../actions/modal_actions';
 
-class ChannelsView extends React.Component {
+class CreatePublicChannelForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,12 +26,6 @@ class ChannelsView extends React.Component {
     this.joinChannel = this.joinChannel.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.matches = this.matches.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.fetchPublicChannels().then((data) => {
-      this.setState({ channels: data.channels });
-    });
   }
 
   componentWillReceiveProps(newProps) {
@@ -131,7 +125,7 @@ class ChannelsView extends React.Component {
     return (
       <Modal isOpen={ this.props.channelsView }
              onRequestClose={ this.props.closeChannelsViewModal }
-             contentLabel='ChannelsView'
+             contentLabel='CreatePublicChannelForm'
              style={ style }>
         <section className='channels-view-container'>
           <h1>Browse all channels</h1>
@@ -178,4 +172,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(ChannelsView));
+)(withRouter(CreatePublicChannelForm));

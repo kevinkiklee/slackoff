@@ -6,8 +6,10 @@ class Api::SubscriptionsController < ApplicationController
     # debugger
 
     if @existing_subscription
-      @channel = Channel.includes(:messages).find(@existing_subscription.channel_id)
+      @channel = Channel.includes(:users, :messages => [:user]).find(@existing_subscription.channel_id)
       @messages = @channel.messages.order(:created_at).reverse
+      @users = @channel.users
+      @user_count = @users.count
 
       render 'api/channels/show'
       return
@@ -16,8 +18,10 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = current_user.subscriptions.new(sub_params)
 
     if @subscription.save
-      @channel = Channel.includes(:messages).find(@subscription.channel_id)
+      @channel = Channel.includes(:users, :messages => [:user]).find(@subscription.channel_id)
       @messages = @channel.messages.order(:created_at).reverse
+      @users = @channel.users
+      @user_count = @users.count
 
       render 'api/channels/show'
     else
