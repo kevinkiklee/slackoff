@@ -5,6 +5,6 @@ json.extract! user,
   :photo_url,
   :current_channel
 
-json.subscriptions user.channels do |channel|
+json.subscriptions user.channels.order(:name) do |channel|
   json.extract! channel, :id, :name, :description
 end
