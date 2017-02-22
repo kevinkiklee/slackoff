@@ -4,7 +4,9 @@ import { Link, withRouter } from 'react-router';
 
 import UserDMItem from './user-dm-item';
 
-// import { login, logout, signup } from '../../actions/session_actions';
+import { openDirectMessageModal } from '../../../actions/modal_actions';
+
+import DirectMessage from '../channel/direct-message.jsx';
 
 class UserDMs extends React.Component {
   constructor(props) {
@@ -18,15 +20,19 @@ class UserDMs extends React.Component {
       dms
     };
 
-    // this.state = this.props.state;
     this.buildDMItems = this.buildDMItems.bind(this);
     this.messageFriend = this.messageFriend.bind(this);
+    this.openDirectMessageForm = this.openDirectMessageForm.bind(this);
   }
 
   messageFriend(friend) {
     return (e) => {
       console.log('Friend: ' + friend);
     };
+  }
+
+  openDirectMessageForm() {
+    this.props.openDirectMessageModal();
   }
 
   buildDMItems() {
@@ -40,7 +46,11 @@ class UserDMs extends React.Component {
   render() {
     return (
       <section className='user-dms-container'>
-        <h4>DIRECT MESSAGES</h4>
+        <DirectMessage />
+        <button onClick={ this.openDirectMessageForm }>
+          <h4>DIRECT MESSAGES</h4>
+        </button>
+
         <ul className='user-dms-list'>
           { this.buildDMItems() }
         </ul>
@@ -54,7 +64,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  // clearErrors: () => dispatch(clearErrors())
+  openDirectMessageModal: () => dispatch(openDirectMessageModal()),
 });
 
 export default connect(

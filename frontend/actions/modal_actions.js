@@ -23,3 +23,16 @@ export const closeChannelFormModal = () => ({
   type: CLOSE_CHANNEL_FORM_MODAL,
   open: false
 });
+
+export const OPEN_DIRECT_MESSAGE_MODAL = 'OPEN_DIRECT_MESSAGE_MODAL';
+export const CLOSE_DIRECT_MESSAGE_MODAL = 'CLOSE_DIRECT_MESSAGE_MODAL';
+
+export const openDirectMessageModal = () => ({
+  type: OPEN_DIRECT_MESSAGE_MODAL,
+  open: true
+});
+
+export const closeDirectMessageModal = () => ({
+  type: CLOSE_DIRECT_MESSAGE_MODAL,
+  open: false
+});
