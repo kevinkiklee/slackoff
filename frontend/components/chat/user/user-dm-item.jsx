@@ -11,13 +11,26 @@ class UserDMItem extends React.Component {
   }
 
   render() {
-    return (
-      <li className='user-dm-friend'>
-        <div className='user-dm-friend-container'>
-          <p>@ { this.props.directMessage.name }</p>
-        </div>
-      </li>
-    );
+    // debugger
+    if (this.props.currentMessage.id == this.props.directMessage.id) {
+      return (
+        <li className='selected-direct-message'>
+          <div className='user-dm-friend-container'>
+            <span className='user-dm-tag'>@ </span>
+            <p>{ this.props.directMessage.name }</p>
+          </div>
+        </li>
+      );
+    } else {
+      return (
+        <li className='user-dm-friend'>
+          <div className='user-dm-friend-container'>
+            <span className='user-dm-tag'>@ </span>
+            <p>{ this.props.directMessage.name }</p>
+          </div>
+        </li>
+      );
+    }
   }
 }
 // <img src={ window.assets.iconOnline } />

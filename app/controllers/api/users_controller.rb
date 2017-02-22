@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
   def index
+    @users = User.all.order(:username)
+    render 'api/users/index'
   end
 
   def show

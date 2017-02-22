@@ -6,8 +6,9 @@ import { Link, withRouter } from 'react-router';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { fetchPublicChannels,
-         createPublicSubscription } from '../../../actions/channel_actions';
+import { createPublicSubscription } from '../../../actions/channel_actions';
+
+import { fetchUsers } from '../../../actions/user_actions';
 
 import { setChannel } from '../../../actions/current_channel_actions';
 import { updateSubscription } from '../../../actions/session_actions';
@@ -18,19 +19,20 @@ class DirectMessage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      channels: [],
+      users: [],
+      selectedUsers: [],
       searchInput: ''
     };
 
-    this.buildChannelItems = this.buildChannelItems.bind(this);
+    this.buildUserItems = this.buildUserItems.bind(this);
     this.joinChannel = this.joinChannel.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.matches = this.matches.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchPublicChannels().then((data) => {
-      this.setState({ channels: data.channels });
+    this.props.fetchUsers().then((data) => {
+      this.setState({ users: data.users });
     });
   }
 
@@ -71,33 +73,30 @@ class DirectMessage extends React.Component {
   }
 
   matches() {
-    return this.state.channels.filter((channel) => channel.name.includes(this.state.searchInput));
+    return this.state.users.filter((user) => user.username.includes(this.state.searchInput));
   }
 
-  buildChannelItems() {
+  selectUser(user) {
+
+  }
+
+  buildUserItems() {
     const matches = this.matches();
 
     if (matches.length === 0) {
       return (
-        <div className='channels-view-no-match'>
+        <div className='dm-no-match'>
           <img src={ window.assets.logoSq } />
           <h4>No matches</h4>
         </div>
       );
     } else {
-      return matches.map((channel, i) => {
+      return matches.map((user, i) => {
         return (
-          <li className='channels-view-item-container' key={ i }>
-            <button className='channels-view-item-btn' onClick={ this.joinChannel(channel) }>
-              <div className='channels-view-item-name'>
-                <h2># { channel.name }</h2>
-                <h3>Created on { channel.created_at }</h3>
-                <h4>{ channel.description }</h4>
-              </div>
-              <div className='channels-view-item-user-count'>
-                <img src={ window.assets.iconMemberCount } />
-                <h4>{ channel.userCount }</h4>
-              </div>
+          <li className='dm-item-container' key={ i }>
+            <button className='dm-item-btn' onClick={ this.joinChannel(user) }>
+              <img src={ user.photo_url } />
+              <h2>@{ user.username }</h2>
             </button>
           </li>
         );
@@ -133,21 +132,21 @@ class DirectMessage extends React.Component {
              onRequestClose={ this.props.closeDirectMessageModal }
              contentLabel='DirectMessage'
              style={ style }>
-        <section className='channels-view-container'>
+        <section className='dm-container'>
           <h1>Direct Message</h1>
 
-          <form className='channels-view-search-form'>
-            <input className='channels-view-search-input'
+          <form className='dm-search-form'>
+            <input className='dm-search-input'
                    placeholder='Search channels'
                    onChange={ this.handleInput } type='text' />
           </form>
 
-          <ul className='channels-view-list'>
+          <ul className='dm-list'>
             <ReactCSSTransitionGroup
               transitionName='list'
               transitionEnterTimeout={500}
               transitionLeaveTimeout={500}>
-              { this.buildChannelItems() }
+              { this.buildUserItems() }
             </ReactCSSTransitionGroup>
           </ul>
         </section>
@@ -165,7 +164,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchPublicChannels: () => dispatch(fetchPublicChannels()),
+  fetchUsers: () => dispatch(fetchUsers()),
+
   setChannel: (channel) => dispatch(setChannel(channel)),
 
   openDirectMessageModal: () => dispatch(openDirectMessageModal()),

@@ -29,7 +29,7 @@ class UserDMs extends React.Component {
                   };
 
                   this.props.setChannel(channel);
-                  this.setState({ currentChannel: channel });
+                  this.setState({ currentMessage: channel });
                 });
     };
   }
@@ -41,7 +41,11 @@ class UserDMs extends React.Component {
   buildDMItems() {
     return this.props.directMessages.map((directMessage, i) => (
       <button key={ i } onClick={ this.sendMessage(directMessage) }>
-        <UserDMItem key={ i } directMessage={ directMessage } />
+        <UserDMItem
+          key={ i }
+          directMessage={ directMessage }
+          currentMessage={ this.props.currentMessage }
+        />
       </button>
     ));
   }
@@ -64,7 +68,8 @@ class UserDMs extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
   user: state.session.currentUser,
-  directMessages: state.session.currentUser.directMessages
+  directMessages: state.session.currentUser.directMessages,
+  currentMessage: state.channel
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

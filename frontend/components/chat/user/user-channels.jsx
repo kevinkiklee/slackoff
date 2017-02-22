@@ -76,7 +76,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     user: state.session.currentUser,
     userChannels: state.session.currentUser.subscriptions,
-    currentChannel: state.channel,
+    currentChannel: state.channel
   };
 };
 
