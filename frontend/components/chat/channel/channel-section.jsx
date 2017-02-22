@@ -87,6 +87,8 @@ class ChannelSection extends React.Component {
   }
 
   render() {
+    const channelName = this.props.channel.displayName || this.props.channel.name;
+
     return (
       <section className='channel-section'>
         <ChannelForm />
@@ -108,7 +110,7 @@ class ChannelSection extends React.Component {
 
         <section className='channel-container'>
           <section className='channel-name'>
-            <h2>About #{this.props.channel.name}</h2>
+            <h2>About #{ channelName }</h2>
           </section>
 
           <section className='channel-details'>

@@ -6,7 +6,7 @@ json.extract! user,
   :current_channel
 
 json.subscriptions channels do |channel|
-  json.extract! channel, :id, :name, :description
+  json.extract! channel, :id, :name, :description, :display_name
 end
 
 json.directMessages direct_messages do |direct_message|

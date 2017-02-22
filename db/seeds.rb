@@ -172,7 +172,8 @@ dm1_channel_name = dm1_users.join('').gsub('.', '')
 
 dm1 = Channel.create(name: dm1_channel_name,
                      description: 'Direct Message~',
-                     private: true)
+                     private: true,
+                     display_name: 'jon.snow')
 
 dm1_sub1 = Subscription.create(user_id: user1.id,
                                channel_id: dm1.id)
@@ -185,7 +186,8 @@ dm2_channel_name = dm2_users.join('').gsub('.', '')
 
 dm2 = Channel.create(name: dm2_channel_name,
                      description: 'Direct Message~',
-                     private: true)
+                     private: true,
+                     display_name: 'jon.snow, ned.stark')
 
 dm2_sub1 = Subscription.create(user_id: user1.id,
                                channel_id: dm2.id)

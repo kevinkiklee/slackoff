@@ -22,7 +22,6 @@ class Messages extends React.Component {
 
     const channelId = this.props.user.current_channel.toString();
     this.channel = this.pusher.subscribe(channelId);
-    // debugger
 
     this.channel.bind('message', (message) => {
       this.props.receiveMessage(message);
@@ -45,9 +44,7 @@ class Messages extends React.Component {
       });
 
       this.channel = this.pusher.subscribe(newProps.channel.id.toString());
-      // debugger
       this.channel.bind('message', (message) => {
-        // debugger
         this.props.receiveMessage(message);
       }, this);
     }

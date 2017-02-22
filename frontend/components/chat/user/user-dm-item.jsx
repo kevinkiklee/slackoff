@@ -10,11 +10,24 @@ class UserDMItem extends React.Component {
 
   render() {
     let directMessageName = this.props.directMessage.users
-        .map((user) => {
-          if (user.id !== this.props.currentUserId) {
-            return user.username;
-          }
-        }).join(', ');
+          .sort((a, b) => {
+            let nameA = a.username.toUpperCase();
+            let nameB = b.username.toUpperCase();
+
+            if (nameA < nameB) {
+              return -1;
+            }
+
+            if (nameA > nameB) {
+              return 1;
+            }
+
+            return 0;
+          }).map((user) => {
+              if (user.id !== this.props.currentUserId) {
+                return user.username;
+              }
+            }).join(', ');
 
     if (this.props.currentMessage.id == this.props.directMessage.id) {
       return (

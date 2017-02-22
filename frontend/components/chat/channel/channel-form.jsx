@@ -43,7 +43,8 @@ class ChannelForm extends React.Component {
           id: newChannel.channel.id,
           name: newChannel.channel.name,
           description: newChannel.channel.description,
-          users: newChannel.channel.users
+          users: newChannel.channel.users,
+          displayName: newChannel.channel.display_name
         };
 
         this.props.setChannel(channel);

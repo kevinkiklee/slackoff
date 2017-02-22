@@ -56,18 +56,35 @@ class DirectMessage extends React.Component {
       photo_url: this.props.currentUser.photo_url
     };
 
-    let selectedUsers = [currentUser, ...this.state.selectedUsers];
+    let selectedUsersCopy = [...this.state.selectedUsers]
+                              .sort((a, b) => {
+                                      let nameA = a.username.toUpperCase();
+                                      let nameB = b.username.toUpperCase();
 
-    //////////////////////////
-    // TODO sort the name
-    //////////////////////////
+                                      if (nameA < nameB) {
+                                        return -1;
+                                      }
+
+                                      if (nameA > nameB) {
+                                        return 1;
+                                      }
+
+                                      return 0;
+                                    });
+
+    let selectedUsers = [currentUser, ...selectedUsersCopy];
 
     const channelName = selectedUsers
                               .map((user) => (user.username))
                               .join('').replace(/\./g, '');
 
+    const displayName = selectedUsersCopy
+                          .map((user) => (user.username))
+                          .join(', ');
+
     const channel = {
       name: channelName,
+      display_name: displayName,
       description: 'Direct Message~',
       private: true,
       users: selectedUsers

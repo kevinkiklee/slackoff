@@ -13,13 +13,15 @@ class Header extends React.Component {
   }
 
   render() {
+    const channelName = this.props.channel.displayName || this.props.channel.name;
+
     return (
       <section className='header-container'>
         <div className='channel-info-container'>
 
           <div className='channel-info-name'>
             <button>
-              <h2>#{ this.props.channel.name }</h2>
+              <h2>#{ channelName }</h2>
             </button>
           </div>
 
