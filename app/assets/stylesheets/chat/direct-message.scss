@@ -82,6 +82,10 @@
       background-color: $green;
       color: white;
       border-radius: 5px;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
   }
 

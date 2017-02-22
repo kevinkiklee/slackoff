@@ -279,6 +279,9 @@ button {
           font-weight: 300;
           font-size: 16px;
           margin-top: -1px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
 
         transition: all 0.1s ease 0s;
@@ -316,6 +319,10 @@ button {
           font-weight: 300;
           font-size: 16px;
           margin-top: -1px;
+          padding-right: 3px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
 
         transition: all 0.1s ease 0s;

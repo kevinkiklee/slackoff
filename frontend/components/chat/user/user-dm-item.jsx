@@ -11,13 +11,19 @@ class UserDMItem extends React.Component {
   }
 
   render() {
-    // debugger
+    let directMessageName = this.props.directMessage.users
+        .map((user) => {
+          if (user.id !== this.props.currentUserId) {
+            return user.username;
+          }
+        }).join(', ');
+
     if (this.props.currentMessage.id == this.props.directMessage.id) {
       return (
         <li className='selected-direct-message'>
           <div className='user-dm-friend-container'>
             <span className='user-dm-tag'>@ </span>
-            <p>{ this.props.directMessage.name }</p>
+            <p>{ directMessageName }</p>
           </div>
         </li>
       );
@@ -26,7 +32,7 @@ class UserDMItem extends React.Component {
         <li className='user-dm-friend'>
           <div className='user-dm-friend-container'>
             <span className='user-dm-tag'>@ </span>
-            <p>{ this.props.directMessage.name }</p>
+            <p>{ directMessageName }</p>
           </div>
         </li>
       );
@@ -36,7 +42,7 @@ class UserDMItem extends React.Component {
 // <img src={ window.assets.iconOnline } />
 
 const mapStateToProps = (state, ownProps) => ({
-
+  currentUserId: state.session.currentUser.id
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

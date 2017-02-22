@@ -28,6 +28,9 @@
         font-weight: 700;
         color: black;
         letter-spacing: 0px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
     }
 
