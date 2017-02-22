@@ -137,7 +137,7 @@ end
 
 Message.destroy_all
 
-15.times do 
+15.times do
   i = (user_start..user_end).to_a.sample.to_i
 
   user_id = User.find(i).id
@@ -159,3 +159,58 @@ end
                  channel_id: ch_id,
                  content: content)
 end
+
+### Direct Messages
+
+user1 = User.first
+user2 = User.find(user1.id + 1)
+user3 = User.find(user2.id + 1)
+user4 = User.find(user3.id + 1)
+
+dm1_users = [user1.username, user2.username].sort
+dm1_channel_name = dm1_users.join('').gsub('.', '')
+
+dm1 = Channel.create(name: dm1_channel_name,
+                     description: 'Direct Message~',
+                     private: true)
+
+dm1_sub1 = Subscription.create(user_id: user1.id,
+                               channel_id: dm1.id)
+
+dm1_sub2 = Subscription.create(user_id: user2.id,
+                               channel_id: dm1.id)
+
+dm2_users = [user1.username, user2.username, user3.username].sort
+dm2_channel_name = dm2_users.join('').gsub('.', '')
+
+dm2 = Channel.create(name: dm2_channel_name,
+                     description: 'Direct Message~',
+                     private: true)
+
+dm2_sub1 = Subscription.create(user_id: user1.id,
+                               channel_id: dm2.id)
+
+dm2_sub2 = Subscription.create(user_id: user2.id,
+                               channel_id: dm2.id)
+
+dm2_sub3 = Subscription.create(user_id: user3.id,
+                               channel_id: dm2.id)
+
+# dm3_users = [user1.username, user2.username, user3.username, user4.username].sort
+# dm3_channel_name = dm3_users.join('').gsub('.', '')
+#
+# dm3 = Channel.create(name: dm3_channel_name,
+#                      description: 'Direct Message~',
+#                      private: true)
+#
+# dm3_sub1 = Subscription.create(user_id: user1.id,
+#                                channel_id: dm3.id)
+#
+# dm3_sub2 = Subscription.create(user_id: user2.id,
+#                                channel_id: dm3.id)
+#
+# dm3_sub3 = Subscription.create(user_id: user3.id,
+#                                channel_id: dm3.id)
+#
+# dm3_sub4 = Subscription.create(user_id: user4.id,
+#                                channel_id: dm3.id)

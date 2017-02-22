@@ -20,7 +20,9 @@ class Messages extends React.Component {
       encrypted: true
     });
 
-    this.channel = this.pusher.subscribe('general');
+    const channelId = this.props.user.current_channel.toString();
+    this.channel = this.pusher.subscribe(channelId);
+    // debugger
 
     this.channel.bind('message', (message) => {
       this.props.receiveMessage(message);
@@ -32,11 +34,14 @@ class Messages extends React.Component {
   componentWillReceiveProps(newProps) {
     const channelLoaded = this.props.channel.name !== undefined;
     const notInitialChannel = newProps.channel.name !== 'general';
+    // debugger
 
     if(channelLoaded && notInitialChannel && this.props.channel.name !== newProps.channel.name){
-      this.channel = this.pusher.subscribe(newProps.channel.name);
-
+      // debugger
+      this.channel = this.pusher.subscribe(newProps.channel.id.toString());
+      // debugger
       this.channel.bind('message', (message) => {
+        // debugger
         this.props.receiveMessage(message);
       }, this);
     }

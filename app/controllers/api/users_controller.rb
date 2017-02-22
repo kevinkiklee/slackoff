@@ -4,7 +4,9 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.includes(:channels).find(params[:id])
-    @channels = @user.channels
+    @channels = @user.channels.where(private: false).order(:name)
+    @direct_messages = @user.channels.includes(:users).where(private: true).order(:name)
+
     render "api/users/show"
   end
 
@@ -14,6 +16,10 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       @user.subscriptions.create(channel_id: @user.current_channel)
+
+      @channels = @user.channels.where(private: false).order(:name)
+      @direct_messages = @user.channels.includes(:users).where(private: true).order(:name)
+
       login(@user)
       render "api/users/show"
     else

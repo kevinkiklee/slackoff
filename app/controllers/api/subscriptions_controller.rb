@@ -36,7 +36,8 @@ class Api::SubscriptionsController < ApplicationController
     @subscription.destroy
 
     @user = current_user
-    @channels = @user.channels
+    @channels = @user.channels.where(private: false).order(:name)
+    @direct_messages = @user.channels.includes(:users).where(private: true).order(:name)
 
     render 'api/users/show'
   end

@@ -14,13 +14,13 @@ class UserDMItem extends React.Component {
     return (
       <li className='user-dm-friend'>
         <div className='user-dm-friend-container'>
-          <img src={ window.assets.iconOnline } />
-          <p>{ this.props.friend }</p>
+          <p>@ { this.props.directMessage.name }</p>
         </div>
       </li>
     );
   }
 }
+// <img src={ window.assets.iconOnline } />
 
 const mapStateToProps = (state, ownProps) => ({
 

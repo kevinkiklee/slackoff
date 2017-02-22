@@ -19,7 +19,7 @@ class Api::MessagesController < ApplicationController
         }
       }
 
-      Pusher.trigger(@channel.name, 'message', {
+      Pusher.trigger(@channel.id, 'message', {
         messages: new_message
       })
 

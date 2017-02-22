@@ -2,7 +2,9 @@
   <% if logged_in? %>
     window.currentUser = <%= render(
       "api/users/user.json.jbuilder",
-      user: current_user
+      user: current_user,
+      channels: @channels,
+      direct_messages: @direct_messages
     ).html_safe %>
   <% end %>
 

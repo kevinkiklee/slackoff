@@ -3,31 +3,34 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
 import UserDMItem from './user-dm-item';
+import DirectMessage from '../channel/direct-message.jsx';
 
 import { openDirectMessageModal } from '../../../actions/modal_actions';
-
-import DirectMessage from '../channel/direct-message.jsx';
+import { setChannel } from '../../../actions/current_channel_actions';
+import { fetchChannel } from '../../../actions/channel_actions';
 
 class UserDMs extends React.Component {
   constructor(props) {
     super(props);
-    const dms = ['jon.snow (you)',
-                 'ned.stark',
-                 'daenerys',
-                 'tyrion'];
-
-    this.state = {
-      dms
-    };
 
     this.buildDMItems = this.buildDMItems.bind(this);
-    this.messageFriend = this.messageFriend.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
     this.openDirectMessageForm = this.openDirectMessageForm.bind(this);
   }
 
-  messageFriend(friend) {
+  sendMessage(channel) {
     return (e) => {
-      console.log('Friend: ' + friend);
+      this.props.fetchChannel(this.props.user.id, channel.id)
+                .then((newChannel) => {
+                  const channel = {
+                    id: newChannel.channel.id,
+                    name: newChannel.channel.name,
+                    description: newChannel.channel.description
+                  };
+
+                  this.props.setChannel(channel);
+                  this.setState({ currentChannel: channel });
+                });
     };
   }
 
@@ -36,9 +39,9 @@ class UserDMs extends React.Component {
   }
 
   buildDMItems() {
-    return this.state.dms.map((friend, i) => (
-      <button key={ i } onClick={ this.messageFriend(friend) }>
-        <UserDMItem key={ i } friend={ friend } />
+    return this.props.directMessages.map((directMessage, i) => (
+      <button key={ i } onClick={ this.sendMessage(directMessage) }>
+        <UserDMItem key={ i } directMessage={ directMessage } />
       </button>
     ));
   }
@@ -60,11 +63,14 @@ class UserDMs extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-
+  user: state.session.currentUser,
+  directMessages: state.session.currentUser.directMessages
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openDirectMessageModal: () => dispatch(openDirectMessageModal()),
+  fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
+  setChannel: (channel) => dispatch(setChannel(channel))
 });
 
 export default connect(

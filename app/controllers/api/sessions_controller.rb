@@ -6,6 +6,9 @@ class Api::SessionsController < ApplicationController
     )
 
     if @user
+			@channels = @user.channels.where(private: false).order(:name)
+			@direct_messages = @user.channels.includes(:users).where(private: true).order(:name)
+
 			login(@user)
 			render "api/users/show"
 		else
