@@ -1,4 +1,5 @@
 # belong to a user/creator?
+require 'json'
 
 class Api::ChannelsController < ApplicationController
   def index
@@ -7,16 +8,21 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create
-    debugger
+    @channel = Channel.new(channel_params)
 
-    # @channel = Channel.new(channel_params)
+    users = params[:channel][:users]
 
     if @channel.save
-      @users = [current_user]
-      @messages = []
-      @user_count = 1
+      users.each do |i|
+        user_id = users[i][:id].to_i
+        Subscription.create(user_id: user_id, channel_id: @channel.id)
+      end
 
-      render 'api/channel/show'
+      @users = @channel.users.order(:username)
+      @messages = @channel.messages.order(:created_at).reverse
+      @user_count = @channel.users.count
+
+      render 'api/channels/show'
     else
       render json: @user.errors.full_messages, status: 422
     end
@@ -36,6 +42,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def channel_params
-    params.require(:channel).permit(:name, :description, :private, users: [])
+    params.require(:channel).permit(:name, :description, :private)
+    # params.require(:channel).permit(:name, :description, :private, users: [:user_id, :username])
   end
 end

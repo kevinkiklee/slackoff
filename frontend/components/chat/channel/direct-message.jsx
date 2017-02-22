@@ -10,10 +10,10 @@ import { createChannel } from '../../../actions/channel_actions';
 import { fetchUsers } from '../../../actions/user_actions';
 
 import { setChannel } from '../../../actions/current_channel_actions';
-import { updateSubscription } from '../../../actions/session_actions';
+import { getUser } from '../../../actions/session_actions';
+
 import { openDirectMessageModal,
          closeDirectMessageModal } from '../../../actions/modal_actions';
-import { getUser } from '../../../actions/session_actions';
 
 class DirectMessage extends React.Component {
   constructor(props) {
@@ -46,9 +46,9 @@ class DirectMessage extends React.Component {
   }
 
   createDirectMessage() {
-    const channelName = Object.keys(this.state.selectedUsers)
-                              .map((i) => (this.state.selectedUsers[i].username))
-                              .join('').replace(/\./g, '');
+    //////////////////////////
+    // TODO check if the message exists
+    //////////////////////////
 
     const currentUser = {
       id: this.props.currentUser.id,
@@ -57,9 +57,15 @@ class DirectMessage extends React.Component {
     };
 
     let selectedUsers = [currentUser, ...this.state.selectedUsers];
-    // selectedUsers.unshift(this.props.currentUser);
 
-    // debugger
+    //////////////////////////
+    // TODO sort the name
+    //////////////////////////
+
+    const channelName = selectedUsers
+                              .map((user) => (user.username))
+                              .join('').replace(/\./g, '');
+
     const channel = {
       name: channelName,
       description: 'Direct Message~',
@@ -67,8 +73,8 @@ class DirectMessage extends React.Component {
       users: selectedUsers
     };
 
-    debugger
-    this.props.createChannel(channel);
+    this.props.createChannel(channel)
+              .then(() => (this.props.getUser(currentUser.id)));
   }
 
   joinChannel(channel) {
