@@ -36,7 +36,9 @@ class ChannelsView extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      this.setState({searchInput: ''});
+      // debugger
+      this.setState({ searchInput: '',
+                      channels: this.props.allChannels });
     }
   }
 
@@ -71,7 +73,12 @@ class ChannelsView extends React.Component {
   }
 
   matches() {
-    return this.state.channels.filter((channel) => channel.name.includes(this.state.searchInput));
+    // debugger
+    // if (this.state.channels) {
+      // if (this.state.channels.length > 0) {
+        return this.state.channels.filter((channel) => channel.name.includes(this.state.searchInput));
+    //   }
+    // }
   }
 
   buildChannelItems() {
@@ -157,7 +164,7 @@ class ChannelsView extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  allChannels: state.allChannels,
+  allChannels: Object.keys(state.allChannels).map((i) => state.allChannels[i]),
   channelsView: state.modal.channelsView,
   userId: state.session.currentUser.id,
   subscriptionIds: Object.keys(state.session.currentUser.subscriptions)
