@@ -147,7 +147,6 @@ class DirectMessage extends React.Component {
   //   };
   // }
 
-
   handleInput(e) {
     this.setState({ searchInput: e.target.value });
   }

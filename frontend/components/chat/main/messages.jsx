@@ -32,11 +32,7 @@ class Messages extends React.Component {
 
   componentWillReceiveProps(newProps) {
     const channelLoaded = this.props.channel.name !== undefined;
-    // debugger
-    // const notInitialChannel = newProps.channel.name !== 'general';
-    // debugger
 
-    // if(channelLoaded && notInitialChannel && this.props.channel.name !== newProps.channel.name){
     if(channelLoaded && this.props.channel.name !== newProps.channel.name){
       this.pusher.disconnect();
 

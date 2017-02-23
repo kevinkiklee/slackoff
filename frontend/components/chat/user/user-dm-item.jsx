@@ -9,25 +9,27 @@ class UserDMItem extends React.Component {
   }
 
   render() {
-    let directMessageName = this.props.directMessage.users
-          .sort((a, b) => {
-            let nameA = a.username.toUpperCase();
-            let nameB = b.username.toUpperCase();
-
-            if (nameA < nameB) {
-              return -1;
-            }
-
-            if (nameA > nameB) {
-              return 1;
-            }
-
-            return 0;
-          }).map((user) => {
-              if (user.id !== this.props.currentUserId) {
-                return user.username;
-              }
-            }).join(', ');
+    // let directMessageName = this.props.directMessage.users
+    //       .sort((a, b) => {
+    //         let nameA = a.username.toUpperCase();
+    //         let nameB = b.username.toUpperCase();
+    //
+    //         if (nameA < nameB) {
+    //           return -1;
+    //         }
+    //
+    //         if (nameA > nameB) {
+    //           return 1;
+    //         }
+    //
+    //         return 0;
+    //       }).map((user) => {
+    //           if (user.id !== this.props.currentUserId) {
+    //             return user.username;
+    //           }
+    //         }).join(', ');
+    // debugger
+    const directMessageName = this.props.directMessage.display_name;
 
     if (this.props.currentMessage.id == this.props.directMessage.id) {
       return (
@@ -53,6 +55,7 @@ class UserDMItem extends React.Component {
 // <img src={ window.assets.iconOnline } />
 
 const mapStateToProps = (state, ownProps) => ({
+  directMessage: ownProps.directMessage,
   currentUserId: state.session.currentUser.id
 });
 

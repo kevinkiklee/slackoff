@@ -14,9 +14,41 @@ class UserDMs extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      directMessages: this.props.directMessages
+    };
+
+    this.pusher = new Pusher('6dff216f2c5d022ed6ae', {
+      encrypted: true
+    });
+
+    this.channel = this.pusher.subscribe('private');
+
+    this.channel.bind('new_private', (channel) => {
+      this.props.addDirectMessageChannel(channel);
+    }, this);
+
     this.buildDMItems = this.buildDMItems.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
+    this.addDirectMessageChannel = this.addDirectMessageChannel.bind(this);
     this.openDirectMessageForm = this.openDirectMessageForm.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    // debugger
+    if (this.props !== newProps) {
+      this.setState({ directMessages: newProps.directMessages });
+    }
+  }
+
+  componentWillUnmount() {
+    this.pusher.disconnect();
+  }
+
+  addDirectMessageChannel(channel) {
+    debugger
+    return () => {
+    };
   }
 
   sendMessage(channel) {
@@ -40,7 +72,7 @@ class UserDMs extends React.Component {
   }
 
   buildDMItems() {
-    return this.props.directMessages.map((directMessage, i) => (
+    return this.state.directMessages.map((directMessage, i) => (
       <button key={ i } onClick={ this.sendMessage(directMessage) }>
         <UserDMItem
           key={ i }
