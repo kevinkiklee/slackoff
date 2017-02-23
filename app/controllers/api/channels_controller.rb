@@ -1,6 +1,3 @@
-# belong to a user/creator?
-require 'json'
-
 class Api::ChannelsController < ApplicationController
   def index
     @channels = Channel.all.includes(:messages => [:user])

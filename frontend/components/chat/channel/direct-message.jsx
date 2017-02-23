@@ -97,13 +97,8 @@ class DirectMessage extends React.Component {
 
     if (filtered.length > 0) {
       this.props.fetchChannel(currentUser.id, filtered[0].id)
-        // .then((channel) => this.props.setChannel(channel))
-        // .then(() => {
-        //   this.props.getUser(this.props.currentUser.id);
-        // })
         .then(() => (this.props.closeDirectMessageModal()));
     } else {
-      // debugger
       const displayName = selectedUsersCopy
                             .map((user) => (user.username))
                             .join(', ');
@@ -119,39 +114,11 @@ class DirectMessage extends React.Component {
       this.props.createChannel(channel)
                 .then((channel) => this.props.setChannel(channel))
                 .then(() => {
-                  // debugger/
                   this.props.getUser(this.props.currentUser.id);
                 })
-                // .then(() => (this.setState({ selectedUsers: [] })))
                 .then(() => (this.props.closeDirectMessageModal()));
     }
   }
-
-  // joinChannel(channel) {
-  //   return (e) => {
-  //     e.preventDefault();
-  //
-  //     this.props.createPublicSubscription({ channel_id: channel.id })
-  //     .then((newChannel) => {
-  //
-  //       const channel = {
-  //         id: newChannel.channel.id,
-  //         name: newChannel.channel.name,
-  //         description: newChannel.channel.description,
-  //         users: newChannel.channel.users
-  //       };
-  //
-  //       this.props.setChannel(channel);
-  //       return channel;
-  //     }).then((channel) => {
-  //       if (!this.props.subscriptionIds.includes(channel.id)) {
-  //         this.props.updateSubscription(channel);
-  //       }
-  //     }).then(() => {
-  //       this.props.closeDirectMessageModal();
-  //     });
-  //   };
-  // }
 
   handleInput(e) {
     e.preventDefault();
@@ -190,7 +157,6 @@ class DirectMessage extends React.Component {
     if (this.state.selectedUsers === undefined || this.state.selectedUsers.length === 0) {
       return '';
     } else {
-      // debugger
       return this.state.selectedUsers.map((user) => {
         return (
           <span className='dm-user-list-item' key={ user.id }>

@@ -7,9 +7,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { setChannel } from '../../../actions/current_channel_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
+import { getUser } from '../../../actions/session_actions';
 
 import { openChannelsViewModal } from '../../../actions/modal_actions';
-
 import UserChannelItem from './user-channel-item';
 import ChannelsView from '../channels/channels-view.jsx';
 
@@ -21,6 +21,16 @@ class UserChannels extends React.Component {
       userChannels: this.props.userChannels,
       currentChannel: this.props.currentChannel
     };
+
+    this.pusher = new Pusher('6dff216f2c5d022ed6ae', {
+      encrypted: true
+    });
+
+    this.channel = this.pusher.subscribe('application');
+
+    this.channel.bind('update', () => {
+      this.props.getUser(this.props.user.id);
+    }, this);
 
     this.buildChannelItems = this.buildChannelItems.bind(this);
     this.changeChannel = this.changeChannel.bind(this);
@@ -84,7 +94,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openChannelsViewModal: () => dispatch(openChannelsViewModal()),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
-  setChannel: (channel) => dispatch(setChannel(channel))
+  setChannel: (channel) => dispatch(setChannel(channel)),
+  getUser: (id) => dispatch(getUser(id))
 });
 
 export default connect(
