@@ -39,7 +39,6 @@ class ChannelSection extends React.Component {
   }
 
   editChannel() {
-    // debugger
     if (this.props.channel.private === true) {
       this.showEditDisableAlert();
     } else {
@@ -129,7 +128,32 @@ class ChannelSection extends React.Component {
   }
 
   render() {
-    const channelName = this.props.channel.displayName || this.props.channel.name;
+    let channelName = this.props.channel.name;
+
+    if (this.props.channel.private === true) {
+      let channelNameFiltered = this.props.channel.users
+            .sort((a, b) => {
+              let nameA = a.username.toUpperCase();
+              let nameB = b.username.toUpperCase();
+
+              if (nameA < nameB) {
+                return -1;
+              }
+
+              if (nameA > nameB) {
+                return 1;
+              }
+
+              return 0;
+            }).map((user) => {
+                if (user.id !== this.props.user.id) {
+                  return user.username;
+                }
+              });
+
+      let filtered = channelNameFiltered.filter((el) => (el !== undefined));
+      channelName = filtered.join(', ');
+    }
 
     return (
       <section className='channel-section'>

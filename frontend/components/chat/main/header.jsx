@@ -13,7 +13,33 @@ class Header extends React.Component {
   }
 
   render() {
-    const channelName = this.props.channel.displayName || this.props.channel.name;
+    let channelName = this.props.channel.name;
+
+    if (this.props.channel.private === true) {
+      let channelNameFiltered = this.props.channel.users
+            .sort((a, b) => {
+              let nameA = a.username.toUpperCase();
+              let nameB = b.username.toUpperCase();
+
+              if (nameA < nameB) {
+                return -1;
+              }
+
+              if (nameA > nameB) {
+                return 1;
+              }
+
+              return 0;
+            }).map((user) => {
+                if (user.id !== this.props.user.id) {
+                  return user.username;
+                }
+              });
+
+      let filtered = channelNameFiltered.filter((el) => (el !== undefined));
+      channelName = filtered.join(', ');
+    }
+    // const channelName = this.props.channel.displayName || this.props.channel.name;
 
     return (
       <section className='header-container'>
@@ -61,6 +87,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
   channel: state.channel,
+  user: state.session.currentUser,
   userCount: state.channel.userCount
 });
 

@@ -8,7 +8,7 @@ import DirectMessage from '../channel/direct-message.jsx';
 import { openDirectMessageModal } from '../../../actions/modal_actions';
 import { setChannel } from '../../../actions/current_channel_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
-
+import { getUser } from '../../../actions/session_actions';
 
 class UserDMs extends React.Component {
   constructor(props) {
@@ -25,7 +25,8 @@ class UserDMs extends React.Component {
     this.channel = this.pusher.subscribe('private');
 
     this.channel.bind('new_private', (channel) => {
-      this.props.addDirectMessageChannel(channel);
+      // debugger
+      this.addDirectMessageChannel(channel);
     }, this);
 
     this.buildDMItems = this.buildDMItems.bind(this);
@@ -45,8 +46,8 @@ class UserDMs extends React.Component {
   }
 
   addDirectMessageChannel(channel) {
-    // debugger
     return () => {
+      this.props.getUser(this.props.user.id);
     };
   }
 
@@ -62,7 +63,7 @@ class UserDMs extends React.Component {
                   };
 
                   this.props.setChannel(channel);
-                  this.setState({ currentMessage: channel });
+                  return channel;
                 });
     };
   }
@@ -109,7 +110,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openDirectMessageModal: () => dispatch(openDirectMessageModal()),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
-  setChannel: (channel) => dispatch(setChannel(channel))
+  setChannel: (channel) => dispatch(setChannel(channel)),
+  getUser: (id) => dispatch(getUser(id))
 });
 
 export default connect(

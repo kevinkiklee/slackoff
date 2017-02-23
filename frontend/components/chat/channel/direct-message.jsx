@@ -98,6 +98,7 @@ class DirectMessage extends React.Component {
       this.props.fetchChannel(currentUser.id, filtered[0].id)
         .then(() => (this.props.closeDirectMessageModal()));
     } else {
+      // debugger
       const displayName = selectedUsersCopy
                             .map((user) => (user.username))
                             .join(', ');
