@@ -10,9 +10,10 @@
 - Build better seeds
 - Add custom avatar functionality
 - Add error message to the selected users
-- Add close button to the direct message selected users
+- Skip avatar on consecutive messages
 
 #### Finished Tasks
+- Add close button to the direct message selected users
 - Add de-select user functionality in direct message
 - Fix the bug for direct message selection
 

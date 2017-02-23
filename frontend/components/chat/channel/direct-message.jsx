@@ -176,7 +176,10 @@ class DirectMessage extends React.Component {
       return this.state.selectedUsers.map((user) => {
         return (
           <span className='dm-user-list-item' key={ user.id }>
-            <button onClick={ this.deselectUser(user) }>{ user.username }</button>
+            <button onClick={ this.deselectUser(user) }>
+              { user.username }
+              <i className="fa fa-times-circle fa-2" aria-hidden="true"></i>
+            </button>
           </span>
         );
       });

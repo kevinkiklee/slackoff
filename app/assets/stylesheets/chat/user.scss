@@ -234,9 +234,7 @@ button {
     padding: 0px;
     margin-top: 10px;
 
-    h4 {
-      margin-bottom: 7px;
-    }
+
 
     button {
       text-align: left;
@@ -244,8 +242,39 @@ button {
       padding: 0px;
       margin: 0px;
 
+
+
       &:focus {
         outline: 0;
+      }
+    }
+
+    .user-dms-button {
+      display: flex;
+      justify-content: space-between;
+
+      h4 {
+        margin-bottom: 7px;
+        transition: all 0.3s ease 0s;
+      }
+
+      i {
+        padding-right: 15px;
+        transition: all 0.3s ease 0s;
+      }
+
+      &:hover {
+        color: white;
+
+
+        h4 {
+          transition: all 0.3s ease 0s;
+          color: white;
+        }
+
+        i {
+          transition: all 0.3s ease 0s;
+        }
       }
     }
 
