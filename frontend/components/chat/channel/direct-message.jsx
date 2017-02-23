@@ -20,7 +20,7 @@ import { openDirectMessageModal,
 class DirectMessage extends React.Component {
   constructor(props) {
     super(props);
-    // debugger
+
     this.state = {
       users: [],
       selectedUsers: this.props.givenUser,
@@ -28,7 +28,6 @@ class DirectMessage extends React.Component {
     };
 
     this.buildUserItems = this.buildUserItems.bind(this);
-    // this.joinChannel = this.joinChannel.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.matches = this.matches.bind(this);
     this.buildUserList = this.buildUserList.bind(this);

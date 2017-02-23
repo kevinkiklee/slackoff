@@ -46,9 +46,10 @@ class UserDMs extends React.Component {
   }
 
   addDirectMessageChannel(channel) {
-    return () => {
+    // return (channel) => {
+      // debugger
       this.props.getUser(this.props.user.id);
-    };
+    // };
   }
 
   sendMessage(channel) {
