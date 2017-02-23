@@ -42,8 +42,16 @@ class DirectMessage extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
+      let user = []
+
+      if (newProps.givenUser !== undefined) {
+        user = newProps.givenUser;
+      }
+
+      let users = [...this.state.selectedUsers].concat(user);
+
       this.setState({ searchInput: '',
-                      selectedUsers: newProps.givenUser });
+                      selectedUsers: users });
     }
   }
 
@@ -96,6 +104,7 @@ class DirectMessage extends React.Component {
 
       this.props.createChannel(channel)
                 .then(() => (this.props.getUser(currentUser.id)))
+                .then(() => (this.setState({ selectedUsers: [] })))
                 .then(() => (this.props.closeDirectMessageModal()));
     }
   }
