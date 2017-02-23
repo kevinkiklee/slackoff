@@ -129,6 +129,11 @@
 
         transition: all 0.3s ease 0s;
 
+        img {
+          max-width: 40px;
+          padding: 5px 15px 5px 0px;
+        }
+
         &:hover {
           background-color: #f3f3f3;
           transition: all 0.3s ease 0s;
