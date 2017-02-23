@@ -18,9 +18,10 @@ import { openDirectMessageModal,
 class DirectMessage extends React.Component {
   constructor(props) {
     super(props);
+    // debugger
     this.state = {
       users: [],
-      selectedUsers: [],
+      selectedUsers: this.props.givenUser,
       searchInput: ''
     };
 
@@ -37,13 +38,12 @@ class DirectMessage extends React.Component {
     this.props.fetchUsers().then((data) => {
       this.setState({ users: data.users });
     });
-
-
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      this.setState({ searchInput: '', selectedUsers: [] });
+      this.setState({ searchInput: '',
+                      selectedUsers: newProps.givenUser });
     }
   }
 
@@ -126,6 +126,7 @@ class DirectMessage extends React.Component {
     };
   }
 
+
   handleInput(e) {
     this.setState({ searchInput: e.target.value });
   }
@@ -145,9 +146,10 @@ class DirectMessage extends React.Component {
   }
 
   buildUserList() {
-    if (this.state.selectedUsers.length === 0) {
+    if (this.state.selectedUsers === undefined || this.state.selectedUsers.length === 0) {
       return '';
     } else {
+      // debugger
       return this.state.selectedUsers.map((user) => {
         return (
           <span className='dm-user-list-item' key={ user.id }>
@@ -252,14 +254,18 @@ class DirectMessage extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  directMessages: state.session.currentUser.directMessages,
-  allChannels: state.allChannels,
-  directMessageForm: state.modal.directMessageForm,
-  currentUser: state.session.currentUser,
-  subscriptionIds: Object.keys(state.session.currentUser.subscriptions)
-                         .map((i) => (state.session.currentUser.subscriptions[i].id))
-});
+const mapStateToProps = (state, ownProps) => {
+  // debugger
+  return {
+    givenUser: state.modal.directMessageUser,
+    directMessages: state.session.currentUser.directMessages,
+    allChannels: state.allChannels,
+    directMessageForm: state.modal.directMessageForm,
+    currentUser: state.session.currentUser,
+    subscriptionIds: Object.keys(state.session.currentUser.subscriptions)
+                           .map((i) => (state.session.currentUser.subscriptions[i].id))
+  };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchUsers: () => dispatch(fetchUsers()),

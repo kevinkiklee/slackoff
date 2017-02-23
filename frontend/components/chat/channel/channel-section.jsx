@@ -8,15 +8,23 @@ import { deleteSubscription } from '../../../actions/session_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
 
 import { openChannelFormModal } from '../../../actions/modal_actions';
+import { openDirectMessageModal } from '../../../actions/modal_actions';
 
 import ChannelForm from '../channel/channel-form.jsx';
+import DirectMessage from '../channel/direct-message.jsx';
 
 class ChannelSection extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      givenUser: []
+    };
+
     this.buildMemberList = this.buildMemberList.bind(this);
+
     this.openUserActionMenu = this.openUserActionMenu.bind(this);
+    this.openDirectMessageForm = this.openDirectMessageForm.bind(this);
 
     this.buildGeneralChatError = this.buildGeneralChatError.bind(this);
 
@@ -41,6 +49,14 @@ class ChannelSection extends React.Component {
     }
   }
 
+  openDirectMessageForm(user) {
+    return (e) => {
+      // this.setState({ givenUser: [user] });
+      // debugger
+      this.props.openDirectMessageModal([user]);
+    };
+  }
+
   openUserActionMenu(user) {
     return (e) => {
       e.preventDefault();
@@ -52,7 +68,7 @@ class ChannelSection extends React.Component {
     if (this.props.channel.users) {
       return this.props.channel.users.map((user, i) => (
         <button className='user-action-btn' key={i}
-                onClick={ this.openUserActionMenu(user) }>
+                onClick={ this.openDirectMessageForm(user) }>
           <li className='user-action-item'>
             <img src={ user.photo_url }/>
             <p>{ user.username }</p>
@@ -92,6 +108,8 @@ class ChannelSection extends React.Component {
     return (
       <section className='channel-section'>
         <ChannelForm />
+        <DirectMessage givenUser={ this.state.givenUser }/>
+
         <section className='channel-action-container'>
           <div className='channel-action-warning'>
             { this.buildGeneralChatError() }
@@ -142,6 +160,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  openDirectMessageModal: (user) => dispatch(openDirectMessageModal(user)),
   openChannelFormModal: () => dispatch(openChannelFormModal()),
   deleteSubscription: (channelId) => dispatch(deleteSubscription(channelId)),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId))

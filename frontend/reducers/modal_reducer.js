@@ -10,7 +10,8 @@ import merge from 'lodash/merge';
 const initialState = {
   channelsView: false,
   channelForm: false,
-  directMessageForm: false
+  directMessageForm: false,
+  directMessageUser: []
 };
 
 const ModalReducer = (state = initialState, action) => {
@@ -30,10 +31,12 @@ const ModalReducer = (state = initialState, action) => {
       return merge({}, { channelForm: action.close });
 
     case OPEN_DIRECT_MESSAGE_MODAL:
-      return merge({}, { directMessageForm: action.open });
+      return merge({}, { directMessageForm: action.open,
+                         directMessageUser: action.user });
 
     case CLOSE_DIRECT_MESSAGE_MODAL:
-      return merge({}, { directMessageForm: action.close });
+      return merge({}, { directMessageForm: action.close,
+                         directMessageUser: [] });
 
     default:
       return state;

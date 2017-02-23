@@ -36,7 +36,7 @@ class UserDMs extends React.Component {
   }
 
   openDirectMessageForm() {
-    this.props.openDirectMessageModal();
+    this.props.openDirectMessageModal([]);
   }
 
   buildDMItems() {
@@ -54,7 +54,7 @@ class UserDMs extends React.Component {
   render() {
     return (
       <section className='user-dms-container'>
-        <DirectMessage />
+        <DirectMessage givenUser={ [] }/>
         <button onClick={ this.openDirectMessageForm }>
           <h4>DIRECT MESSAGES</h4>
         </button>
