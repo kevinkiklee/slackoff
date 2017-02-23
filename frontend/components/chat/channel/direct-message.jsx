@@ -28,7 +28,7 @@ class DirectMessage extends React.Component {
     };
 
     this.buildUserItems = this.buildUserItems.bind(this);
-    this.joinChannel = this.joinChannel.bind(this);
+    // this.joinChannel = this.joinChannel.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.matches = this.matches.bind(this);
     this.buildUserList = this.buildUserList.bind(this);
@@ -44,7 +44,7 @@ class DirectMessage extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      let user = []
+      let user = [];
 
       if (newProps.givenUser !== undefined) {
         user = newProps.givenUser;
@@ -54,7 +54,13 @@ class DirectMessage extends React.Component {
 
       this.setState({ searchInput: '',
                       selectedUsers: users });
+    } else {
+      this.setState({ selectedUsers: [] });
     }
+  }
+
+  compopnentWillUnmount() {
+    this.setState({ selectedUsers: [] });
   }
 
   createDirectMessage() {
@@ -105,37 +111,41 @@ class DirectMessage extends React.Component {
       };
 
       this.props.createChannel(channel)
-                .then(() => (this.props.getUser(currentUser.id)))
+                // .then((channel) => this.props.setChannel(channel))
+                .then(() => {
+                  // debugger/
+                  this.props.getUser(this.props.currentUser.id);
+                })
                 .then(() => (this.setState({ selectedUsers: [] })))
                 .then(() => (this.props.closeDirectMessageModal()));
     }
   }
 
-  joinChannel(channel) {
-    return (e) => {
-      e.preventDefault();
-
-      this.props.createPublicSubscription({ channel_id: channel.id })
-      .then((newChannel) => {
-
-        const channel = {
-          id: newChannel.channel.id,
-          name: newChannel.channel.name,
-          description: newChannel.channel.description,
-          users: newChannel.channel.users
-        };
-
-        this.props.setChannel(channel);
-        return channel;
-      }).then((channel) => {
-        if (!this.props.subscriptionIds.includes(channel.id)) {
-          this.props.updateSubscription(channel);
-        }
-      }).then(() => {
-        this.props.closeDirectMessageModal();
-      });
-    };
-  }
+  // joinChannel(channel) {
+  //   return (e) => {
+  //     e.preventDefault();
+  //
+  //     this.props.createPublicSubscription({ channel_id: channel.id })
+  //     .then((newChannel) => {
+  //
+  //       const channel = {
+  //         id: newChannel.channel.id,
+  //         name: newChannel.channel.name,
+  //         description: newChannel.channel.description,
+  //         users: newChannel.channel.users
+  //       };
+  //
+  //       this.props.setChannel(channel);
+  //       return channel;
+  //     }).then((channel) => {
+  //       if (!this.props.subscriptionIds.includes(channel.id)) {
+  //         this.props.updateSubscription(channel);
+  //       }
+  //     }).then(() => {
+  //       this.props.closeDirectMessageModal();
+  //     });
+  //   };
+  // }
 
 
   handleInput(e) {
@@ -164,8 +174,8 @@ class DirectMessage extends React.Component {
         return user.id === userCopy.id;
       });
 
-      this.setState({ selectedUsers: users })
-    }
+      this.setState({ selectedUsers: users });
+    };
   }
 
   buildUserList() {

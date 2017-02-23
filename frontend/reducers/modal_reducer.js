@@ -35,9 +35,8 @@ const ModalReducer = (state = initialState, action) => {
                          directMessageUser: action.user });
 
     case CLOSE_DIRECT_MESSAGE_MODAL:
-      return merge({}, { directMessageForm: action.close,
-                         directMessageUser: [] });
-
+      return initialState;
+      
     default:
       return state;
   }

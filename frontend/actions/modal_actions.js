@@ -35,5 +35,6 @@ export const openDirectMessageModal = (user) => ({
 
 export const closeDirectMessageModal = () => ({
   type: CLOSE_DIRECT_MESSAGE_MODAL,
-  open: false
+  open: false,
+  user: []
 });
