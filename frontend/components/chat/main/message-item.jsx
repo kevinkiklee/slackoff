@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
+import moment from 'moment';
 
 class MessageItem extends React.Component {
   render() {
@@ -16,7 +17,8 @@ class MessageItem extends React.Component {
                 { this.props.message.author.username }
               </div>
               <div className='message-timestamp'>
-                { this.props.message.timestamp }
+                { moment(this.props.message.updated_at).format('LT') }
+                <span> | </span>{ moment(this.props.message.updated_at).fromNow() }
               </div>
             </div>
             <div className='message-content'>
@@ -28,6 +30,8 @@ class MessageItem extends React.Component {
     );
   }
 }
+
+// { this.props.message.updated_at.format('LT') }
 
 const mapStateToProps = (state, ownProps) => ({
 

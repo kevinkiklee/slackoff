@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
@@ -91,7 +91,7 @@ class ChannelsView extends React.Component {
             <button className='channels-view-item-btn' onClick={ this.joinChannel(channel) }>
               <div className='channels-view-item-name'>
                 <h2># { channel.name }</h2>
-                <h3>Created on { channel.created_at }</h3>
+                <h3>Created on { moment(channel.created_at).format('MMMM Do YYYY') }</h3>
                 <h4>{ channel.description }</h4>
               </div>
               <div className='channels-view-item-user-count'>

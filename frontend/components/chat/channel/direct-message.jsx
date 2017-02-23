@@ -309,19 +309,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-// const mapStateToProps = (state, ownProps) => {
-//   // debugger
-//   return {
-//     givenUser: state.modal.directMessageUser,
-//     directMessages: state.session.currentUser.directMessages,
-//     allChannels: state.allChannels,
-//     directMessageForm: state.modal.directMessageForm,
-//     currentUser: state.session.currentUser,
-//     subscriptionIds: Object.keys(state.session.currentUser.subscriptions)
-//                            .map((i) => (state.session.currentUser.subscriptions[i].id))
-//   };
-// };
-
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchUsers: () => dispatch(fetchUsers()),
   getUser: (userId) => dispatch(getUser(userId)),

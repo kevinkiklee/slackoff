@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
-
+import moment from 'moment';
 import AlertContainer from 'react-alert';
 
 import { deleteSubscription } from '../../../actions/session_actions';
@@ -138,7 +138,7 @@ class ChannelSection extends React.Component {
               <p>{ this.props.channel.description }</p>
             </div>
             <div className='channel-information'>
-              Created on { this.props.channel.createdAt }
+              Created on { moment(this.props.channel.createdAt).format('MMMM Do YYYY') }
             </div>
           </section>
 
