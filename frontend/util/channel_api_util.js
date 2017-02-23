@@ -13,7 +13,6 @@ export const fetchChannel = (userId, channelId) => {
 };
 
 export const createChannel = (channel) => {
-  // debugger
   return $.ajax({
     method: 'post',
     url: 'api/channels',
@@ -26,5 +25,20 @@ export const createPublicSubscription = (channel_id) => {
     method: 'post',
     url: `api/subscriptions`,
     data: { sub: channel_id }
+  });
+};
+
+export const editChannel = (channel) => {
+  return $.ajax({
+    method: 'patch',
+    url: `api/channels/${channel.id}`,
+    data: { channel }
+  });
+};
+
+export const deleteChannel = (id) => {
+  return $.ajax({
+    method: 'delete',
+    url: `api/channels/${id}`
   });
 };

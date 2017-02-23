@@ -1,4 +1,5 @@
-import { RECEIVE_ALL_PUBLIC_CHANNELS } from '../actions/channel_actions';
+import { RECEIVE_ALL_PUBLIC_CHANNELS,
+         REMOVE_CHANNEL } from '../actions/channel_actions';
 
 import merge from 'lodash/merge';
 
@@ -10,6 +11,11 @@ const AllChannelsReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_PUBLIC_CHANNELS:
       return merge({}, action.channels);
+
+    case REMOVE_CHANNEL:
+      let copiedState = merge({}, state);
+      delete copiedState[action.channel.id];
+      return copiedState;
 
     default:
       return state;

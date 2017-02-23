@@ -4,9 +4,9 @@ import { Link, withRouter } from 'react-router';
 import moment from 'moment';
 import AlertContainer from 'react-alert';
 
-import { deleteSubscription } from '../../../actions/session_actions';
-import { fetchChannel } from '../../../actions/channel_actions';
-
+import { deleteSubscription, getUser } from '../../../actions/session_actions';
+import { fetchChannel, deleteChannel, fetchPublicChannels } from '../../../actions/channel_actions';
+import { setChannel } from '../../../actions/current_channel_actions';
 import { openChannelFormModal } from '../../../actions/modal_actions';
 import { openDirectMessageModal } from '../../../actions/modal_actions';
 
@@ -29,12 +29,28 @@ class ChannelSection extends React.Component {
     this.buildGeneralChatError = this.buildGeneralChatError.bind(this);
 
     this.createChannel = this.createChannel.bind(this);
+    this.deleteChannel = this.deleteChannel.bind(this);
+    this.editChannel = this.editChannel.bind(this);
     this.leaveChannel = this.leaveChannel.bind(this);
   }
 
   createChannel() {
-    console.log('create channel button clicked');
-    this.props.openChannelFormModal();
+    this.props.openChannelFormModal('create');
+  }
+
+  editChannel() {
+    this.props.openChannelFormModal('edit');
+  }
+
+  deleteChannel() {
+    if (this.props.channel.name === 'general') {
+      this.showAlert();
+    } else {
+      this.props.deleteChannel(this.props.channel.id)
+        .then(() => this.props.fetchPublicChannels())
+        .then(() => this.props.getUser(this.props.user.id))
+        .then(() => this.props.fetchChannel(this.props.user.id, this.props.user.current_channel));
+    }
   }
 
   leaveChannel() {
@@ -51,8 +67,6 @@ class ChannelSection extends React.Component {
 
   openDirectMessageForm(user) {
     return (e) => {
-      // this.setState({ givenUser: [user] });
-      // debugger
       this.props.openDirectMessageModal([user]);
     };
   }
@@ -60,7 +74,6 @@ class ChannelSection extends React.Component {
   openUserActionMenu(user) {
     return (e) => {
       e.preventDefault();
-      console.log(user);
     };
   }
 
@@ -79,7 +92,7 @@ class ChannelSection extends React.Component {
   }
 
   showAlert(){
-    msg.show('You cannot remove the #general channel', {
+    msg.show('You cannot remove #general channel', {
       time: 2000,
       type: 'info',
       icon: <img src={ window.assets.logoSq35 } />
@@ -120,13 +133,13 @@ class ChannelSection extends React.Component {
               Create Channel
             </button>
             <button className='channel-action-leave-btn'
-                    onClick={ this.leaveChannel }>
+                    onClick={ this.deleteChannel }>
               Delete Channel
             </button>
           </div>
           <div className='channel-action-buttons'>
             <button className='channel-action-create-btn'
-                    onClick={ this.createChannel }>
+                    onClick={ this.editChannel }>
               Edit Channel
             </button>
             <button className='channel-action-leave-btn'
@@ -171,9 +184,13 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openDirectMessageModal: (user) => dispatch(openDirectMessageModal(user)),
-  openChannelFormModal: () => dispatch(openChannelFormModal()),
+  openChannelFormModal: (formType) => dispatch(openChannelFormModal(formType)),
   deleteSubscription: (channelId) => dispatch(deleteSubscription(channelId)),
-  fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId))
+  fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
+  deleteChannel: (channelId) => dispatch(deleteChannel(channelId)),
+  setChannel: (channel) => dispatch(setChannel(channel)),
+  fetchPublicChannels: () => dispatch(fetchPublicChannels()),
+  getUser: (id) => dispatch(getUser(id))
 });
 
 export default connect(

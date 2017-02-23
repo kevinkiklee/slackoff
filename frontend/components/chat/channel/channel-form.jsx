@@ -8,7 +8,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { fetchPublicChannels,
          createPublicSubscription,
-         createChannel } from '../../../actions/channel_actions';
+         createChannel,
+         editChannel } from '../../../actions/channel_actions';
 
 import { setChannel } from '../../../actions/current_channel_actions';
 import { updateSubscription, getUser } from '../../../actions/session_actions';
@@ -19,47 +20,25 @@ class ChannelForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      channels: [],
-      channelName: '',
-      channelDescription: ''
+      channelId: this.props.channelId,
+      channelName: this.props.channelName,
+      channelDescription: this.props.channelDescription
     };
 
     this.createChannel = this.createChannel.bind(this);
+    this.editChannel = this.editChannel.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      this.setState({channelName: ''});
+      this.setState({
+        channelId: newProps.channelId,
+        channelName: newProps.channelName,
+        channelDescription: newProps.channelDescription
+      });
     }
   }
-
-  // joinChannel(channel) {
-  //   return (e) => {
-  //     e.preventDefault();
-  //
-  //     this.props.createPublicSubscription({ channel_id: channel.id })
-  //     .then((newChannel) => {
-  //
-  //       const channel = {
-  //         id: newChannel.channel.id,
-  //         name: newChannel.channel.name,
-  //         description: newChannel.channel.description,
-  //         users: newChannel.channel.users,
-  //         displayName: newChannel.channel.display_name
-  //       };
-  //
-  //       this.props.setChannel(channel);
-  //       return channel;
-  //     }).then((channel) => {
-  //       if (!this.props.subscriptionIds.includes(channel.id)) {
-  //         this.props.updateSubscription(channel);
-  //       }
-  //     }).then(() => {
-  //       this.props.closeChannelFormModal();
-  //     });
-  //   };
-  // }
 
   createChannel(e) {
     e.preventDefault();
@@ -73,6 +52,21 @@ class ChannelForm extends React.Component {
     };
 
     this.props.createChannel(channel)
+      .then((channel) => this.props.setChannel(channel))
+      .then(() => this.props.fetchPublicChannels())
+      .then(() => this.props.getUser(this.props.currentUser.id))
+      .then(() => this.props.closeChannelFormModal());
+  }
+
+  editChannel(e) {
+    e.preventDefault();
+    const channel = {
+      id: this.state.channelId,
+      name: this.state.channelName,
+      description: this.state.channelDescription
+    };
+
+    this.props.editChannel(channel)
       .then((channel) => this.props.setChannel(channel))
       .then(() => this.props.fetchPublicChannels())
       .then(() => this.props.getUser(this.props.currentUser.id))
@@ -107,6 +101,9 @@ class ChannelForm extends React.Component {
         zIndex          : 11
       }
     };
+    const formText = this.props.formType === 'create' ? 'Create a channel' : 'Edit a channel';
+
+    const formAction = this.props.formType === 'create' ? this.createChannel : this.editChannel;
 
     return (
       <Modal isOpen={ this.props.channelForm }
@@ -114,20 +111,22 @@ class ChannelForm extends React.Component {
              contentLabel='ChannelForm'
              style={ style }>
         <section className='channels-view-container'>
-          <h1>Create a channel</h1>
+          <h1>{ formText }</h1>
 
-          <form className='channels-view-search-form' onSubmit={ this.createChannel }>
+          <form className='channels-view-search-form' onSubmit={ formAction }>
             <h4>CHANNEL NAME</h4>
             <input className='channels-view-search-input'
                    placeholder='Enter the channel name'
+                   value={ this.state.channelName }
                    onChange={ this.handleInput('channelName') } type='text' />
 
             <h4>CHANEL DESCRIPTION</h4>
             <input className='channels-view-search-input'
                    placeholder='Describe the channel'
+                   value={ this.state.channelDescription }
                    onChange={ this.handleInput('channelDescription') } type='text' />
 
-            <input type='submit' value='Create Channel'/>
+            <input type='submit' value={ formText }/>
           </form>
 
         </section>
@@ -138,7 +137,19 @@ class ChannelForm extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   if (state.session.currentUser) {
+    let channelName = '';
+    let channelDescription = '';
+
+    if (state.modal.channelFormType === 'edit') {
+      channelName = state.channel.name;
+      channelDescription = state.channel.description;
+    }
+
     return {
+      channelName: channelName,
+      channelDescription: channelDescription,
+      channelId: state.channel.id,
+      formType: state.modal.channelFormType,
       channelForm: state.modal.channelForm,
       userId: state.session.currentUser.id,
       currentUser: state.session.currentUser
@@ -150,6 +161,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchPublicChannels: () => dispatch(fetchPublicChannels()),
   setChannel: (channel) => dispatch(setChannel(channel)),
   createChannel: (channel) => dispatch(createChannel(channel)),
+  editChannel: (channel) => dispatch(editChannel(channel)),
   getUser: (id) => dispatch(getUser(id)),
 
   closeChannelFormModal: () => dispatch(closeChannelFormModal()),

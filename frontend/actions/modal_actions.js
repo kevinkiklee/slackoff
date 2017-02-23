@@ -14,9 +14,10 @@ export const closeChannelsViewModal = () => ({
 export const OPEN_CHANNEL_FORM_MODAL = 'OPEN_CHANNEL_FORM_MODAL';
 export const CLOSE_CHANNEL_FORM_MODAL = 'CLOSE_CHANNEL_FORM_MODAL';
 
-export const openChannelFormModal = () => ({
+export const openChannelFormModal = (formType) => ({
   type: OPEN_CHANNEL_FORM_MODAL,
-  open: true
+  open: true,
+  formType
 });
 
 export const closeChannelFormModal = () => ({
