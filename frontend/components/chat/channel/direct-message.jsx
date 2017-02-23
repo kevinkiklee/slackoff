@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 
+import remove from 'lodash/remove';
+
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
@@ -30,7 +32,7 @@ class DirectMessage extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.matches = this.matches.bind(this);
     this.buildUserList = this.buildUserList.bind(this);
-
+    this.deselectUser = this.deselectUser.bind(this);
     this.createDirectMessage = this.createDirectMessage.bind(this);
   }
 
@@ -154,6 +156,18 @@ class DirectMessage extends React.Component {
     };
   }
 
+  deselectUser(user) {
+    return (e) => {
+      let users = [...this.state.selectedUsers];
+
+      remove(users, (userCopy) => {
+        return user.id === userCopy.id;
+      });
+
+      this.setState({ selectedUsers: users })
+    }
+  }
+
   buildUserList() {
     if (this.state.selectedUsers === undefined || this.state.selectedUsers.length === 0) {
       return '';
@@ -162,7 +176,7 @@ class DirectMessage extends React.Component {
       return this.state.selectedUsers.map((user) => {
         return (
           <span className='dm-user-list-item' key={ user.id }>
-            { user.username }
+            <button onClick={ this.deselectUser(user) }>{ user.username }</button>
           </span>
         );
       });
