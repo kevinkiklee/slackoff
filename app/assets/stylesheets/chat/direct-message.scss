@@ -70,14 +70,24 @@
     align-items: center;
     flex-wrap: wrap;
     width: 534px;
-    height: 55px;
-    padding-top: 3px;
-    padding-bottom: 1px;
-    overflow-x: scroll;
+    // height: 55px;
+
+
+    span {
+      padding-top: 5px;
+      
+      overflow: hidden;
+      margin-bottom: 25px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
     .dm-user-list-item {
       font-weight: 300;
       padding: 3px 7px;
+      margin-bottom: 5px;
       margin-right: 5px;
       background-color: $green;
       color: white;

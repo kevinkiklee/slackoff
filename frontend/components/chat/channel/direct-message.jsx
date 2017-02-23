@@ -6,7 +6,7 @@ import { Link, withRouter } from 'react-router';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { createChannel } from '../../../actions/channel_actions';
+import { createChannel, fetchChannel } from '../../../actions/channel_actions';
 import { fetchUsers } from '../../../actions/user_actions';
 
 import { setChannel } from '../../../actions/current_channel_actions';
@@ -37,6 +37,8 @@ class DirectMessage extends React.Component {
     this.props.fetchUsers().then((data) => {
       this.setState({ users: data.users });
     });
+
+
   }
 
   componentWillReceiveProps(newProps) {
@@ -46,10 +48,6 @@ class DirectMessage extends React.Component {
   }
 
   createDirectMessage() {
-    //////////////////////////
-    // TODO check if the message exists
-    //////////////////////////
-
     const currentUser = {
       id: this.props.currentUser.id,
       username: this.props.currentUser.username,
@@ -78,21 +76,28 @@ class DirectMessage extends React.Component {
                               .map((user) => (user.username))
                               .join('').replace(/\./g, '');
 
-    const displayName = selectedUsersCopy
-                          .map((user) => (user.username))
-                          .join(', ');
+    const filtered = this.props.directMessages.filter((dm) => (dm.name === channelName));
 
-    const channel = {
-      name: channelName,
-      display_name: displayName,
-      description: 'Direct Message~',
-      private: true,
-      users: selectedUsers
-    };
+    if (filtered.length > 0) {
+      this.props.fetchChannel(currentUser.id, filtered[0].id)
+        .then(() => (this.props.closeDirectMessageModal()));
+    } else {
+      const displayName = selectedUsersCopy
+                            .map((user) => (user.username))
+                            .join(', ');
 
-    this.props.createChannel(channel)
-              .then(() => (this.props.getUser(currentUser.id)))
-              .then(() => (this.props.closeDirectMessageModal()));
+      const channel = {
+        name: channelName,
+        display_name: displayName,
+        description: 'Direct Message~',
+        private: true,
+        users: selectedUsers
+      };
+
+      this.props.createChannel(channel)
+                .then(() => (this.props.getUser(currentUser.id)))
+                .then(() => (this.props.closeDirectMessageModal()));
+    }
   }
 
   joinChannel(channel) {
@@ -248,7 +253,7 @@ class DirectMessage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-
+  directMessages: state.session.currentUser.directMessages,
   allChannels: state.allChannels,
   directMessageForm: state.modal.directMessageForm,
   currentUser: state.session.currentUser,
@@ -262,12 +267,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
   createChannel: (channel) => dispatch(createChannel(channel)),
   setChannel: (channel) => dispatch(setChannel(channel)),
+  fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
 
   openDirectMessageModal: () => dispatch(openDirectMessageModal()),
   closeDirectMessageModal: () => dispatch(closeDirectMessageModal()),
-
-  updateSubscription: (channel) => dispatch(updateSubscription(channel)),
-  createPublicSubscription: (channelId) => dispatch(createPublicSubscription(channelId))
 });
 
 export default connect(

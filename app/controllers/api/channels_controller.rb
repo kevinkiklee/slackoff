@@ -8,6 +8,18 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create
+    @channel = Channel.find_by(name: params[:channel][:name])
+
+    if @channel
+      Subscription.create(user_id: current_user.id, channel_id: @channel.id)
+      @users = @channel.users.order(:username)
+      @messages = @channel.messages.order(:created_at).reverse
+      @user_count = @channel.users.count
+
+      render 'api/channels/show'
+      return
+    end
+
     @channel = Channel.new(channel_params)
 
     users = params[:channel][:users]
