@@ -121,6 +121,16 @@ class ChannelSection extends React.Component {
             </button>
             <button className='channel-action-leave-btn'
                     onClick={ this.leaveChannel }>
+              Delete Channel
+            </button>
+          </div>
+          <div className='channel-action-buttons'>
+            <button className='channel-action-create-btn'
+                    onClick={ this.createChannel }>
+              Edit Channel
+            </button>
+            <button className='channel-action-leave-btn'
+                    onClick={ this.leaveChannel }>
               Leave Channel
             </button>
           </div>

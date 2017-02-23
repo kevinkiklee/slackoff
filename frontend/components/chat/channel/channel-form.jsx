@@ -117,12 +117,12 @@ class ChannelForm extends React.Component {
           <h1>Create a channel</h1>
 
           <form className='channels-view-search-form' onSubmit={ this.createChannel }>
-            <h4>Channel Name</h4>
+            <h4>CHANNEL NAME</h4>
             <input className='channels-view-search-input'
                    placeholder='Enter the channel name'
                    onChange={ this.handleInput('channelName') } type='text' />
 
-            <h4>Channel Description</h4>
+            <h4>CHANEL DESCRIPTION</h4>
             <input className='channels-view-search-input'
                    placeholder='Describe the channel'
                    onChange={ this.handleInput('channelDescription') } type='text' />
