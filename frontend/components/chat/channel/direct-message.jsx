@@ -244,63 +244,83 @@ class DirectMessage extends React.Component {
       }
     };
 
-    return (
-      <Modal isOpen={ this.props.directMessageForm }
-             onRequestClose={ this.props.closeDirectMessageModal }
-             contentLabel='DirectMessage'
-             style={ style }>
-        <section className='dm-container'>
-          <h1>Direct Message</h1>
+    if (this.props.currentUser) {
+      return (
+        <Modal isOpen={ this.props.directMessageForm }
+          onRequestClose={ this.props.closeDirectMessageModal }
+          contentLabel='DirectMessage'
+          style={ style }>
+          <section className='dm-container'>
+            <h1>Direct Message</h1>
 
-          <form className='dm-search-form'>
-            <input className='dm-search-input'
-                   placeholder='Search users'
-                   onChange={ this.handleInput } type='text'>
-            </input>
-            <button onClick={ this.createDirectMessage }>
-              GO
-            </button>
-          </form>
+            <form className='dm-search-form'>
+              <input className='dm-search-input'
+                placeholder='Search users'
+                onChange={ this.handleInput } type='text'>
+              </input>
+              <button onClick={ this.createDirectMessage }>
+                GO
+              </button>
+            </form>
 
-          <section className='dm-user-list'>
-            <ReactCSSTransitionGroup
-              transitionName='list'
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={500}>
+            <section className='dm-user-list'>
+              <ReactCSSTransitionGroup
+                transitionName='list'
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={500}>
 
-              { this.buildUserList() }
+                { this.buildUserList() }
 
-            </ReactCSSTransitionGroup>
+              </ReactCSSTransitionGroup>
+            </section>
+
+            <ul className='dm-list'>
+              <ReactCSSTransitionGroup
+                transitionName='list'
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={500}>
+
+                { this.buildUserItems() }
+
+              </ReactCSSTransitionGroup>
+            </ul>
           </section>
-
-          <ul className='dm-list'>
-            <ReactCSSTransitionGroup
-              transitionName='list'
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={500}>
-
-              { this.buildUserItems() }
-
-            </ReactCSSTransitionGroup>
-          </ul>
-        </section>
-      </Modal>
-    );
+        </Modal>
+      );
+    } else {
+      return (
+        <p>loading</p>
+      );
+    }
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
-  return {
-    givenUser: state.modal.directMessageUser,
-    directMessages: state.session.currentUser.directMessages,
-    allChannels: state.allChannels,
-    directMessageForm: state.modal.directMessageForm,
-    currentUser: state.session.currentUser,
-    subscriptionIds: Object.keys(state.session.currentUser.subscriptions)
-                           .map((i) => (state.session.currentUser.subscriptions[i].id))
-  };
+  if (state.session.currentUser) {
+    return {
+      givenUser: state.modal.directMessageUser,
+      directMessages: state.session.currentUser.directMessages,
+      allChannels: state.allChannels,
+      directMessageForm: state.modal.directMessageForm,
+      currentUser: state.session.currentUser,
+      subscriptionIds: Object.keys(state.session.currentUser.subscriptions)
+                             .map((i) => (state.session.currentUser.subscriptions[i].id))
+    };
+  }
 };
+
+// const mapStateToProps = (state, ownProps) => {
+//   // debugger
+//   return {
+//     givenUser: state.modal.directMessageUser,
+//     directMessages: state.session.currentUser.directMessages,
+//     allChannels: state.allChannels,
+//     directMessageForm: state.modal.directMessageForm,
+//     currentUser: state.session.currentUser,
+//     subscriptionIds: Object.keys(state.session.currentUser.subscriptions)
+//                            .map((i) => (state.session.currentUser.subscriptions[i].id))
+//   };
+// };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchUsers: () => dispatch(fetchUsers()),

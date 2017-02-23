@@ -106,10 +106,14 @@ class ChannelForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  channelForm: state.modal.channelForm,
-  userId: state.session.currentUser.id
-});
+const mapStateToProps = (state, ownProps) => {
+  if (state.session.currentUser) {
+    return {
+      channelForm: state.modal.channelForm,
+      userId: state.session.currentUser.id
+    };
+  }
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchPublicChannels: () => dispatch(fetchPublicChannels()),

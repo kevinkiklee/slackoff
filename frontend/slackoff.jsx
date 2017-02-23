@@ -8,7 +8,6 @@ import Modal from 'react-modal';
 import merge from 'lodash/merge';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // console.log('%cYour surveillance activity has been recorded.', 'background: #ff0000; color: #ffffff');
   // console.log('%cYour IP has been submitted to FBI/NSA for further investigation.', 'background: #ffffff; color: #ff0000');
 
   const root = document.getElementById('root');
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloadedState = {
       session: { currentUser: window.currentUser }
     };
-    
+
     store = configureStore(preloadedState);
   }
 

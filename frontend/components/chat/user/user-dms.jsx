@@ -35,7 +35,6 @@ class UserDMs extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // debugger
     if (this.props !== newProps) {
       this.setState({ directMessages: newProps.directMessages });
     }
@@ -46,7 +45,7 @@ class UserDMs extends React.Component {
   }
 
   addDirectMessageChannel(channel) {
-    debugger
+    // debugger
     return () => {
     };
   }
