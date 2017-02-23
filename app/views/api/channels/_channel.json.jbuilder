@@ -1,4 +1,4 @@
-json.extract! channel, :id, :name, :description, :created_at, :display_name
+json.extract! channel, :id, :name, :description, :created_at, :display_name, :private
 
 json.userCount user_count
 

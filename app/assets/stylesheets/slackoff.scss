@@ -70,3 +70,21 @@ button {
 .col-1-4 {
   width: 25%;
 }
+
+@media (max-width: 1000px) {
+
+  .channel-section {
+    display: none;
+    transition: all 0.3s ease 0s;
+  }
+
+  .messages-container {
+    right: 0px;
+    transition: all 0.3s ease 0s;
+  }
+
+  .message-input-container {
+    right: 0px;
+    transition: all 0.3s ease 0s;
+  }
+}

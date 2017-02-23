@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import moment from 'moment';
 import merge from 'lodash/merge';
+import { getUser } from '../../../actions/session_actions';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -43,6 +44,7 @@ class Messages extends React.Component {
       this.channel = this.pusher.subscribe(newProps.channel.id.toString());
       this.channel.bind('message', (message) => {
         this.props.receiveMessage(message);
+        this.props.getUser(this.props.user.id);
       }, this);
     }
 
@@ -80,6 +82,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  getUser: (userId) => dispatch(getUser(userId)),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
   receiveMessage: (message) => dispatch(receiveMessage(message))
 });

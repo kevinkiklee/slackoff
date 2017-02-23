@@ -23,6 +23,8 @@ class Api::MessagesController < ApplicationController
         messages: new_message
       })
 
+      Pusher.trigger('application', 'update', {});
+
     else
       render json: @message.errors.full_messages, status: 422
     end

@@ -108,6 +108,12 @@ button {
     color: $main-color-light;
     margin-bottom: 10px;
     padding-left: 15px;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+      color: white;
+      transition: all 0.3s ease 0s;
+    }
   }
 
   .user-control-container {

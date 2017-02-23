@@ -21,12 +21,19 @@ class UserDMs extends React.Component {
     this.pusher = new Pusher('6dff216f2c5d022ed6ae', {
       encrypted: true
     });
+    //
+    // this.channel = this.pusher.subscribe('private');
+    //
+    // this.channel.bind('new_private', (channel) => {
+    //   // debugger
+    //   this.addDirectMessageChannel(channel);
+    // }, this);
+    //
 
-    this.channel = this.pusher.subscribe('private');
+    this.channel = this.pusher.subscribe('application');
 
-    this.channel.bind('new_private', (channel) => {
-      // debugger
-      this.addDirectMessageChannel(channel);
+    this.channel.bind('update', () => {
+      this.props.getUser(this.props.user.id);
     }, this);
 
     this.buildDMItems = this.buildDMItems.bind(this);
@@ -46,10 +53,7 @@ class UserDMs extends React.Component {
   }
 
   addDirectMessageChannel(channel) {
-    // return (channel) => {
-      // debugger
-      this.props.getUser(this.props.user.id);
-    // };
+    this.props.getUser(this.props.user.id);
   }
 
   sendMessage(channel) {

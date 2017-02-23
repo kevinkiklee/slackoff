@@ -12,7 +12,7 @@
 
 class Channel < ApplicationRecord
   validates :name, presence: true
-  has_many :subscriptions
-  has_many :messages
+  has_many :subscriptions, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_many :users, through: :subscriptions
 end

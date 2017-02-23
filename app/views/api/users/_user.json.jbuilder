@@ -10,6 +10,6 @@ json.subscriptions channels do |channel|
 end
 
 json.directMessages direct_messages do |direct_message|
-  json.extract! direct_message, :id, :name, :description
+  json.extract! direct_message, :id, :name, :description, :display_name
   json.users direct_message.users.where.not(id: current_user.id), :id, :username
 end

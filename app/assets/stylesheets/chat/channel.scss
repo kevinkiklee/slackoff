@@ -1,18 +1,18 @@
 @import '../presets';
 
 .channel-section {
+  transition: all 0.3s ease 0s;
   min-width: 350px;
   width: 350px;
   position: absolute;
   right: 0px;
-
+  
   .channel-action-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     height: 60px;
     font-size: 12px;
-    align-items: flex-end;
-    flex-direction: column;
+    align-items: center;
 
     .channel-action-create-btn {
       margin-bottom: 5px;
@@ -23,18 +23,18 @@
       align-items: center;
       justify-content: center;
 
-      margin-right: 15px;
+      margin-right: 5px;
       padding: 3px;
 
       width: 100px;
       border-radius: 5px;
 
       color: white;
-      background-color: $green-dark;
+      background-color: $green;
       transition: all 0.3s ease 0s;
 
       &:hover {
-        background-color: rgb(76, 150, 137);
+        background-color: $green-dark;
         transition: all 0.3s ease 0s;
       }
     }
