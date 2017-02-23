@@ -30,12 +30,6 @@ class Api::ChannelsController < ApplicationController
       @messages = @channel.messages.order(:created_at).reverse
       @user_count = @channel.users.count
 
-      if @channel.private
-        # Pusher.trigger('private', 'new_private', {
-        #   channel: new_channel
-        # })
-      end
-
       Pusher.trigger('application', 'update', {});
 
       render 'api/channels/show'
@@ -67,16 +61,6 @@ class Api::ChannelsController < ApplicationController
         "userCount" => @user_count
       }
 
-      # if @channel.private
-      #   Pusher.trigger('private', 'new_private', {
-      #     channel: new_channel
-      #   })
-      # else
-      #   Pusher.trigger('public', 'new_public', {
-      #     channel: new_channel
-      #   })
-      # end
-
       Pusher.trigger('application', 'update', {});
 
       render 'api/channels/show'
@@ -105,6 +89,8 @@ class Api::ChannelsController < ApplicationController
     @users = @channel.users.order(:username)
     @messages = @channel.messages.order(:created_at).reverse
     @user_count = @channel.users.count
+
+    Pusher.trigger('application', 'update', {});
     render 'api/channels/show'
   end
 

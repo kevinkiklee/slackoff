@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
   def show
     @user = User.includes(:channels).find(params[:id])
     @channels = @user.channels.where(private: false).order(:name)
-    @direct_messages = @user.channels.includes(:users).where(private: true).order(:name)
+    @direct_messages = @user.channels.includes(:users).where(private: true).order(:display_name)
 
     render "api/users/show"
   end

@@ -62,7 +62,9 @@ class DirectMessage extends React.Component {
     this.setState({ selectedUsers: [] });
   }
 
-  createDirectMessage() {
+  createDirectMessage(e) {
+    e.preventDefault();
+
     const currentUser = {
       id: this.props.currentUser.id,
       username: this.props.currentUser.username,
@@ -95,6 +97,10 @@ class DirectMessage extends React.Component {
 
     if (filtered.length > 0) {
       this.props.fetchChannel(currentUser.id, filtered[0].id)
+        // .then((channel) => this.props.setChannel(channel))
+        // .then(() => {
+        //   this.props.getUser(this.props.currentUser.id);
+        // })
         .then(() => (this.props.closeDirectMessageModal()));
     } else {
       // debugger
@@ -111,12 +117,12 @@ class DirectMessage extends React.Component {
       };
 
       this.props.createChannel(channel)
-                // .then((channel) => this.props.setChannel(channel))
+                .then((channel) => this.props.setChannel(channel))
                 .then(() => {
                   // debugger/
                   this.props.getUser(this.props.currentUser.id);
                 })
-                .then(() => (this.setState({ selectedUsers: [] })))
+                // .then(() => (this.setState({ selectedUsers: [] })))
                 .then(() => (this.props.closeDirectMessageModal()));
     }
   }
@@ -148,6 +154,7 @@ class DirectMessage extends React.Component {
   // }
 
   handleInput(e) {
+    e.preventDefault();
     this.setState({ searchInput: e.target.value });
   }
 
@@ -157,6 +164,7 @@ class DirectMessage extends React.Component {
 
   selectUser(user) {
     return (e) => {
+      e.preventDefault();
       if (user.id !== this.props.currentUser.id) {
         let users = [...this.state.selectedUsers];
         users.push(user);
@@ -167,6 +175,7 @@ class DirectMessage extends React.Component {
 
   deselectUser(user) {
     return (e) => {
+      e.preventDefault();
       let users = [...this.state.selectedUsers];
 
       remove(users, (userCopy) => {

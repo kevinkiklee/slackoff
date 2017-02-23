@@ -74,8 +74,19 @@ button {
 @media (max-width: 1000px) {
 
   .channel-section {
-    display: none;
-    transition: all 0.3s ease 0s;
+    display: flex;
+    justify-content: flex-end;
+
+    .channel-action-container {
+      background-color: white;
+      padding-left: 10px;
+      border-left: 1px solid lightgray;
+    }
+
+    .channel-container {
+      display: none;
+      transition: all 0.3s ease 0s;
+    }
   }
 
   .messages-container {

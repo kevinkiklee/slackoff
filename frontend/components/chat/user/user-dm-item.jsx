@@ -28,8 +28,12 @@ class UserDMItem extends React.Component {
                 return user.username;
               }
             }).join(', ');
-    // debugger
-    // const directMessageName = this.props.directMessage.display_name;
+
+    if (directMessageName === '') {
+      return (
+        <span></span>
+      );
+    }
 
     if (this.props.currentMessage.id == this.props.directMessage.id) {
       return (
@@ -52,7 +56,6 @@ class UserDMItem extends React.Component {
     }
   }
 }
-// <img src={ window.assets.iconOnline } />
 
 const mapStateToProps = (state, ownProps) => ({
   directMessage: ownProps.directMessage,
@@ -60,7 +63,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  // clearErrors: () => dispatch(clearErrors())
 });
 
 export default connect(
