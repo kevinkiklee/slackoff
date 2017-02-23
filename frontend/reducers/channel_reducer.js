@@ -18,7 +18,8 @@ const ChannelReducer = (state = initialState, action) => {
         createdAt: action.channel.created_at,
         userCount: action.channel.userCount,
         users: action.channel.users,
-        displayName: action.channel.display_name
+        displayName: action.channel.display_name,
+        private: action.channel.private
       });
 
     case RECEIVE_MESSAGE:

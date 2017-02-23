@@ -57,7 +57,8 @@ class UserDMs extends React.Component {
                   const channel = {
                     id: newChannel.channel.id,
                     name: newChannel.channel.name,
-                    description: newChannel.channel.description
+                    description: newChannel.channel.description,
+                    private: newChannel.channel.private
                   };
 
                   this.props.setChannel(channel);

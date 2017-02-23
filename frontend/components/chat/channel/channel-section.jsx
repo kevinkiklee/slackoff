@@ -39,7 +39,12 @@ class ChannelSection extends React.Component {
   }
 
   editChannel() {
-    this.props.openChannelFormModal('edit');
+    // debugger
+    if (this.props.channel.private === true) {
+      this.showEditDisableAlert();
+    } else {
+      this.props.openChannelFormModal('edit');
+    }
   }
 
   deleteChannel() {
@@ -93,6 +98,14 @@ class ChannelSection extends React.Component {
 
   showAlert(){
     msg.show('You cannot remove #general channel', {
+      time: 2000,
+      type: 'info',
+      icon: <img src={ window.assets.logoSq35 } />
+    });
+  }
+
+  showEditDisableAlert(){
+    msg.show('You cannot edit direct message information', {
       time: 2000,
       type: 'info',
       icon: <img src={ window.assets.logoSq35 } />

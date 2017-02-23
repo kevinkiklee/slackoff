@@ -53,6 +53,7 @@ class ChannelsView extends React.Component {
           id: newChannel.channel.id,
           name: newChannel.channel.name,
           description: newChannel.channel.description,
+          private: newChannel.channel.private,
           users: newChannel.channel.users
         };
 
