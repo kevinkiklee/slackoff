@@ -32,7 +32,6 @@ class Messages extends React.Component {
     }, this);
 
     this.channel.bind('editMessage', (data) => {
-      // debugger
       this.props.editMessage(data.message);
     }, this);
 

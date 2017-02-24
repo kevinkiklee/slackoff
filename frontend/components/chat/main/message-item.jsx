@@ -19,7 +19,7 @@ class MessageItem extends React.Component {
     this.editMessage = this.editMessage.bind(this);
     this.deleteMessage = this.deleteMessage.bind(this);
 
-    this.showEditForm = this.showEditForm.bind(this);
+    this.toggleEditForm = this.toggleEditForm.bind(this);
     this.buildEditMessageForm = this.buildEditMessageForm.bind(this);
     this.buildShowMessage = this.buildShowMessage.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -41,9 +41,14 @@ class MessageItem extends React.Component {
     this.setState({ content: e.target.value });
   }
 
-  showEditForm(e) {
+  toggleEditForm(e) {
     e.preventDefault();
-    this.setState({ contentAction: 'edit' });
+    console.log(this.state.contentAction);
+    if (this.state.contentAction === 'show') {
+      this.setState({ contentAction: 'edit' });
+    } else {
+      this.setState({ contentAction: 'show' });
+    }
   }
 
   editMessage(e) {
@@ -101,7 +106,7 @@ class MessageItem extends React.Component {
                 <span> | </span>{ moment(this.props.message.updated_at).fromNow() }
                 </div>
                 <div className='message-btn-container'>
-                  <button className='message-edit-btn' onClick={ this.showEditForm }>
+                  <button className='message-edit-btn' onClick={ this.toggleEditForm }>
                     <i className="fa fa-pencil-square-o fa-6" aria-hidden="true"></i>
                   </button>
                   <button className='message-delete-btn' onClick={ this.deleteMessage }>
