@@ -119,8 +119,6 @@ class MessageItem extends React.Component {
 
     return (
       <li key={ this.state.message.id } className=''>
-
-
         <div className='message-container'>
           <div className='message-avatar-container'>
             <img src={ this.props.message.author.photo_url } />

@@ -40,7 +40,6 @@ class Messages extends React.Component {
     }, this);
 
     this.buildMessageItems = this.buildMessageItems.bind(this);
-    this.showDirectMessageAlert = this.showDirectMessageAlert.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -74,14 +73,6 @@ class Messages extends React.Component {
 
   componentWillUnmount() {
     this.pusher.disconnect();
-  }
-
-  showDirectMessageAlert(author){
-    msg.show(`You have a message from ${author}!`, {
-      time: 2000,
-      type: 'info',
-      icon: <img src={ window.assets.logoSq35 } />
-    });
   }
 
   buildMessageItems() {
