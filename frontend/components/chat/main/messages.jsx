@@ -5,7 +5,8 @@ import moment from 'moment';
 import merge from 'lodash/merge';
 
 import { getUser } from '../../../actions/session_actions';
-import { removeMessage } from '../../../actions/message_actions.js';
+import { removeMessage,
+         editMessage} from '../../../actions/message_actions.js';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -30,6 +31,11 @@ class Messages extends React.Component {
       this.props.receiveMessage(message);
     }, this);
 
+    this.channel.bind('editMessage', (message) => {
+      // debugger
+      this.props.editMessage(message);
+    }, this);
+
     this.channel.bind('deleteMessage', (data) => {
       this.props.removeMessage(data.id);
     }, this);
@@ -52,6 +58,10 @@ class Messages extends React.Component {
       this.channel.bind('message', (message) => {
         this.props.receiveMessage(message);
         this.props.getUser(this.props.user.id);
+      }, this);
+
+      this.channel.bind('editMessage', (data) => {
+        this.props.editMessage(data.message);
       }, this);
 
       this.channel.bind('deleteMessage', (data) => {
@@ -103,7 +113,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   getUser: (userId) => dispatch(getUser(userId)),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
   receiveMessage: (message) => dispatch(receiveMessage(message)),
-  removeMessage: (id) => dispatch(removeMessage(id))
+  removeMessage: (id) => dispatch(removeMessage(id)),
+  editMessage: (message) => dispatch(editMessage(message))
 });
 
 export default connect(

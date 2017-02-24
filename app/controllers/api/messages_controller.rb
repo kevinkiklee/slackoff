@@ -34,6 +34,7 @@ class Api::MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @message.update(message_params)
     @channel = @message.channel
+
     Pusher.trigger(@channel.id, 'editMessage', { message: @message });
     render json: @message
   end
@@ -42,6 +43,7 @@ class Api::MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @channel = @message.channel
     @message.destroy
+
     Pusher.trigger(@channel.id, 'deleteMessage', { id: @message.id });
     render json: @message.id
   end

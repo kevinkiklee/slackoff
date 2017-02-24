@@ -34,6 +34,7 @@ const ChannelReducer = (state = initialState, action) => {
     case EDIT_MESSAGE:
       let editState = merge({}, state);
       editState[action.message.id] = action.message;
+      // debugger
       return editState;
 
     case REMOVE_MESSAGE:
