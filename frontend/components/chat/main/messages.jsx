@@ -40,6 +40,7 @@ class Messages extends React.Component {
     }, this);
 
     this.buildMessageItems = this.buildMessageItems.bind(this);
+    this.showDirectMessageAlert = this.showDirectMessageAlert.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -75,18 +76,19 @@ class Messages extends React.Component {
     this.pusher.disconnect();
   }
 
+  showDirectMessageAlert(author){
+    msg.show(`You have a message from ${author}!`, {
+      time: 2000,
+      type: 'info',
+      icon: <img src={ window.assets.logoSq35 } />
+    });
+  }
+
   buildMessageItems() {
     if (this.state.messages) {
       return this.state.messages.map((message, i) => {
         return (
-          <ReactCSSTransitionGroup
-            transitionName='list'
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={500}>
-
-            <MessageItem key={ i } message={ message } />
-
-          </ReactCSSTransitionGroup>
+          <MessageItem key={ i } message={ message } />
         );
       });
     }

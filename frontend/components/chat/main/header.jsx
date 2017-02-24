@@ -39,7 +39,6 @@ class Header extends React.Component {
       let filtered = channelNameFiltered.filter((el) => (el !== undefined));
       channelName = filtered.join(', ');
     }
-    // const channelName = this.props.channel.displayName || this.props.channel.name;
 
     return (
       <section className='header-container'>

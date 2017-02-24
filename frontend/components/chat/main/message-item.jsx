@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
+import AlertContainer from 'react-alert';
+
 import moment from 'moment';
 import merge from 'lodash/merge';
 
@@ -23,17 +25,37 @@ class MessageItem extends React.Component {
     this.buildEditMessageForm = this.buildEditMessageForm.bind(this);
     this.buildShowMessage = this.buildShowMessage.bind(this);
     this.handleInput = this.handleInput.bind(this);
+
+    this.showAuthorAlert = this.showAuthorAlert.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      this.setState({ message: newProps.message });
+      this.setState({ message: newProps.message,
+                      content: newProps.message.content,
+                      contentAction: 'show' });
     }
+  }
+
+  componentWillUnmount() {
+    this.setState({ contentAction: 'show' });
+  }
+
+  showAuthorAlert(){
+    msg.show('You are not the author of this message', {
+      time: 2000,
+      type: 'info',
+      icon: <img src={ window.assets.logoSq35 } />
+    });
   }
 
   deleteMessage(e) {
     e.preventDefault();
-    this.props.deleteMessage(this.state.message.id);
+    if (this.state.message.author.id === this.props.user.id) {
+      this.props.deleteMessage(this.state.message.id);
+    } else {
+      this.showAuthorAlert();
+    }
   }
 
   handleInput(e) {
@@ -43,16 +65,21 @@ class MessageItem extends React.Component {
 
   toggleEditForm(e) {
     e.preventDefault();
-    console.log(this.state.contentAction);
-    if (this.state.contentAction === 'show') {
-      this.setState({ contentAction: 'edit' });
+
+    if (this.state.message.author.id === this.props.user.id) {
+      if (this.state.contentAction === 'show') {
+        this.setState({ contentAction: 'edit' });
+      } else {
+        this.setState({ contentAction: 'show' });
+      }
     } else {
-      this.setState({ contentAction: 'show' });
+      this.showAuthorAlert();
     }
   }
 
   editMessage(e) {
     e.preventDefault();
+
     let editedMessage = merge({}, this.state.message, { content: this.state.content});
 
     this.props.updateMessage(editedMessage)
@@ -91,7 +118,9 @@ class MessageItem extends React.Component {
     }
 
     return (
-      <li className=''>
+      <li key={ this.state.message.id } className=''>
+
+
         <div className='message-container'>
           <div className='message-avatar-container'>
             <img src={ this.props.message.author.photo_url } />
@@ -122,12 +151,12 @@ class MessageItem extends React.Component {
 
       </li>
     );
-
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  message: ownProps.message
+  message: ownProps.message,
+  user: state.session.currentUser
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

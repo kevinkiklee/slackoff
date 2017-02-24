@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import moment from 'moment';
+
 import AlertContainer from 'react-alert';
 
 import { deleteSubscription, getUser } from '../../../actions/session_actions';
@@ -113,9 +114,9 @@ class ChannelSection extends React.Component {
 
   buildGeneralChatError() {
     const alertOptions = {
-      offset: 20,
-      position: 'top right',
-      theme: 'light',
+      offset: 25,
+      position: 'bottom left',
+      theme: 'dark',
       time: 2000,
       transition: 'scale'
     };

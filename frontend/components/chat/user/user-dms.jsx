@@ -22,14 +22,6 @@ class UserDMs extends React.Component {
       encrypted: true
     });
 
-    // this.channel = this.pusher.subscribe('private');
-    //
-    // this.channel.bind('new_private', (channel) => {
-    //   // debugger
-    //   this.addDirectMessageChannel(channel);
-    // }, this);
-    //
-
     this.channel = this.pusher.subscribe('application');
 
     this.channel.bind('update', () => {
