@@ -91,6 +91,12 @@
       background-color: $green;
       color: white;
       border-radius: 5px;
+      transition: all 0.3s ease 0s;
+
+      &:hover {
+        background-color: $green-dark;
+        transition: all 0.3s ease 0s;
+      }
 
       i {
         margin-left: 5px;

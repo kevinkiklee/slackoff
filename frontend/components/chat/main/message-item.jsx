@@ -65,7 +65,7 @@ class MessageItem extends React.Component {
 
   toggleEditForm(e) {
     e.preventDefault();
-
+    // debugger
     if (this.state.message.author.id === this.props.user.id) {
       if (this.state.contentAction === 'show') {
         this.setState({ contentAction: 'edit' });
@@ -84,9 +84,12 @@ class MessageItem extends React.Component {
 
     this.props.updateMessage(editedMessage)
       .then((data) => {
+        let copiedData = merge({}, data);
+        copiedData.message.author = { id: data.message.user_id };
+
         this.setState({
-          message: data.message,
-          content: data.message.content,
+          message: copiedData.message,
+          content: copiedData.message.content,
           contentAction: 'show'
         });
       });

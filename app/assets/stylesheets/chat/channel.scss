@@ -6,7 +6,7 @@
   width: 350px;
   position: absolute;
   right: 0px;
-  
+
   .channel-action-container {
     display: flex;
     justify-content: flex-end;
@@ -48,10 +48,12 @@
 
   .channel-name {
     background-color: #F7F7F7;
-    padding: 23px 13px;
+    padding: 22px 13px;
     border-bottom: 1px solid #e8e8e8;
 
+
     h2 {
+      height: 20px;
       font-size: 18px;
       font-weight: 900;
       letter-spacing: 0px;

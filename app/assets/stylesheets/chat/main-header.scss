@@ -68,13 +68,15 @@
         padding-left: 6px;
         padding-right: 6px;
         box-sizing: border-box;
+        width: 100%;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 
         transition: all 0.3s ease 0s;
 
         &:hover {
-          // box-sizing: border-box;
-          // transition: all 0.3s ease 0s;
-          // border: 1px solid gray;
           color: $blue;
           transition: all 0.3s ease 0s;
         }
