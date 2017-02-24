@@ -52,7 +52,6 @@ class MessageItem extends React.Component {
 
     this.props.updateMessage(editedMessage)
       .then((data) => {
-        debugger
         this.setState({
           message: data.message,
           content: data.message.content,
@@ -63,8 +62,8 @@ class MessageItem extends React.Component {
 
   buildEditMessageForm() {
     return (
-      <form onSubmit={ this.editMessage }>
-        <input type='text' onChange={ this.handleInput } value={ this.state.content }/>
+      <form className='message-edit-form' onSubmit={ this.editMessage }>
+        <input className='message-edit-input' type='text' onChange={ this.handleInput } value={ this.state.content }/>
       </form>
     );
   }
