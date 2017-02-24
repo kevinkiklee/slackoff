@@ -18,6 +18,10 @@
     display: flex;
     flex-direction: column;
 
+    button {
+      cursor: default;
+    }
+
     .channel-info-name {
       margin-top: 0px;
       margin-bottom: 3px;
@@ -42,8 +46,11 @@
       font-weight: 300;
       color: gray;
 
+
+
       .channel-info-details-count {
         button {
+          cursor: default;
           display: flex;
           flex-direction: row;
           align-items: center;
@@ -54,11 +61,11 @@
           img {
             padding-top: 2px;
           }
-
-          &:hover {
-            color: $blue;
-            transition: all 0.3s ease 0s;
-          }
+          //
+          // &:hover {
+          //   color: $blue;
+          //   transition: all 0.3s ease 0s;
+          // }
         }
       }
 
@@ -73,13 +80,15 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-
         transition: all 0.3s ease 0s;
 
-        &:hover {
-          color: $blue;
-          transition: all 0.3s ease 0s;
+        button {
+          cursor: default;
         }
+        // &:hover {
+        //   color: $blue;
+        //   transition: all 0.3s ease 0s;
+        // }
       }
     }
   }
