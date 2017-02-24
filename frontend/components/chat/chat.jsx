@@ -12,6 +12,26 @@ import ChannelSection from './channel/channel-section';
 class Chat extends React.Component {
   constructor(props) {
     super(props);
+
+    this.pusher = new Pusher('6dff216f2c5d022ed6ae', {
+      encrypted: true
+    });
+
+    this.channel = this.pusher.subscribe('directMessage');
+
+    this.channel.bind('notify', (data) => {
+      if(data.authorId !== this.props.user.id && data.channelId !== this.props.channel.id) {
+        this.showDirectMessageAlert(data.author);
+      }
+    }, this);
+  }
+
+  showDirectMessageAlert(author){
+    msg.show(`You have a message from ${author}!`, {
+      time: 3000,
+      type: 'info',
+      icon: <img src={ window.assets.logoSq35 } />
+    });
   }
 
   componentWillMount() {
