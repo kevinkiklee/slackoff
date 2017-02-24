@@ -52,6 +52,7 @@ class MessageItem extends React.Component {
 
     this.props.updateMessage(editedMessage)
       .then((data) => {
+        debugger
         this.setState({
           message: data.message,
           content: data.message.content,

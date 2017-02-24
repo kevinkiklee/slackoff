@@ -31,9 +31,9 @@ class Messages extends React.Component {
       this.props.receiveMessage(message);
     }, this);
 
-    this.channel.bind('editMessage', (message) => {
+    this.channel.bind('editMessage', (data) => {
       // debugger
-      this.props.editMessage(message);
+      this.props.editMessage(data.message);
     }, this);
 
     this.channel.bind('deleteMessage', (data) => {

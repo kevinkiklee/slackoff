@@ -6,6 +6,7 @@ import { REMOVE_MESSAGE,
 
 import merge from 'lodash/merge';
 import remove from 'lodash/remove';
+import findIndex from 'lodash/findIndex';
 
 const initialState = {};
 
@@ -33,7 +34,10 @@ const ChannelReducer = (state = initialState, action) => {
 
     case EDIT_MESSAGE:
       let editState = merge({}, state);
-      editState[action.message.id] = action.message;
+      let editStateMessages = editState.messages;
+      let messageIndex = findIndex(editStateMessages, (message) => (message.id === action.message.id));
+
+      editState.messages[messageIndex].content = action.message.content;
       // debugger
       return editState;
 
