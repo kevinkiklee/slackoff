@@ -30,6 +30,16 @@ class Api::MessagesController < ApplicationController
     end
   end
 
+  def update
+  end
+
+  def destroy
+    @message = Message.find(params[:id])
+    @message.destroy
+    # Pusher.trigger('', 'update', {});
+    render json: @message.id
+  end
+
   def message_params
     params.require(:message).permit(:user_id, :channel_id, :content)
   end

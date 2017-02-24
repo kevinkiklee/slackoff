@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :channels, only: [:index, :create, :update, :destroy]
     get 'channels/public' => 'channels#public'
 
-    resources :messages, only: [:create]
+    resources :messages, only: [:create, :update, :destroy]
 
     resource :session, only: [:create, :destroy, :show]
   end

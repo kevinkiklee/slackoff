@@ -2,6 +2,7 @@
 
 - Add edit/delete message functionality
 
+- Add error message to general channel edit
 - Add error message to direct message user selection
 - Add create channel button next to the CHANNEL heading
 - Add leave channel button next to the channel name

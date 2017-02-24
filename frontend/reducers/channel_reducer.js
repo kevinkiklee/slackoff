@@ -1,7 +1,11 @@
 import { RECEIVE_CHANNEL,
          RECEIVE_MESSAGE } from '../actions/channel_actions';
 
+import { REMOVE_MESSAGE,
+         EDIT_MESSAGE } from '../actions/message_actions';
+
 import merge from 'lodash/merge';
+import remove from 'lodash/remove';
 
 const initialState = {};
 
@@ -26,6 +30,22 @@ const ChannelReducer = (state = initialState, action) => {
       let newState = merge({}, state);
       newState.messages.unshift(action.message.messages);
       return newState;
+
+    case EDIT_MESSAGE:
+      return;
+
+    case REMOVE_MESSAGE:
+      let copiedState = merge({}, state);
+      let copiedMessages = copiedState.messages;
+
+      // debugger
+
+      remove(copiedMessages, (copiedMessage) => {
+        // debugger
+        return copiedMessage.id === action.id;
+      });
+
+      return merge({}, copiedState, { messages: copiedMessages });
 
     default:
       return state;
