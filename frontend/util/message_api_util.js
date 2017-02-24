@@ -17,6 +17,7 @@ export const deleteMessage = (id) => {
 export const updateMessage = (message) => {
   return $.ajax({
     method: 'patch',
-    url: `api/messages/${message.id}`
+    url: `api/messages/${message.id}`,
+    data: { message }
   });
 };

@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import moment from 'moment';
 import merge from 'lodash/merge';
+
 import { getUser } from '../../../actions/session_actions';
+import { removeMessage } from '../../../actions/message_actions.js';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -28,6 +30,10 @@ class Messages extends React.Component {
       this.props.receiveMessage(message);
     }, this);
 
+    this.channel.bind('deleteMessage', (data) => {
+      this.props.removeMessage(data.id);
+    }, this);
+
     this.buildMessageItems = this.buildMessageItems.bind(this);
   }
 
@@ -42,9 +48,14 @@ class Messages extends React.Component {
       });
 
       this.channel = this.pusher.subscribe(newProps.channel.id.toString());
+
       this.channel.bind('message', (message) => {
         this.props.receiveMessage(message);
         this.props.getUser(this.props.user.id);
+      }, this);
+
+      this.channel.bind('deleteMessage', (data) => {
+        this.props.removeMessage(data.id);
       }, this);
     }
 
@@ -59,7 +70,14 @@ class Messages extends React.Component {
     if (this.state.messages) {
       return this.state.messages.map((message, i) => {
         return (
-          <MessageItem key={ i } message={ message } />
+          <ReactCSSTransitionGroup
+            transitionName='list'
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}>
+
+            <MessageItem key={ i } message={ message } />
+
+          </ReactCSSTransitionGroup>
         );
       });
     }
@@ -84,7 +102,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getUser: (userId) => dispatch(getUser(userId)),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
-  receiveMessage: (message) => dispatch(receiveMessage(message))
+  receiveMessage: (message) => dispatch(receiveMessage(message)),
+  removeMessage: (id) => dispatch(removeMessage(id))
 });
 
 export default connect(
