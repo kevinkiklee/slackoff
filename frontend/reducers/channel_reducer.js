@@ -38,7 +38,6 @@ const ChannelReducer = (state = initialState, action) => {
       let messageIndex = findIndex(editStateMessages, (message) => (message.id === action.message.id));
 
       editState.messages[messageIndex].content = action.message.content;
-      // debugger
       return editState;
 
     case REMOVE_MESSAGE:

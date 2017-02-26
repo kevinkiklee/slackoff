@@ -8,7 +8,7 @@ import Modal from 'react-modal';
 import merge from 'lodash/merge';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // console.log('%cYour IP has been submitted to FBI/NSA for further investigation.', 'background: #ffffff; color: #ff0000');
+  console.log('%cThank you for visiting SlackOff!  Please e-mail me at kevin.kik.lee@gmail.com for more information~', 'background: #ffffff; color: #0000ff');
 
   const root = document.getElementById('root');
   Modal.setAppElement(document.body);

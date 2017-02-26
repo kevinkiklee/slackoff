@@ -29,6 +29,7 @@ class ChannelSection extends React.Component {
 
     this.buildGeneralChatError = this.buildGeneralChatError.bind(this);
 
+    this.showEditGeneralAlert = this.showEditGeneralAlert.bind(this);
     this.createChannel = this.createChannel.bind(this);
     this.deleteChannel = this.deleteChannel.bind(this);
     this.editChannel = this.editChannel.bind(this);
@@ -42,6 +43,8 @@ class ChannelSection extends React.Component {
   editChannel() {
     if (this.props.channel.private === true) {
       this.showEditDisableAlert();
+    } else if (this.props.channel.name === 'general') {
+      this.showEditGeneralAlert();
     } else {
       this.props.openChannelFormModal('edit');
     }
@@ -106,6 +109,14 @@ class ChannelSection extends React.Component {
 
   showEditDisableAlert(){
     msg.show('You cannot edit direct message information', {
+      time: 2000,
+      type: 'info',
+      icon: <img src={ window.assets.logoSq35 } />
+    });
+  }
+
+  showEditGeneralAlert() {
+    msg.show('You cannot edit #general channel information', {
       time: 2000,
       type: 'info',
       icon: <img src={ window.assets.logoSq35 } />

@@ -27,13 +27,6 @@ export const updateMessage = (message) => dispatch => {
 };
 
 export const deleteMessage = (id) => dispatch => {
-  // debugger
   return MessageAPIUtil.deleteMessage(id)
     .then((id) => dispatch(removeMessage(id)));
 };
-
-// export const createMessage = (message) => dispatch => {
-//   return MessageAPIUtil.createMessage(message).then(
-//     (channel) => (dispatch(receiveChannel(channel)))
-//   );
-// };

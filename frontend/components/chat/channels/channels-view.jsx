@@ -36,7 +36,6 @@ class ChannelsView extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      // debugger
       this.setState({ searchInput: '',
                       channels: this.props.allChannels });
     }
@@ -74,12 +73,7 @@ class ChannelsView extends React.Component {
   }
 
   matches() {
-    // debugger
-    // if (this.state.channels) {
-      // if (this.state.channels.length > 0) {
-        return this.state.channels.filter((channel) => channel.name.includes(this.state.searchInput));
-    //   }
-    // }
+    return this.state.channels.filter((channel) => channel.name.includes(this.state.searchInput));
   }
 
   buildChannelItems() {

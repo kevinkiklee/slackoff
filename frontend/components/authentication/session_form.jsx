@@ -36,7 +36,6 @@ class SessionForm extends React.Component {
   submitForm(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    // debugger
     this.props.processForm(user).then(() => this.redirect());
   }
 

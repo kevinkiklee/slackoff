@@ -46,8 +46,6 @@
       font-weight: 300;
       color: gray;
 
-
-
       .channel-info-details-count {
         button {
           cursor: default;
@@ -61,11 +59,6 @@
           img {
             padding-top: 2px;
           }
-          //
-          // &:hover {
-          //   color: $blue;
-          //   transition: all 0.3s ease 0s;
-          // }
         }
       }
 
@@ -85,17 +78,12 @@
         button {
           cursor: default;
         }
-        // &:hover {
-        //   color: $blue;
-        //   transition: all 0.3s ease 0s;
-        // }
       }
     }
   }
 
   .header-icons-container {
     display: none;
-    // display: flex;
     flex-direction: row;
     align-items: center;
     font-size: 24px;

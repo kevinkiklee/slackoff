@@ -1,12 +1,6 @@
 @import '../presets';
 
 .messages-container {
-  // position: absolute;
-  // top: 60px;
-  // bottom: 70px;
-  // left: 220px;
-  // right: 414px;
-
   display: flex;
   flex-direction: column-reverse;
 
@@ -34,7 +28,6 @@
     padding-bottom: 10px;
     display: flex;
     transition: all 0.3s ease 0s;
-    // width: 100%;
 
     .message-avatar-container {
       width: 40px;
@@ -67,7 +60,7 @@
             border: 1px solid $green;
             transition: all 0.3s ease 0s;
           }
-        }  
+        }
       }
 
       .message-info-container {

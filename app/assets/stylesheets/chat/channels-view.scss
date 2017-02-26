@@ -1,7 +1,6 @@
 @import '../presets';
 
 .channels-view-container {
-  // padding: 50px;
   height: 100%;
 
   display: flex;
@@ -92,9 +91,6 @@
 
     .channels-view-item-container {
       border-top: 1px solid #ddd;
-
-      // border-left: 1px solid #fff;
-      // border-right: 1px solid #fff;
 
       .channels-view-item-btn {
         padding: 10px 20px 10px 10px;

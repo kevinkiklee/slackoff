@@ -51,6 +51,7 @@ class MessageItem extends React.Component {
 
   deleteMessage(e) {
     e.preventDefault();
+
     if (this.state.message.author.id === this.props.user.id) {
       this.props.deleteMessage(this.state.message.id);
     } else {
@@ -65,7 +66,7 @@ class MessageItem extends React.Component {
 
   toggleEditForm(e) {
     e.preventDefault();
-    // debugger
+
     if (this.state.message.author.id === this.props.user.id) {
       if (this.state.contentAction === 'show') {
         this.setState({ contentAction: 'edit' });
