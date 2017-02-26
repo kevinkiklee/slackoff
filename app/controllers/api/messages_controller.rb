@@ -27,7 +27,8 @@ class Api::MessagesController < ApplicationController
       Pusher.trigger('directMessage', 'notify', {
         authorId: author.id,
         author: author.username,
-        channelId: @channel.id
+        channelId: @channel.id,
+        private: @channel.private
       })
 
       Pusher.trigger('application', 'update', {});
