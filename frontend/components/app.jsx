@@ -5,21 +5,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SessionControl from './authentication/session_control';
 import Banner from './frontpage/banner';
 
-// <div className="homepage-hero-module">
-//   <div className="video-container">
-//
-//     <video autoPlay loop className="">
-//       <source src={ window.assets.landingPageVideoMP4 } type="video/mp4" />
-//       <source src={ window.assets.landingPageVideoWEBM } type="video/webm" />
-//     </video>
-//   </div>
-// </div>
-
 const App = ({ children }) => (
   <div className='app-container'>
     <nav className='landing-page-nav'>
       <div className='landing-page-logo'>
-        <Link to='/'><img src={ window.assets.logo } /></Link>
+        <Link to='/'><img src={ window.assets.logoSq } /><h1><span className='green'>Slack</span><span className='yellow'>Off</span></h1></Link>
       </div>
       <div className='session-control-container'>
         <SessionControl />
@@ -32,7 +22,7 @@ const App = ({ children }) => (
         <source src={ window.assets.landingPageVideoWEBM } type="video/webm" />
       </video>
     </div>
-    
+
     <Banner />
 
     { children }

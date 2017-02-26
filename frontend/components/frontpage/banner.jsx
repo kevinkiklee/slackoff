@@ -44,12 +44,12 @@ class Banner extends React.Component {
         <div className='banner-wrapper'>
           <img className='banner-logo' src={ window.assets.bannerLogo }/>
 
-          <div className='banner-title'>
-            <h1>Where work happens</h1>
+          <div className='banner-subtitle'>
+            <h2>Why slack off tomorrow?</h2>
           </div>
 
-          <div className='banner-subtitle'>
-            <h2>...sometimes</h2>
+          <div className='banner-title'>
+            <h1>When you can <span className='green'>Slack</span><span className='yellow'>Off</span> Today!</h1>
           </div>
 
           { this.buildButtons() }

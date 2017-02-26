@@ -1,5 +1,13 @@
 @import '../presets';
 
+.green {
+  color: #2ab27b;
+}
+
+.yellow {
+  color: #eaa22f;
+}
+
 .landing-page-nav {
   display: flex;
   background-color: rgba(255, 255, 255, 0.1);
@@ -9,15 +17,23 @@
   height: 50px;
   z-index: 500;
 
-  .landing-page-logo img {
-    height: 25px;
-    margin-left: 10px;
-  }
-
   .landing-page-logo a {
     text-decoration: none;
     font-size: 20px;
     color: white;
+
+    display: flex;
+
+    img {
+      height: 30px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    h1 {
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
   }
 
   .session-control-container {
@@ -98,6 +114,10 @@
     margin-bottom: 25px;
   }
 
+  .banner-title {
+    margin-bottom: 45px;
+  }
+
   .banner-title h1 {
     font-weight: 700;
     padding: 10px;
@@ -108,7 +128,8 @@
     text-align: center;
     padding: 10px;
     font-size: 40px;
-    margin-bottom: 40px;
+    letter-spacing: 0px;
+    font-weight: 700;
   }
 
   .banner-btn {

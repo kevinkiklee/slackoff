@@ -6,7 +6,6 @@ json.users users do |user|
   json.extract! user, :id, :username, :photo_url
 end
 
-### roflcucks
 if messages.empty?
   json.messages []
 else
