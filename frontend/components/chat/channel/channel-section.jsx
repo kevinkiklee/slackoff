@@ -99,7 +99,7 @@ class ChannelSection extends React.Component {
     }
   }
 
-  showAlert(){
+  showAlert() {
     msg.show('You cannot remove #general channel', {
       time: 2000,
       type: 'info',
@@ -107,7 +107,7 @@ class ChannelSection extends React.Component {
     });
   }
 
-  showEditDisableAlert(){
+  showEditDisableAlert() {
     msg.show('You cannot edit direct message information', {
       time: 2000,
       type: 'info',

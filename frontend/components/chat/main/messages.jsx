@@ -20,7 +20,7 @@ class Messages extends React.Component {
     super(props);
     this.state = this.props.channel;
 
-    this.pusher = new Pusher('6dff216f2c5d022ed6ae', {
+    this.pusher = new Pusher('d46870f8b7c4c1636fca', {
       encrypted: true
     });
 
@@ -48,7 +48,7 @@ class Messages extends React.Component {
     if(channelLoaded && this.props.channel.name !== newProps.channel.name){
       this.pusher.disconnect();
 
-      this.pusher = new Pusher('6dff216f2c5d022ed6ae', {
+      this.pusher = new Pusher('d46870f8b7c4c1636fca', {
         encrypted: true
       });
 

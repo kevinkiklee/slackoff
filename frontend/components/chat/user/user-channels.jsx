@@ -22,7 +22,7 @@ class UserChannels extends React.Component {
       currentChannel: this.props.currentChannel
     };
 
-    this.pusher = new Pusher('6dff216f2c5d022ed6ae', {
+    this.pusher = new Pusher('d46870f8b7c4c1636fca', {
       encrypted: true
     });
 
