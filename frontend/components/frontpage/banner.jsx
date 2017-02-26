@@ -65,7 +65,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   login: (user) => dispatch(login(user))
-  // clearErrors: () => dispatch(clearErrors())
 });
 
 export default connect(
