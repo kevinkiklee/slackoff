@@ -19,53 +19,83 @@ SlackOff utilizes the following:
 
 The chat application is composed of three main features:
 
-### Live chat
+#### Live Chat
 
-Pusher API is utilized for creating Websocket connections which allows bi-directional communication.  
+Pusher API is utilized for maintaining Websocket TCP-based protocol which allows bi-directional communication.  
 
-### Channels
+#### Channels
 
-Through a subscription SQL join table and Rails associations, a user can join many channels, and a channel can have many users.  Messages belongs to a user and a channel.  
+Public channels can be created/joined/subscribed by all users on the application.
 
-### Direct/Team Messaging
+#### Direct/Team Messaging
 
 Direct and Team messaging capability is implemented through creation of private channels.
 
 ## Structure
 
-### FrontEnd - React
+#### FrontEnd - React
 
-#### Frontpage
+##### Frontpage
 - Banner
 - Authentication
 
-#### Main Application
+##### Main Application
 - User Section (Left column)
 - Message Section (Center column)
 - Channel Section (Right column)
 
-### BackEnd - Ruby on Rails
+#### BackEnd DB Schema - Ruby on Rails / PostgreSQL
 
-#### User
+##### User
 
-- Has many channels
-- Has many messages
+| column          | type     | attribute           |
+|-----------------|----------|---------------------|
+| username        | `string` | `unique` `presence` |
+| email           | `string` | `unique` `presence` |
+| photo_url       | `string` | `string`            |
+| password_digest | `string` | `unique` `presence` |
+| session_token   | `string` | `unique` `presence` |
 
-#### Channel
+- **Has Many**
+  - Subscriptions
+  - Messages
+  - Channels through Subscriptions
 
-- Has many users
-- Has many messages
-- Can be public or private
+##### Channel
 
-#### Subscription
+| column      | type      | attribute           |
+|-------------|-----------|---------------------|
+| name        | `string`  | `unique` `presence` |
+| description | `string`  |                     |
+| private     | `boolean` | `default: false`    |
 
-- Belongs to a user
-- Belongs to a channel
+- **Has Many**
+  - Subscriptions
+  - Messages
+  - Users through Subscriptions
 
-#### Message
+##### Message
 
-- Belongs to a user
-- Belongs to a channel
+| column     | type      | attribute  |
+|------------|-----------|------------|
+| content    | `string`  |            |
+| user_id    | `integer` | `presence` |
+| channel_id | `integer` | `presence` |
+
+- **Belongs To**
+  - User
+  - Channel
+
+##### Subscription
+
+| column     | type      | attribute  |
+|------------|-----------|------------|
+| user_id    | `integer` | `presence` |
+| channel_id | `integer` | `presence` |
+
+- **Belongs To**
+  - User
+  - Channel
 
 ## Future Release
 
