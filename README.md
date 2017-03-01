@@ -19,6 +19,10 @@ SlackOff utilizes the following:
 
 The chat application is composed of three main features:
 
+#### Authentication
+
+BCrypt gem is utilized in order to hash a password, and only the digest of the user is saved into the database.  A cookie storing a BCrypt token is used to keep track of the user's current session.  Without a valid matching session token, the user is redirected to the login page.  
+
 #### Live Chat
 
 Pusher API is utilized for maintaining Websocket TCP-based protocol which allows bi-directional communication.  
@@ -33,18 +37,13 @@ Direct and Team messaging capability is implemented through creation of private 
 
 ## Structure
 
-#### FrontEnd - React
+##### User Section (Left Column)
 
-##### Frontpage
-- Banner
-- Authentication
+##### Message Section (Center Column)
 
-##### Main Application
-- User Section (Left column)
-- Message Section (Center column)
-- Channel Section (Right column)
+##### Channel Section (Right Column)
 
-#### BackEnd DB Schema - Ruby on Rails / PostgreSQL
+## DB Schema - Ruby on Rails / PostgreSQL
 
 ##### User
 
