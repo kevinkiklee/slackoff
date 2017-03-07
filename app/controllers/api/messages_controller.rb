@@ -7,7 +7,6 @@ class Api::MessagesController < ApplicationController
       @messages = @channel.messages.order(:created_at).reverse
       author = User.find(@message.user_id)
 
-
       new_message = {
         "id" => @message.id,
         "content" => @message.content,
