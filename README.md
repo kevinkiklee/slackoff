@@ -144,6 +144,16 @@ when a new message is dispatched through Pusher from the Rails backend, an alert
 
 ![Wireframe](docs/wireframes/slackoff-wireframe-main-app.jpg)
 
+![Wireframe](docs/wireframes/header-section.jpg)
+
+![Wireframe](docs/wireframes/message-section.jpg)
+
+A detailed wireframe was produced during the earliest stages of the planning. Each color represents a React container, and each box represents a different React component. All of the necessary dimensions and the relative positional values have been measured on the wireframe. The wireframe was crucial to accelerating the implementation of the visual.
+
+### UI/UX
+
+SlackOff is designed with satisfying UI/UX in mind.  Through React animation API, smooth transitional effects have been implemented to visually notify the user that he or she is interacting with an actionable item.  The usage of SCSS assures a streamlined workflow, and helps achieve the consistent overall visual of the website.
+
 ## Future Release
 
 * [ ] Notification
