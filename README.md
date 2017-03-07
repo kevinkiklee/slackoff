@@ -142,6 +142,8 @@ when a new message is dispatched through Pusher from the Rails backend, an alert
 
 ## Design
 
+### Wireframe
+
 ![Wireframe](docs/wireframes/slackoff-wireframe-main-app.jpg)
 
 ![Wireframe](docs/wireframes/header-section.jpg)
@@ -151,6 +153,39 @@ when a new message is dispatched through Pusher from the Rails backend, an alert
 A detailed wireframe was produced during the earliest stages of the planning. Each color represents a React container, and each box represents a different React component. All of the necessary dimensions and the relative positional values have been measured on the wireframe. The wireframe was crucial to accelerating the implementation of the visual.
 
 ### UI/UX
+
+```javascript
+<ReactCSSTransitionGroup
+  transitionName='list'
+  transitionEnterTimeout={500}
+  transitionLeaveTimeout={500}>
+  { this.buildChannelItems() }
+</ReactCSSTransitionGroup>
+```
+
+```css
+.list-enter {
+  opacity: 0.01;
+  transform: translateY(500%);
+}
+
+.list-enter.list-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
+}
+
+.list-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.list-leave.list-leave-active {
+  opacity: 0.01;
+  transform: translateY(500%);
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
+}
+```
 
 SlackOff is designed with satisfying UI/UX in mind.  Through React animation API, smooth transitional effects have been implemented to visually notify the user that he or she is interacting with an actionable item.  The usage of SCSS assures a streamlined workflow, and helps achieve the consistent overall visual of the website.
 
