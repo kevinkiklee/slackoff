@@ -11,90 +11,76 @@ Live Site: [http://slackoff.today]
 SlackOff utilizes the following:
 
 - Ruby on Rails
-- React/Redux
-- Pusher API
+- React.js
+- Redux
 - PostgreSQL
+- jQuery
+- Heroku
+- BCrypt
+- Figaro
+- jBuilder
+- react-modal
+- react-alert
 
 ## Features
 
 The chat application is composed of three main features:
 
-#### Authentication
+### Authentication
 
 BCrypt gem is utilized in order to hash a password, and only the digest of the user is saved into the database.  A cookie storing a BCrypt token is used to keep track of the user's current session.  Without a valid matching session token, the user is redirected to the login page.  
 
-#### Live Chat
+### Live Chat
 
-Pusher API is utilized for maintaining Websocket TCP-based protocol which allows bi-directional communication.  
+Pusher API is utilized for maintaining a Websocket TCP-based protocol connection which allows bi-directional communication between the server and the client.  
 
-#### Channels
+![Chat View](/docs/screenshots/chat.png)
+
+```javascript
+this.pusher = new Pusher('// API KEY //', {
+  encrypted: true
+});
+
+const channelId = this.props.user.currentChannel.toString();
+this.channel = this.pusher.subscribe(channelId);
+
+this.channel.bind('message', (message) => {
+  this.props.receiveMessage(message);
+}, this);
+
+this.channel.bind('editMessage', (data) => {
+  this.props.editMessage(data.message);
+}, this);
+
+this.channel.bind('deleteMessage', (data) => {
+  this.props.removeMessage(data.id);
+}, this);
+```
+
+When a user accesses the main application page, the client is subscribed to the Pusher channel.  From this channel, the client receives a specified event such as `message`, `editMessage` and `deleteMessage`.  The message event triggers the `receiveMessage` action which updates the application's Redux store through the reducer.  Once the store updates, React re-renders the chat view through the utilization of the virtual DOM.
+
+### Channels
+
+![Channel View](/docs/screenshots/channels.png)
 
 Public channels can be created/joined/subscribed by all users on the application.
 
-#### Direct/Team Messaging
+![Channel Browse View](/docs/screenshots/channels-browse.png)
+
+### Direct/Team Messaging
+
+![Direct Message View](/docs/screenshots/direct-message.png)
 
 Direct and Team messaging capability is implemented through creation of private channels.
 
-## Structure
+![Direct Message View](/docs/screenshots/dm-users.png)
 
-##### User Section (Left Column)
+![Direct Message View](/docs/screenshots/dm-example.png)
 
-##### Message Section (Center Column)
+## Design
 
-##### Channel Section (Right Column)
+![Wireframe](docs/wireframes/slackoff-wireframe-main-app.jpg)
 
-## DB Schema - Ruby on Rails / PostgreSQL
-
-##### User
-
-| column          | type     | attribute           |
-|-----------------|----------|---------------------|
-| username        | `string` | `unique` `presence` |
-| email           | `string` | `unique` `presence` |
-| photo_url       | `string` | `string`            |
-| password_digest | `string` | `unique` `presence` |
-| session_token   | `string` | `unique` `presence` |
-
-- **Has Many**
-  - Subscriptions
-  - Messages
-  - Channels through Subscriptions
-
-##### Channel
-
-| column      | type      | attribute           |
-|-------------|-----------|---------------------|
-| name        | `string`  | `unique` `presence` |
-| description | `string`  |                     |
-| private     | `boolean` | `default: false`    |
-
-- **Has Many**
-  - Subscriptions
-  - Messages
-  - Users through Subscriptions
-
-##### Message
-
-| column     | type      | attribute  |
-|------------|-----------|------------|
-| content    | `string`  |            |
-| user_id    | `integer` | `presence` |
-| channel_id | `integer` | `presence` |
-
-- **Belongs To**
-  - User
-  - Channel
-
-##### Subscription
-
-| column     | type      | attribute  |
-|------------|-----------|------------|
-| user_id    | `integer` | `presence` |
-| channel_id | `integer` | `presence` |
-
-- **Belongs To**
-  - User
-  - Channel
 
 ## Future Release
 
