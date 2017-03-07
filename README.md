@@ -191,7 +191,7 @@ SlackOff is designed with satisfying UI/UX in mind.  Through React animation API
 
 ## Future Release
 
-* [ ] Notification
+* [X] Notification
 * [ ] Avatar Upload
-* [ ] Search
+* [ ] Messages Search
 * [ ] Emoticons
