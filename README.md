@@ -89,17 +89,56 @@ When a channel name is changed, the changed name is broadcasted to all the clien
 
 ![Channel Browse View](/docs/screenshots/channels-browse.png)
 
+A user can browse through all the channels through the Channels View.  
 
+```javascript
+constructor(props) {
+  this.state = {
+    channels: [],
+    searchInput: ''
+  };
+}
+
+handleInput(e) {
+  this.setState({ searchInput: e.target.value });
+}
+
+matches() {
+  return this.state.channels.filter((channel) => channel.name.includes(this.state.searchInput));
+}
+```
+
+The auto-completion for the channels search is implemented by updating the state of the channel list with the user's search input.
 
 ### Direct/Team Messaging
 
 ![Direct Message View](/docs/screenshots/direct-message.png)
 
+A user can send a direct message to another user or multiple users in the application.
+
+```ruby
+create_table "channels", force: :cascade do |t|
+  t.boolean  "private", default: false
+end
+```
+
 Direct and Team messaging capability is implemented through creation of private channels.
 
-![Direct Message View](/docs/screenshots/dm-users.png)
+![Direct Message Example](/docs/screenshots/dm-example.png)
 
-![Direct Message View](/docs/screenshots/dm-example.png)
+```javascript
+this.channel = this.pusher.subscribe('directMessage');
+
+this.channel.bind('notify', (data) => {
+  if(data.private === true
+     && data.authorId !== this.props.user.id
+     && data.channelId !== this.props.channel.id) {
+    this.showDirectMessageAlert(data.author);
+  }
+}, this);
+```
+
+when a new message is dispatched through Pusher from the Rails backend, an alert popup is displayed to notify the user that a new direct message was received. This alert, created with react-alert package, is only triggered when the channel the user is currently browsing is not the channel the user is currently viewing.
 
 ## Design
 

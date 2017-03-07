@@ -20,7 +20,6 @@ class Chat extends React.Component {
     this.channel = this.pusher.subscribe('directMessage');
 
     this.channel.bind('notify', (data) => {
-
       if(data.private === true && data.authorId !== this.props.user.id && data.channelId !== this.props.channel.id) {
         this.showDirectMessageAlert(data.author);
       }
