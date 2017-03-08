@@ -9,6 +9,7 @@ class SessionControl extends React.Component {
     super(props);
     this.signout = this.signout.bind(this);
     this.guestLogin = this.guestLogin.bind(this);
+    this.guest2Login = this.guest2Login.bind(this);
   }
 
   signout() {
@@ -25,6 +26,16 @@ class SessionControl extends React.Component {
     this.props.login(user).then(() => this.props.router.push('/chat'));
   }
 
+  guest2Login() {
+    const user = {
+      username: 'guest2',
+      password: 'guest2login',
+      email: 'guest2@guest2.com'
+    };
+
+    this.props.login(user).then(() => this.props.router.push('/chat'));
+  }
+
   render() {
     if (this.props.currentUser === null) {
       return (
@@ -32,6 +43,7 @@ class SessionControl extends React.Component {
           <Link className='session-control-btn join-btn' to='/signup'>JOIN</Link>
           <Link className='session-control-btn' to='/login'>LOGIN</Link>
           <button className='session-control-guest-btn' onClick={ this.guestLogin }>GUEST</button>
+          <button className='session-control-guest-btn' onClick={ this.guest2Login }>GUEST2</button>
         </section>
       );
     }

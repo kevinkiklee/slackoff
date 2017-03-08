@@ -19,6 +19,16 @@ class SessionForm extends React.Component {
       this.props.processForm(user).then(() => this.redirect());
     }
 
+    if (this.props.guest2) {
+      const user = {
+        username: 'guest2',
+        password: 'guest2',
+        email: 'guest2@guest2.com'
+      };
+
+      this.props.processForm(user).then(() => this.redirect());
+    }
+
     this.state = this.props.user;
 
     this.submitForm = this.submitForm.bind(this);

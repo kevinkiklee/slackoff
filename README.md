@@ -195,3 +195,4 @@ SlackOff is designed with satisfying UI/UX in mind.  Through React animation API
 * [ ] Avatar Upload
 * [ ] Messages Search
 * [ ] Emoticons
+* [ ] Multiple Sessions
