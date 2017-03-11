@@ -5,7 +5,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create
-    @channel = Channel.find_by(name: params[:channel][:name])
+    @channel = Channel.find_by(name: params[:channel][:name]).includes(:messages => [:user])
 
     if @channel
       users = params[:channel][:users]

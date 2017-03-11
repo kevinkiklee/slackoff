@@ -2,8 +2,10 @@ json.extract! user,
   :id,
   :username,
   :email,
-  :photo_url,
+  # :photo_url,
   :current_channel
+
+json.photo_url asset_path(user.avatar.url)
 
 json.subscriptions channels do |channel|
   json.extract! channel, :id, :name, :description, :display_name

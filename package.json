@@ -1,6 +1,6 @@
 {
   "name": "slackoff",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "SlackOff is a clone of a popular chat client, Slack.  SlackOff utilizes Rails, React and Pusher.",
   "main": "webpack.config.js",
   "directories": {
@@ -32,10 +32,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack",
-    "watch": "webpack -w",
-    "postinstall": "./node_modules/.bin/webpack"
+    "heroku-postbuild": "webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",

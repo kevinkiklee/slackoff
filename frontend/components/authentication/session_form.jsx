@@ -22,7 +22,7 @@ class SessionForm extends React.Component {
     if (this.props.guest2) {
       const user = {
         username: 'guest2',
-        password: 'guest2',
+        password: 'guest2login',
         email: 'guest2@guest2.com'
       };
 

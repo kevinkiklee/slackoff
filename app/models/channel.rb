@@ -2,12 +2,13 @@
 #
 # Table name: channels
 #
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  description :string
-#  private     :boolean          default("false")
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string           not null
+#  description  :string
+#  private      :boolean          default("false")
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  display_name :string
 #
 
 class Channel < ApplicationRecord

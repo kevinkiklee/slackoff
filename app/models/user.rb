@@ -2,16 +2,19 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  username        :string           not null
-#  email           :string           not null
-#  photo_url       :string
-#  password_digest :string
-#  session_token   :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  current_channel :integer
-#
+#  id                  :integer          not null, primary key
+#  username            :string           not null
+#  email               :string           not null
+#  photo_url           :string
+#  password_digest     :string
+#  session_token       :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  current_channel     :integer
+#  avatar_file_name    :string
+#  avatar_content_type :string
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 
 class User < ApplicationRecord
 	attr_reader :password
@@ -23,6 +26,9 @@ class User < ApplicationRecord
 
 	validates :username, :email, uniqueness: true
 	validates :password, { length: { minimum: 6 }, allow_nil: :true }
+
+	has_attached_file :avatar, styles: { medium: "300x300>", thumb: "50x50>" }, default_url: "logo-sq.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   has_many :subscriptions
   has_many :messages
