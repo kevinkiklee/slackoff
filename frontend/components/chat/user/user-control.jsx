@@ -103,27 +103,33 @@ class UserControl extends React.Component {
   }
 
   render() {
-    return (
-      <section className='user-control-container'>
-        { this.userMenu() }
-        <button onClick={ this.openUserMenu }>
+    if (this.props.user) {
+      return (
+        <section className='user-control-container'>
+          { this.userMenu() }
+          <button onClick={ this.openUserMenu }>
 
-          <div className='user-control-title'>
-            <h2>SlackOff</h2>
-          </div>
+            <div className='user-control-title'>
+              <h2>SlackOff</h2>
+            </div>
 
-          <div className='user-control-name'>
-            <img src={ window.assets.iconOnline } />
-            <p>{ this.props.user.username }</p>
-          </div>
+            <div className='user-control-name'>
+              <img src={ window.assets.iconOnline } />
+              <p>{ this.props.user.username }</p>
+            </div>
 
-          <i className="user-control-icon fa fa-bars fa-3" aria-hidden="true"></i>
+            <i className="user-control-icon fa fa-bars fa-3" aria-hidden="true"></i>
 
-        </button>
+          </button>
 
 
-      </section>
-    );
+        </section>
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
   }
 }
 

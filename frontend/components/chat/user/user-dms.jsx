@@ -83,27 +83,37 @@ class UserDMs extends React.Component {
   }
 
   render() {
-    return (
-      <section className='user-dms-container'>
-        <DirectMessage givenUser={ [] }/>
-        <button className='user-dms-button' onClick={ this.openDirectMessageForm }>
-          <h4>DIRECT MESSAGES</h4>
-          <i className="fa fa-plus-circle fa-2" aria-hidden="true"></i>
-        </button>
+    if (this.props.user) {
+      return (
+        <section className='user-dms-container'>
+          <DirectMessage givenUser={ [] }/>
+          <button className='user-dms-button' onClick={ this.openDirectMessageForm }>
+            <h4>DIRECT MESSAGES</h4>
+            <i className="fa fa-plus-circle fa-2" aria-hidden="true"></i>
+          </button>
 
-        <ul className='user-dms-list'>
-          { this.buildDMItems() }
-        </ul>
-      </section>
-    );
+          <ul className='user-dms-list'>
+            { this.buildDMItems() }
+          </ul>
+        </section>
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  user: state.session.currentUser,
-  directMessages: state.session.currentUser.directMessages,
-  currentMessage: state.channel
-});
+const mapStateToProps = (state, ownProps) => {
+  if (state.session.currentUser) {
+    return {
+      user: state.session.currentUser,
+      directMessages: state.session.currentUser.directMessages,
+      currentMessage: state.channel
+    }
+  }
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openDirectMessageModal: () => dispatch(openDirectMessageModal()),

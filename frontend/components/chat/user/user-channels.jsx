@@ -65,30 +65,39 @@ class UserChannels extends React.Component {
   }
 
   render() {
-    const channelCount = this.props.user.subscriptions.length;
+    if (this.props.user) {
+      const channelCount = this.props.user.subscriptions.length;
 
-    return (
-      <section className='user-channels-container'>
-        <ChannelsView />
+      return (
+        <section className='user-channels-container'>
+          <ChannelsView />
 
-        <button onClick={ this.props.openChannelsViewModal }>
-          <h4>CHANNELS <span className='user-channels-count'>({ channelCount })</span></h4>
-        </button>
+          <button onClick={ this.props.openChannelsViewModal }>
+            <h4>CHANNELS <span className='user-channels-count'>({ channelCount })</span></h4>
+          </button>
 
-        <ul className='user-channels-list'>
-          { this.buildChannelItems() }
-        </ul>
-      </section>
-    );
+          <ul className='user-channels-list'>
+            { this.buildChannelItems() }
+          </ul>
+        </section>
+      );
+    } else {
+      return (
+        <div></div>
+      )
+    }
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    user: state.session.currentUser,
-    userChannels: state.session.currentUser.subscriptions,
-    currentChannel: state.channel
-  };
+  if (state.session.currentUser) {
+
+    return {
+      user: state.session.currentUser,
+      userChannels: state.session.currentUser.subscriptions,
+      currentChannel: state.channel
+    };
+  }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
