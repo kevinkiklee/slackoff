@@ -15,7 +15,7 @@ class Api::MessagesController < ApplicationController
         "author"  => {
           "id" => author.id,
           "username" => author.username,
-          "photo_url" => author.photo_url
+          "photo_url" => author.avatar.url
         }
       }
 

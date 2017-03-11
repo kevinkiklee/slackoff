@@ -321,7 +321,3 @@ user.save
 user = User.find_by(username: 'sandor.clegane')
 user.avatar = File.open('app/assets/images/got/sandor.clegane.jpg')
 user.save
-
-# user = User.find_by(username: '')
-# user.avatar = File.open('app/assets/images/got/.jpg')
-# user.save
