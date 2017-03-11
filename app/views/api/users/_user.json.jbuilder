@@ -2,7 +2,6 @@ json.extract! user,
   :id,
   :username,
   :email,
-  # :photo_url,
   :current_channel
 
 json.photo_url asset_path(user.avatar.url)
