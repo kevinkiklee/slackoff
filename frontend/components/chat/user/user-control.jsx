@@ -121,8 +121,6 @@ class UserControl extends React.Component {
             <i className="user-control-icon fa fa-bars fa-3" aria-hidden="true"></i>
 
           </button>
-
-
         </section>
       );
     } else {
