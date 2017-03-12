@@ -101,8 +101,8 @@ class ChannelForm extends React.Component {
         zIndex          : 11
       }
     };
-    const formText = this.props.formType === 'create' ? 'Create a channel' : 'Edit a channel';
 
+    const formText = this.props.formType === 'create' ? 'Create a channel' : 'Edit a channel';
     const formAction = this.props.formType === 'create' ? this.createChannel : this.editChannel;
 
     return (
@@ -136,25 +136,23 @@ class ChannelForm extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  if (state.session.currentUser) {
-    let channelName = '';
-    let channelDescription = '';
+  let channelName = '';
+  let channelDescription = '';
 
-    if (state.modal.channelFormType === 'edit') {
-      channelName = state.channel.name;
-      channelDescription = state.channel.description;
-    }
-
-    return {
-      channelName: channelName,
-      channelDescription: channelDescription,
-      channelId: state.channel.id,
-      formType: state.modal.channelFormType,
-      channelForm: state.modal.channelForm,
-      userId: state.session.currentUser.id,
-      currentUser: state.session.currentUser
-    };
+  if (state.modal.channelFormType === 'edit') {
+    channelName = state.channel.name;
+    channelDescription = state.channel.description;
   }
+
+  return {
+    channelName: channelName,
+    channelDescription: channelDescription,
+    channelId: state.channel.id,
+    formType: state.modal.channelFormType,
+    channelForm: state.modal.channelForm,
+    userId: state.session.currentUser.id,
+    currentUser: state.session.currentUser
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

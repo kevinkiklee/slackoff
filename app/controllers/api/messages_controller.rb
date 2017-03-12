@@ -15,7 +15,7 @@ class Api::MessagesController < ApplicationController
         "author"  => {
           "id" => author.id,
           "username" => author.username,
-          "photo_url" => author.avatar.url
+          "photo_url" => ActionController::Base.helpers.asset_path(author.avatar.url)
         }
       }
 
@@ -23,11 +23,14 @@ class Api::MessagesController < ApplicationController
         messages: new_message
       })
 
+      receivers = @channel.users.map { |user| user.id }
+
       Pusher.trigger('directMessage', 'notify', {
         authorId: author.id,
         author: author.username,
         channelId: @channel.id,
-        private: @channel.private
+        private: @channel.private,
+        receivers: receivers
       })
 
       # Pusher.trigger('application', 'update', {});

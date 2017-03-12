@@ -219,54 +219,48 @@ class DirectMessage extends React.Component {
       }
     };
 
-    if (this.props.currentUser) {
-      return (
-        <Modal isOpen={ this.props.directMessageForm }
-          onRequestClose={ this.props.closeDirectMessageModal }
-          contentLabel='DirectMessage'
-          style={ style }>
-          <section className='dm-container'>
-            <h1>Direct Message</h1>
+    return (
+      <Modal isOpen={ this.props.directMessageForm }
+        onRequestClose={ this.props.closeDirectMessageModal }
+        contentLabel='DirectMessage'
+        style={ style }>
+        <section className='dm-container'>
+          <h1>Direct Message</h1>
 
-            <form className='dm-search-form'>
-              <input className='dm-search-input'
-                placeholder='Search users'
-                onChange={ this.handleInput } type='text'>
-              </input>
-              <button onClick={ this.createDirectMessage }>
-                GO
-              </button>
-            </form>
+          <form className='dm-search-form'>
+            <input className='dm-search-input'
+              placeholder='Search users'
+              onChange={ this.handleInput } type='text'>
+            </input>
+            <button onClick={ this.createDirectMessage }>
+              GO
+            </button>
+          </form>
 
-            <section className='dm-user-list'>
-              <ReactCSSTransitionGroup
-                transitionName='list'
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={500}>
+          <section className='dm-user-list'>
+            <ReactCSSTransitionGroup
+              transitionName='list'
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={500}>
 
-                { this.buildUserList() }
+              { this.buildUserList() }
 
-              </ReactCSSTransitionGroup>
-            </section>
-
-            <ul className='dm-list'>
-              <ReactCSSTransitionGroup
-                transitionName='list'
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={500}>
-
-                { this.buildUserItems() }
-
-              </ReactCSSTransitionGroup>
-            </ul>
+            </ReactCSSTransitionGroup>
           </section>
-        </Modal>
-      );
-    } else {
-      return (
-        <p>loading</p>
-      );
-    }
+
+          <ul className='dm-list'>
+            <ReactCSSTransitionGroup
+              transitionName='list'
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={500}>
+
+              { this.buildUserItems() }
+
+            </ReactCSSTransitionGroup>
+          </ul>
+        </section>
+      </Modal>
+    );
   }
 }
 

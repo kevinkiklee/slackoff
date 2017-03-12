@@ -34,8 +34,6 @@ class SessionForm extends React.Component {
       email: this.props.user.email,
       password: this.props.user.password,
       photo_url: this.props.user.photo_url,
-      // avatarFile: null,
-      // avatarUrl: window.
     }
 
     this.submitForm = this.submitForm.bind(this);
@@ -84,7 +82,6 @@ class SessionForm extends React.Component {
     } else {
       this.props.processForm(this.state).then(() => this.redirect());
     }
-
   }
 
   redirect() {

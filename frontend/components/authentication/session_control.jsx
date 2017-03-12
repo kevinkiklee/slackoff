@@ -37,7 +37,13 @@ class SessionControl extends React.Component {
   }
 
   render() {
-    if (this.props.currentUser === null) {
+    if (this.props.currentUser) {
+      return (
+        <section className='session-control'>
+          <button className='session-control-btn' onClick={ this.signout }>LOGOUT</button>
+        </section>
+      );
+    } else {
       return (
         <section className='session-control'>
           <Link className='session-control-btn join-btn' to='/signup'>JOIN</Link>
@@ -47,12 +53,6 @@ class SessionControl extends React.Component {
         </section>
       );
     }
-
-    return (
-      <section className='session-control'>
-        <button className='session-control-btn' onClick={ this.signout }>LOGOUT</button>
-      </section>
-    );
   }
 }
 
