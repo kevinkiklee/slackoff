@@ -70,15 +70,21 @@ class SessionForm extends React.Component {
 
   submitForm(e) {
     e.preventDefault();
-    let formData = new FormData();
 
-    formData.append('user[username]', this.state.username);
-    formData.append('user[email]', this.state.email);
-    formData.append('user[password]', this.state.password);
-    formData.append('user[photo_url]', this.state.photo_url);
-    formData.append('user[avatarFile]', this.state.avatarFile);
+    if (this.props.formType === 'signup') {
+      let formData = new FormData();
 
-    this.props.processForm(formData).then(() => this.redirect());
+      formData.append('user[username]', this.state.username);
+      formData.append('user[email]', this.state.email);
+      formData.append('user[password]', this.state.password);
+      formData.append('user[photo_url]', this.state.photo_url);
+      formData.append('user[avatarFile]', this.state.avatarFile);
+
+      this.props.processForm(formData).then(() => this.redirect());
+    } else {
+      this.props.processForm(this.state).then(() => this.redirect());
+    }
+
   }
 
   redirect() {

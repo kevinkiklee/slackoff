@@ -20,8 +20,10 @@ class Chat extends React.Component {
     this.channel = this.pusher.subscribe('directMessage');
 
     this.channel.bind('notify', (data) => {
-      if(data.private === true && data.authorId !== this.props.user.id && data.channelId !== this.props.channel.id) {
-        this.showDirectMessageAlert(data.author);
+      if (this.props.user) {
+        if(data.private === true && data.authorId !== this.props.user.id && data.channelId !== this.props.channel.id) {
+          this.showDirectMessageAlert(data.author);
+        }
       }
     }, this);
   }
@@ -48,13 +50,19 @@ class Chat extends React.Component {
   }
 
   render() {
-    return (
-      <div className='chat-container'>
-        <UserSection />
-        <MainSection />
-        <ChannelSection />
-      </div>
-    );
+    if (this.props.user) {
+      return (
+        <div className='chat-container'>
+          <UserSection />
+          <MainSection />
+          <ChannelSection />
+        </div>
+      );
+    } else {
+      return (
+        <div></div>
+      )
+    }
   }
 }
 
