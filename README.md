@@ -1,6 +1,6 @@
 # SlackOff
 
-![SlackOff Main Application](/docs/screenshots/slackoff-main.jpg)
+![SlackOff Main Application](/docs/screenshots/slackoff-main.png)
 
 SlackOff is a clone of a popular chat client, Slack.
 
@@ -184,7 +184,7 @@ export const updateUser = (formData) => {
 }
 ```
 
-The user can upload an avatar during the signup process, or the user can edit his or her profile through the user menu within the main application.  The image data is stored through the FormData interface, then submitted to the Rails API where the Paperclip gem automatically stores the file into AWS S3. 
+The user can upload an avatar during the signup process, or the user can edit his or her profile through the user menu within the main application.  The image data is stored through the FormData interface, then submitted to the Rails API where the Paperclip gem automatically stores the file into AWS S3.
 
 ## Design
 
@@ -238,7 +238,7 @@ SlackOff is designed with satisfying UI/UX in mind.  Through React animation API
 ## Future Release
 
 * [X] Notification
-* [ ] Avatar Upload
-* [ ] Messages Search
+* [X] Avatar Upload
 * [ ] Emoticons
 * [ ] Multiple Sessions
+* [ ] Messages Search
