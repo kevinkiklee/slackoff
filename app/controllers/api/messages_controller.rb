@@ -25,7 +25,7 @@ class Api::MessagesController < ApplicationController
 
       receivers = @channel.users.map { |user| user.id }
 
-      Pusher.trigger('directMessage', 'notify', {
+      Pusher.trigger('application', 'notify', {
         authorId: author.id,
         author: author.username,
         channelId: @channel.id,

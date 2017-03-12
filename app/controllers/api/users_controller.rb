@@ -36,13 +36,11 @@ class Api::UsersController < ApplicationController
     @user.avatar = params[:user][:photo_url]
     @user.save
 
-    login(@user)
+    Pusher.trigger('application', 'updateChat', {});
 
+    login(@user)
     @channels = @user.channels.where(private: false).order(:name)
     @direct_messages = @user.channels.includes(:users).where(private: true).order(:name)
-
-    # Pusher Broadcast
-
     render 'api/users/show'
   end
 

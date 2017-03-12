@@ -108,7 +108,6 @@ class UserControl extends React.Component {
           </div>
 
           <i className="user-control-icon fa fa-bars fa-3" aria-hidden="true"></i>
-
         </button>
       </section>
     );

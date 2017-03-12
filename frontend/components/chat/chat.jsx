@@ -17,17 +17,21 @@ class Chat extends React.Component {
       encrypted: true
     });
 
-    this.channel = this.pusher.subscribe('directMessage');
+    this.channel = this.pusher.subscribe('application');
 
     this.channel.bind('notify', (data) => {
       if(this.props.user
         && data.private === true
         && data.receivers.includes(this.props.user.id)
         && data.authorId  !== this.props.user.id
-        && data.channelId !== this.props.channel.id) 
+        && data.channelId !== this.props.channel.id)
       {
         this.showDirectMessageAlert(data.author);
       }
+    }, this);
+
+    this.channel.bind('updateChat', () => {
+      this.props.fetchChannel(this.props.user.id, this.props.channel.id);
     }, this);
   }
 
