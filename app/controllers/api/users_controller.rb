@@ -13,7 +13,9 @@ class Api::UsersController < ApplicationController
   end
 
   def create
+    # debugger
     @user = User.new(user_params)
+    @user.avatar = params[:user][:photo_url]
     @user.current_channel = Channel.find_by(name: 'general').id
 
     if @user.save

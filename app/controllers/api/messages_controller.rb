@@ -30,7 +30,7 @@ class Api::MessagesController < ApplicationController
         private: @channel.private
       })
 
-      Pusher.trigger('application', 'update', {});
+      # Pusher.trigger('application', 'update', {});
 
     else
       render json: @message.errors.full_messages, status: 422
