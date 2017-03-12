@@ -14,10 +14,12 @@ SlackOff utilizes the following:
 - React.js
 - Redux
 - PostgreSQL
+- AWS S3
 - jQuery
 - Heroku
 - BCrypt
 - Figaro
+- Paperclip
 - jBuilder
 - react-modal
 - react-alert
@@ -37,10 +39,6 @@ Pusher API is utilized for maintaining a Websocket TCP-based protocol connection
 ![Chat View](/docs/screenshots/chat.png)
 
 ```javascript
-this.pusher = new Pusher('// API KEY //', {
-  encrypted: true
-});
-
 const channelId = this.props.user.currentChannel.toString();
 this.channel = this.pusher.subscribe(channelId);
 
@@ -138,7 +136,55 @@ this.channel.bind('notify', (data) => {
 }, this);
 ```
 
-when a new message is dispatched through Pusher from the Rails backend, an alert popup is displayed to notify the user that a new direct message was received. This alert, created with react-alert package, is only triggered when the channel the user is currently browsing is not the channel the user is currently viewing.
+When a new message is dispatched through Pusher from the Rails backend, an alert popup is displayed to notify the user that a new direct message was received. This alert, created with `react-alert` package, is only triggered when the channel the user is currently browsing is not the channel the user is currently viewing.
+
+## Avatar
+
+![Avatar Upload](/docs/screenshots/avatar-upload.png)
+
+The avatar functionality has been implemented by utilizing `Paperclip` gem and AWS S3.  The API keys have secured using `Figaro` gem.
+
+```javascript
+updateFile(e) {
+  const file = e.currentTarget.files[0];
+  const fileReader = new FileReader();
+
+  fileReader.onloadend = () => {
+    this.setState({ photo_url: fileReader.result });
+  }
+
+  if (file)
+    fileReader.readAsDataURL(file);
+}
+
+submitForm(e) {
+  e.preventDefault();
+
+  let formData = new FormData();
+
+  formData.append('user[id]', this.props.user.id);
+  formData.append('user[email]', this.state.email);
+  formData.append('user[photo_url]', this.state.photo_url);
+
+  this.props.updateUser(formData).then(() =>
+    this.props.closeEditUserFormModal()
+  );
+}
+```
+
+```javascript
+export const updateUser = (formData) => {
+  return $.ajax({
+    method: 'patch',
+    url: `api/users/${formData.get('user[id]')}`,
+    contentType: false,
+    processData: false,
+    data: formData
+  })
+}
+```
+
+The user can upload an avatar during the signup process, or the user can edit his or her profile through the user menu within the main application.  The image data is stored through the FormData interface, then submitted to the Rails API where the Paperclip gem automatically stores the file into AWS S3. 
 
 ## Design
 
