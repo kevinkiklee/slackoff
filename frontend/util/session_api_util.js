@@ -11,7 +11,7 @@ export const signup = (formData) => {
 export const updateUser = (formData) => {
   return $.ajax({
     method: 'patch',
-    url: `api/users/${formData.id}`,
+    url: `api/users/${formData.get('user[id]')}`,
     contentType: false,
     processData: false,
     data: formData

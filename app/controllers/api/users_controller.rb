@@ -13,7 +13,6 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    # debugger
     @user = User.new(user_params)
     @user.avatar = params[:user][:photo_url]
     @user.current_channel = Channel.find_by(name: 'general').id
@@ -32,10 +31,18 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(username: params[:user][:username])
+    @user = User.find(params[:user][:id])
     @user.update(user_params)
+    @user.avatar = params[:user][:photo_url]
+    @user.save
+
+    login(@user)
+
+    @channels = @user.channels.where(private: false).order(:name)
+    @direct_messages = @user.channels.includes(:users).where(private: true).order(:name)
 
     # Pusher Broadcast
+
     render 'api/users/show'
   end
 

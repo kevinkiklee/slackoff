@@ -10,14 +10,50 @@ class UserEditForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: this.props.user.username,
-      userEmail: this.props.user.email,
-      userAvatar: this.props.user.photo_url,
+      username: this.props.user.username,
+      email: this.props.user.email,
+      photo_url: this.props.user.photo_url,
+    };
+
+    this.handleInput = this.handleInput.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.updateFile = this.updateFile.bind(this);
+  }
+
+  updateFile(e) {
+    e.preventDefault();
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+
+    fileReader.onloadend = () => {
+      this.setState({
+        photo_url: fileReader.result
+      });
+    }
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+
+  handleInput(field) {
+    return (e) => {
+      e.preventDefault();
+      this.setState({ [field]: e.target.value });
     };
   }
 
-  handleEditInput() {
+  submitForm(e) {
+    e.preventDefault();
 
+    let formData = new FormData();
+    formData.append('user[id]', this.props.user.id);
+    formData.append('user[email]', this.state.email);
+    formData.append('user[photo_url]', this.state.photo_url);
+    
+    this.props.updateUser(formData).then(() =>
+      this.props.closeEditUserFormModal()
+    );
   }
 
   render() {
@@ -43,7 +79,7 @@ class UserEditForm extends React.Component {
         zIndex          : 11
       }
     };
-    // debugger
+
     return (
       <Modal isOpen={ this.props.editUserForm }
              onRequestClose={ this.props.closeEditUserFormModal }
@@ -51,6 +87,14 @@ class UserEditForm extends React.Component {
              style={ style }>
         <div className='editUserFormWrapper'>
           <h1>Edit Profile</h1>
+          <form className='editUserForm' onSubmit={ this.submitForm }>
+            <input type='text'
+              value={ this.state.email }
+              onChange={ this.handleInput('email')} />
+            <img src={ this.state.photo_url }></img>
+            <input type='file' onChange={ this.updateFile } />
+            <input type='submit' value='Save' />
+          </form>
         </div>
       </Modal>
     );

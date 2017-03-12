@@ -11,6 +11,7 @@ json.subscriptions channels do |channel|
 end
 
 json.directMessages direct_messages do |direct_message|
+  # debugger
   json.extract! direct_message, :id, :name, :description, :display_name
   json.users direct_message.users.where.not(id: current_user.id), :id, :username
 end
