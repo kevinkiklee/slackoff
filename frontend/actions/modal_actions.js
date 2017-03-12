@@ -39,3 +39,29 @@ export const closeDirectMessageModal = () => ({
   open: false,
   user: []
 });
+
+export const OPEN_EDIT_USER_FORM_MODAL = 'OPEN_EDIT_USER_FORM_MODAL';
+export const CLOSE_EDIT_USER_FORM_MODAL = 'CLOSE_EDIT_USER_FORM_MODAL';
+
+export const openEditUserFormModal = () => ({
+  type: OPEN_EDIT_USER_FORM_MODAL,
+  open: true
+});
+
+export const closeEditUserFormModal = () => ({
+  type: CLOSE_EDIT_USER_FORM_MODAL,
+  open: false
+});
+
+export const OPEN_USER_MENU_MODAL = 'OPEN_USER_MENU_MODAL';
+export const CLOSE_USER_MENU_MODAL = 'CLOSE_USER_MENU_MODAL';
+
+export const openUserMenuModal = () => ({
+  type: OPEN_USER_MENU_MODAL,
+  open: true
+});
+
+export const closeUserMenuModal = () => ({
+  type: CLOSE_USER_MENU_MODAL,
+  open: false
+});

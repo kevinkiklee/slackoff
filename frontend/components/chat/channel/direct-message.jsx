@@ -8,7 +8,9 @@ import { Link, withRouter } from 'react-router';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { createChannel, fetchChannel } from '../../../actions/channel_actions';
+import { createChannel,
+         fetchChannel } from '../../../actions/channel_actions';
+
 import { fetchUsers } from '../../../actions/user_actions';
 
 import { setChannel } from '../../../actions/current_channel_actions';

@@ -52,6 +52,12 @@ export const getUser = (id) => dispatch => {
   ));
 };
 
+export const updateUser = (formData) => dispatch => {
+  return SessionAPIUtil.updateUser(formData).then((user) => {
+    dispatch(receiveCurrentUser(user));
+  });
+};
+
 export const deleteSubscription = (channelId) => dispatch => {
   return SessionAPIUtil.deleteSubscription(channelId)
     .then((user) => {
