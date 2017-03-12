@@ -9,12 +9,14 @@ class UserControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userMenu: false
+      userMenu: false,
+      editProfileForm: false
     };
 
     this.logout = this.logout.bind(this);
 
-    this.editProfile = this.editProfile.bind(this);
+    this.openEditProfileForm = this.openEditProfileForm.bind(this);
+    this.closeEditProfileForm = this.closeEditProfileForm.bind(this);
 
     this.openUserMenu = this.openUserMenu.bind(this);
     this.closeUserMenu = this.closeUserMenu.bind(this);
@@ -27,8 +29,14 @@ class UserControl extends React.Component {
     });
   }
 
-  editProfile() {
-    console.log('edit profile button clicked');
+  openEditProfileForm() {
+    this.setState({ userMenu: false,
+                    editProfileForm: true });
+  }
+
+  closeEditProfileForm() {
+    this.setState({ userMenu: false,
+                    editProfileForm: false });
   }
 
   openUserMenu() {
@@ -37,6 +45,41 @@ class UserControl extends React.Component {
 
   closeUserMenu() {
     this.setState({ userMenu: false });
+  }
+
+  editProfileForm() {
+    const style = {
+      overlay : {
+        backgroundColor : 'rgba(255, 255, 255, 0.9)',
+        zIndex          : 10
+      },
+      content : {
+        position        : 'fixed',
+        boxSizing       : 'border-box',
+        boxShadow       : '1px 1px 5px 0px rgba(50, 50, 50, 0.3)',
+        top             : '200px',
+        bottom          : '200px',
+        left            : '200px',
+        right           : '200px',
+        border          : '1px solid #ccc',
+        borderRadius    : '5px',
+        paddingTop      : '50px',
+        paddingBottom   : '50px',
+        transition      : 'all 0.3s ease 0s',
+        zIndex          : 11
+      }
+    };
+
+    return (
+      <Modal isOpen={ this.state.editProfileForm }
+             onRequestClose={ this.closeEditProfileForm }
+             contentLabel='EditProfileForm'
+             style={ style }>
+          <div className='editProfileFormWrapper'>
+            <h1>Edit Profile</h1>
+          </div>
+      </Modal>
+    )
   }
 
   userMenu() {
@@ -61,45 +104,41 @@ class UserControl extends React.Component {
       }
     };
 
-    if(this.props.user) {
-      return(
-        <Modal isOpen={ this.state.userMenu }
-               onRequestClose={ this.closeUserMenu }
-               contentLabel='UserMenu'
-               style={ style }>
-          <section className='user-control-menu-container'>
-            <section className='user-control-menu-info-container'>
-              <img src={ this.props.user.photo_url } />
+    return(
+      <Modal isOpen={ this.state.userMenu }
+             onRequestClose={ this.closeUserMenu }
+             contentLabel='UserMenu'
+             style={ style }>
+        <section className='user-control-menu-container'>
+          <section className='user-control-menu-info-container'>
+            <img src={ this.props.user.photo_url } />
 
-              <div className='user-name-container'>
-                <div className='user-username'>
-                  { this.props.user.username }
-                </div>
-                <div className='user-channelname'>
-                  @{ this.props.user.username }
-                </div>
+            <div className='user-name-container'>
+              <div className='user-username'>
+                { this.props.user.username }
               </div>
+              <div className='user-channelname'>
+                @{ this.props.user.username }
+              </div>
+            </div>
 
-            </section>
-
-            <section className='user-control-menu-profile-container'>
-              <button className='user-control-menu-edit-profile-btn'
-                      onClick={ this.editProfile }>
-                Edit Profile
-              </button>
-            </section>
-            <section className='user-control-menu-logout-container'>
-              <button className='user-menu-edit-logout-btn'
-                      onClick={ this.logout }>
-                Logout from SlackOff
-              </button>
-            </section>
           </section>
-        </Modal>
-      );
-    } else {
-      this.props.router.push('/');
-    }
+
+          <section className='user-control-menu-profile-container'>
+            <button className='user-control-menu-edit-profile-btn'
+                    onClick={ this.openEditProfileForm }>
+              Edit Profile
+            </button>
+          </section>
+          <section className='user-control-menu-logout-container'>
+            <button className='user-menu-edit-logout-btn'
+                    onClick={ this.logout }>
+              Logout from SlackOff
+            </button>
+          </section>
+        </section>
+      </Modal>
+    );
   }
 
   render() {
@@ -107,6 +146,8 @@ class UserControl extends React.Component {
       return (
         <section className='user-control-container'>
           { this.userMenu() }
+          { this.editProfileForm() }
+
           <button onClick={ this.openUserMenu }>
 
             <div className='user-control-title'>

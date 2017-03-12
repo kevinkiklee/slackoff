@@ -31,6 +31,14 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find_by(username: params[:user][:username])
+    @user.update(user_params)
+
+    # Pusher Broadcast
+    render 'api/users/show'
+  end
+
   private
 
   def user_params

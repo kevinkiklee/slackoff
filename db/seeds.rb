@@ -321,3 +321,39 @@ user.save
 user = User.find_by(username: 'sandor.clegane')
 user.avatar = File.open('app/assets/images/got/sandor.clegane.jpg')
 user.save
+
+user = User.find_by(username: 'guest')
+user.avatar = File.open('app/assets/images/avatars/earth.png')
+user.save
+
+user = User.find_by(username: 'guest2')
+user.avatar = File.open('app/assets/images/avatars/blackhole.png')
+user.save
+
+user = User.find_by(username: 'atom.')
+user.avatar = File.open('app/assets/images/avatars/saturn.png')
+user.save
+
+user = User.find_by(username: 'avital')
+user.avatar = File.open('app/assets/images/avatars/sun.png')
+user.save
+
+user = User.find_by(username: 'dcolson')
+user.avatar = File.open('app/assets/images/avatars/dcolson.jpg')
+user.save
+
+user = User.find_by(username: 'fred')
+user.avatar = File.open('app/assets/images/avatars/fred.jpg')
+user.save
+
+user = User.find_by(username: 'mikeboan')
+user.avatar = File.open('app/assets/images/avatars/mikeboan.jpg')
+user.save
+
+user = User.find_by(username: 'pklong')
+user.avatar = File.open('app/assets/images/avatars/pklong.jpg')
+user.save
+
+user = User.find_by(username: 'kevin.kik.lee')
+user.avatar = File.open('app/assets/images/avatars/kevin.kik.lee.jpg')
+user.save

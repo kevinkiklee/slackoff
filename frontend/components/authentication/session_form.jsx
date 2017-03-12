@@ -127,7 +127,7 @@ class SessionForm extends React.Component {
   buildAvatarUpload() {
     return (
       <div className='avatar-upload-container'>
-        <h4>Upload your avatar</h4>
+        <h4>Upload your avatar (Optional)</h4>
         <div className='avatar-form'>
           <img src={ this.state.photo_url }></img>
           <input type='file' onChange={ this.updateFile } />
