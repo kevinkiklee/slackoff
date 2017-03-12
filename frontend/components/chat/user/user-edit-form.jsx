@@ -50,7 +50,7 @@ class UserEditForm extends React.Component {
     formData.append('user[id]', this.props.user.id);
     formData.append('user[email]', this.state.email);
     formData.append('user[photo_url]', this.state.photo_url);
-    
+
     this.props.updateUser(formData).then(() =>
       this.props.closeEditUserFormModal()
     );
@@ -67,8 +67,8 @@ class UserEditForm extends React.Component {
         position        : 'fixed',
         boxSizing       : 'border-box',
         boxShadow       : '1px 1px 5px 0px rgba(50, 50, 50, 0.3)',
-        top             : '200px',
-        bottom          : '200px',
+        top             : '150px',
+        bottom          : '150px',
         left            : '200px',
         right           : '200px',
         border          : '1px solid #ccc',
@@ -88,11 +88,17 @@ class UserEditForm extends React.Component {
         <div className='editUserFormWrapper'>
           <h1>Edit Profile</h1>
           <form className='editUserForm' onSubmit={ this.submitForm }>
+            <h4>Current E-mail Address</h4>
             <input type='text'
               value={ this.state.email }
               onChange={ this.handleInput('email')} />
-            <img src={ this.state.photo_url }></img>
-            <input type='file' onChange={ this.updateFile } />
+
+            <h4>Current Avatar</h4>
+            <div className='editAvatarForm'>
+              <img src={ this.state.photo_url }></img>
+              <input type='file' onChange={ this.updateFile } />
+            </div>
+
             <input type='submit' value='Save' />
           </form>
         </div>

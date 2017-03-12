@@ -370,3 +370,83 @@ button {
     }
   }
 }
+
+.editUserFormWrapper {
+  padding: 0px 15px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 34px;
+    margin-bottom: 25px;
+  }
+
+  .editUserForm {
+    display: flex;
+    flex-direction: column;
+
+    .editAvatarForm {
+      display: flex;
+    }
+
+    img {
+      width: 45px;
+      height: 45px;
+      margin-right: 15px;
+    }
+
+    h4 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    input[type=text] {
+      cursor: text;
+    }
+
+    input[type=submit] {
+      font-size: 16px;
+      font-weight: 700;
+      background-color: $green;
+      color: white;
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $green-dark;
+        transition: all 0.3s ease 0s;
+      }
+    }
+
+    input {
+      box-sizing: border-box;
+      padding: 10px;
+      margin-bottom: 25px;
+
+      font-size: 15px;
+      font-weight: 100;
+
+      border: 1px solid lightgray;
+      border-radius: 5px;
+
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+
+      &:focus {
+        border-radius: 5px;
+        transition: all 0.3s ease 0s;
+        border: 1px solid $blue;
+        outline: none;
+      }
+    }
+
+
+  }
+}
