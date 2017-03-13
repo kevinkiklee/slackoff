@@ -22,6 +22,25 @@ class UserSection extends React.Component {
         <UserChannels />
         <UserDMs />
 
+        <section className='aboutWrapper'>
+          <section className='aboutHeader'>
+            <img src={ window.assets.bannerLogo } />
+            <section className='aboutHeaderTitle'>
+              <h4>About SlackOff</h4>
+              <h4></h4>
+            </section>
+          </section>
+          <section className='aboutDescription'>
+            <p>This application is an App Academy portfolio project inspired by Slack</p><br />
+            <p>Created by Kevin K. Lee.</p>
+          </section>
+          <section className='aboutLinks'>
+            <a href='mailto:kevin.kik.lee@gmail.com' target='_blank'><i className="fa fa-envelope" aria-hidden="true"></i>E-Mail</a>
+            <a href='http://kevinkiklee.com/' target='_blank'><i className="fa fa-globe" aria-hidden="true"></i>Portfolio</a>
+            <a href='https://github.com/kevinkiklee' target='_blank'><i className="fa fa-github" aria-hidden="true"></i>GitHub</a>
+          </section>
+        </section>
+
       </section>
     );
   }

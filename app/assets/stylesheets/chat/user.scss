@@ -106,7 +106,7 @@ button {
     font-weight: 400;
     letter-spacing: 0px;
     color: $main-color-light;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding-left: 15px;
     transition: all 0.3s ease 0s;
 
@@ -183,6 +183,10 @@ button {
   .user-channels-container {
     padding: 15px 0px;
 
+    .user-channels-count {
+      margin-left: 5px;
+    }
+
     span {
       font-size: 12px;
       opacity: 0.5;
@@ -240,15 +244,11 @@ button {
     padding: 0px;
     margin-top: 10px;
 
-
-
     button {
       text-align: left;
       width: 100%;
       padding: 0px;
       margin: 0px;
-
-
 
       &:focus {
         outline: 0;
@@ -448,5 +448,65 @@ button {
     }
 
 
+  }
+}
+
+.aboutWrapper {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-top: 1px solid gray;
+  background-color: #4D394B;
+  position: fixed;
+  bottom: 0px;
+  width: 220px;
+  color: white;
+  padding: 15px 15px 0px 15px;
+
+  .aboutHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    img {
+      width: 25px;
+      height: 25px;
+    }
+
+    h4 {
+      color: white;
+      margin: 0px;
+      padding-left: 10px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+  }
+
+  .aboutDescription {
+    margin-bottom: 10px;
+  }
+
+  .aboutLinks {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    a {
+      display: block;
+      text-decoration: none;
+      padding: 5px 0px;
+      color: white;
+      transition: all 0.3s ease 0s;
+
+      i {
+        margin-right: 10px;
+        width: 15px;
+      }
+
+      &:hover {
+        color: $green;
+        border-radius: 5px;
+        // background-color: $green;
+        transition: all 0.3s ease 0s;
+      }
+    }
   }
 }
