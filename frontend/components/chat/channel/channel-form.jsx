@@ -2,19 +2,12 @@ import React from 'react';
 import Modal from 'react-modal';
 
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
-
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
 import { fetchPublicChannels,
-         createPublicSubscription,
          createChannel,
          editChannel } from '../../../actions/channel_actions';
-
 import { setChannel } from '../../../actions/current_channel_actions';
-import { updateSubscription, getUser } from '../../../actions/session_actions';
-import { openChannelFormModal,
-         closeChannelFormModal } from '../../../actions/modal_actions';
+import { getUser } from '../../../actions/session_actions';
+import { closeChannelFormModal } from '../../../actions/modal_actions';
 
 class ChannelForm extends React.Component {
   constructor(props) {
@@ -163,13 +156,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   getUser: (id) => dispatch(getUser(id)),
 
   closeChannelFormModal: () => dispatch(closeChannelFormModal()),
-  openChannelFormModal: () => dispatch(openChannelFormModal()),
-
-  updateSubscription: (channel) => dispatch(updateSubscription(channel)),
-  createPublicSubscription: (channelId) => dispatch(createPublicSubscription(channelId))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(ChannelForm));
+)(ChannelForm);
