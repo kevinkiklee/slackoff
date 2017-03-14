@@ -11,7 +11,7 @@ import { getUser } from '../../../actions/session_actions';
 
 import { openChannelsViewModal } from '../../../actions/modal_actions';
 import UserChannelItem from './user-channel-item';
-import ChannelsView from '../channels/channels-view.jsx';
+import ChannelsView from '../channel/channels-view.jsx';
 
 class UserChannels extends React.Component {
   constructor(props) {
