@@ -45,7 +45,8 @@ class ChannelForm extends React.Component {
     };
 
     this.props.createChannel(channel)
-      .then((channel) => this.props.setChannel(channel))
+      .then(() => this.props.setChannel(channel))
+      // .then((channel) => this.props.setChannel(channel))
       .then(() => this.props.fetchPublicChannels())
       .then(() => this.props.getUser(this.props.currentUser.id))
       .then(() => this.props.closeChannelFormModal());

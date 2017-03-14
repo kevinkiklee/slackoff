@@ -1,6 +1,7 @@
 # SlackOff
 
-![SlackOff Main Application](/docs/screenshots/slackoff-main.png)
+<!-- ![SlackOff Main Application](/docs/screenshots/slackoff-main.png) -->
+![SlackOff Main Application](/docs/screenshots/slackoff.gif)
 
 SlackOff is a clone of a popular chat client, Slack.
 
