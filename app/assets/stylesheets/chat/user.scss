@@ -344,7 +344,7 @@ button {
 
         span {
           font-size: 13px;
-          margin-top: 1px;
+          margin-top: -3px;
           margin-right: 5px;
           opacity: 0.5;
         }
@@ -462,6 +462,8 @@ button {
   width: 220px;
   color: white;
   padding: 15px 15px 0px 15px;
+
+  font-weight: 300;
 
   .aboutHeader {
     display: flex;

@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
 import moment from 'moment';
 
 import AlertContainer from 'react-alert';
 
 import { deleteSubscription, getUser } from '../../../actions/session_actions';
 import { fetchChannel, deleteChannel, fetchPublicChannels } from '../../../actions/channel_actions';
-import { setChannel } from '../../../actions/current_channel_actions';
 import { openChannelFormModal } from '../../../actions/modal_actions';
 import { openDirectMessageModal } from '../../../actions/modal_actions';
 
@@ -27,9 +25,6 @@ class ChannelSection extends React.Component {
     this.openUserActionMenu = this.openUserActionMenu.bind(this);
     this.openDirectMessageForm = this.openDirectMessageForm.bind(this);
 
-    this.buildGeneralChatError = this.buildGeneralChatError.bind(this);
-
-    this.showEditGeneralAlert = this.showEditGeneralAlert.bind(this);
     this.createChannel = this.createChannel.bind(this);
     this.deleteChannel = this.deleteChannel.bind(this);
     this.editChannel = this.editChannel.bind(this);
@@ -123,7 +118,7 @@ class ChannelSection extends React.Component {
     });
   }
 
-  buildGeneralChatError() {
+  buildAlert() {
     const alertOptions = {
       offset: 25,
       position: 'bottom left',
@@ -174,7 +169,7 @@ class ChannelSection extends React.Component {
 
         <section className='channel-action-container'>
           <div className='channel-action-warning'>
-            { this.buildGeneralChatError() }
+            { this.buildAlert() }
           </div>
           <div className='channel-action-buttons'>
             <button className='channel-action-create-btn'
@@ -237,7 +232,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   deleteSubscription: (channelId) => dispatch(deleteSubscription(channelId)),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
   deleteChannel: (channelId) => dispatch(deleteChannel(channelId)),
-  setChannel: (channel) => dispatch(setChannel(channel)),
+  // setChannel: (channel) => dispatch(setChannel(channel)),
   fetchPublicChannels: () => dispatch(fetchPublicChannels()),
   getUser: (id) => dispatch(getUser(id))
 });
@@ -245,4 +240,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(ChannelSection));
+)(ChannelSection);
