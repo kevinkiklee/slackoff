@@ -205,7 +205,8 @@ class ChannelSection extends React.Component {
               <p>{ this.props.channel.description }</p>
             </div>
             <div className='channel-information'>
-              Created on { moment(this.props.channel.createdAt).format('MMMM Do YYYY') }
+              Created on { moment(this.props.channel.createdAt)
+                            .format('MMMM Do YYYY') }
             </div>
           </section>
 

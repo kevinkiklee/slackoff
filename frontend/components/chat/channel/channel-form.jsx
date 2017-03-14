@@ -95,8 +95,11 @@ class ChannelForm extends React.Component {
       }
     };
 
-    const formText = this.props.formType === 'create' ? 'Create a channel' : 'Edit a channel';
-    const formAction = this.props.formType === 'create' ? this.createChannel : this.editChannel;
+    const formText = this.props.formType === 'create'
+            ? 'Create a channel' : 'Edit a channel';
+
+    const formAction = this.props.formType === 'create'
+            ? this.createChannel : this.editChannel;
 
     return (
       <Modal isOpen={ this.props.channelForm }
@@ -117,7 +120,8 @@ class ChannelForm extends React.Component {
             <input className='channels-view-search-input'
                    placeholder='Describe the channel'
                    value={ this.state.channelDescription }
-                   onChange={ this.handleInput('channelDescription') } type='text' />
+                   onChange={ this.handleInput('channelDescription') }
+                   type='text' />
 
             <input type='submit' value={ formText }/>
           </form>
