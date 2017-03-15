@@ -39,7 +39,9 @@ class MessageInput extends React.Component {
     const channelName = this.props.channel.name;
     let placeholder = '';
 
-    if (channelName) {
+    if (this.props.channel.private) {
+      placeholder = `Send a direct message`;
+    } else {
       placeholder = `Message #${channelName}`;
     }
 
