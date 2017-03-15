@@ -36,15 +36,27 @@ class Banner extends React.Component {
     if (this.props.currentUser) {
       return (
         <div>
-          <Link className='banner-btn shadow' to='/chat'>Return to Chat</Link><br /><br /><br />
+          <Link className='banner-btn shadow' to='/chat'>
+            Return to Chat
+          </Link><br /><br /><br />
         </div>
       );
     } else {
       return (
         <div>
-          <Link className='banner-btn shadow' to='/signup'>Join SlackOff</Link><br /><br /><br />
-          <button className='guest-btn shadow' onClick={ this.guestLogin }>Guest</button>
-          <button className='guest-btn shadow' onClick={ this.guest2Login }>Guest2</button>
+          <Link className='banner-btn shadow' to='/signup'>
+            Join SlackOff
+          </Link><br /><br /><br />
+
+          <button className='guest-btn shadow'
+                  onClick={ this.guestLogin }>
+            Guest
+          </button>
+
+          <button className='guest-btn shadow'
+                  onClick={ this.guest2Login }>
+            Guest2
+          </button>
         </div>
       );
     }

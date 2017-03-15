@@ -3,7 +3,7 @@
 <!-- ![SlackOff Main Application](/docs/screenshots/slackoff-main.png) -->
 ![SlackOff Main Application](/docs/screenshots/slackoff.gif)
 
-SlackOff is a clone of a popular chat client, Slack.
+SlackOff is an App Academy portfolio project inspired by Slack.
 
 Live Site: [http://slackoff.today]
 

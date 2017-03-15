@@ -68,7 +68,7 @@ class Chat extends React.Component {
     } else {
       return (
         <div></div>
-      )
+      );
     }
   }
 }

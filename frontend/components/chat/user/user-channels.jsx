@@ -28,10 +28,6 @@ class UserChannels extends React.Component {
 
     this.channel = this.pusher.subscribe('application');
 
-    // this.channel.bind('update', () => {
-    //   this.props.getUser(this.props.user.id);
-    // }, this);
-
     this.buildChannelItems = this.buildChannelItems.bind(this);
     this.changeChannel = this.changeChannel.bind(this);
   }
@@ -73,7 +69,9 @@ class UserChannels extends React.Component {
           <ChannelsView />
 
           <button onClick={ this.props.openChannelsViewModal }>
-            <h4>CHANNELS <span className='user-channels-count'>({ channelCount })</span></h4>
+            <h4>CHANNELS
+              <span className='user-channels-count'>({ channelCount })</span>
+            </h4>
           </button>
 
           <ul className='user-channels-list'>
@@ -84,7 +82,7 @@ class UserChannels extends React.Component {
     } else {
       return (
         <div></div>
-      )
+      );
     }
   }
 }

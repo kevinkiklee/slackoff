@@ -9,7 +9,13 @@ const App = ({ children }) => (
   <div className='app-container'>
     <nav className='landing-page-nav'>
       <div className='landing-page-logo'>
-        <Link to='/'><img src={ window.assets.logoSq } /><h1><span className='green'>Slack</span><span className='yellow'>Off</span></h1></Link>
+        <Link to='/'>
+          <img src={ window.assets.logoSq } />
+          <h1>
+            <span className='green'>Slack</span>
+            <span className='yellow'>Off</span>
+          </h1>
+        </Link>
       </div>
       <div className='session-control-container'>
         <SessionControl />

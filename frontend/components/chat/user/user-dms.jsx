@@ -87,7 +87,8 @@ class UserDMs extends React.Component {
       return (
         <section className='user-dms-container'>
           <DirectMessage givenUser={ [] }/>
-          <button className='user-dms-button' onClick={ this.openDirectMessageForm }>
+          <button className='user-dms-button'
+                  onClick={ this.openDirectMessageForm }>
             <h4>DIRECT MESSAGES</h4>
             <i className="fa fa-plus-circle fa-2" aria-hidden="true"></i>
           </button>
@@ -111,7 +112,7 @@ const mapStateToProps = (state, ownProps) => {
       user: state.session.currentUser,
       directMessages: state.session.currentUser.directMessages,
       currentMessage: state.channel
-    }
+    };
   }
 };
 

@@ -25,7 +25,7 @@ class UserControl extends React.Component {
     this.props.closeUserMenuModal();
 
     this.props.logout().then(() => {
-      this.props.router.push('/')
+      this.props.router.push('/');
     });
   }
 
@@ -107,7 +107,7 @@ class UserControl extends React.Component {
             <p>{ this.props.user.username }</p>
           </div>
 
-          <i className="user-control-icon fa fa-bars fa-3" aria-hidden="true"></i>
+          <i className="user-control-icon fa fa-bars fa-3"></i>
         </button>
       </section>
     );

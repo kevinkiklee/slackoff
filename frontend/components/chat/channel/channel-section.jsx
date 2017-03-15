@@ -5,7 +5,9 @@ import moment from 'moment';
 import AlertContainer from 'react-alert';
 
 import { deleteSubscription, getUser } from '../../../actions/session_actions';
-import { fetchChannel, deleteChannel, fetchPublicChannels } from '../../../actions/channel_actions';
+import { fetchChannel,
+         deleteChannel,
+         fetchPublicChannels } from '../../../actions/channel_actions';
 import { openChannelFormModal } from '../../../actions/modal_actions';
 import { openDirectMessageModal } from '../../../actions/modal_actions';
 
@@ -52,7 +54,10 @@ class ChannelSection extends React.Component {
       this.props.deleteChannel(this.props.channel.id)
         .then(() => this.props.fetchPublicChannels())
         .then(() => this.props.getUser(this.props.user.id))
-        .then(() => this.props.fetchChannel(this.props.user.id, this.props.user.current_channel));
+        .then(() => this.props.fetchChannel(
+                      this.props.user.id,
+                      this.props.user.current_channel
+                    ));
     }
   }
 
@@ -64,7 +69,10 @@ class ChannelSection extends React.Component {
 
     } else {
       this.props.deleteSubscription(this.props.channel.id)
-          .then((user) => this.props.fetchChannel(user.id, user.current_channel));
+          .then((user) => this.props.fetchChannel(
+                            user.id,
+                            user.current_channel
+                          ));
     }
   }
 
@@ -233,7 +241,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   deleteSubscription: (channelId) => dispatch(deleteSubscription(channelId)),
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
   deleteChannel: (channelId) => dispatch(deleteChannel(channelId)),
-  // setChannel: (channel) => dispatch(setChannel(channel)),
   fetchPublicChannels: () => dispatch(fetchPublicChannels()),
   getUser: (id) => dispatch(getUser(id))
 });

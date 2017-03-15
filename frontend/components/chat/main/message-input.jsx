@@ -23,7 +23,7 @@ class MessageInput extends React.Component {
 
   submitMessage(e) {
     e.preventDefault();
-    
+
     const message = {
       channel_id: this.props.channel.id,
       user_id: this.props.user.id,
@@ -45,7 +45,8 @@ class MessageInput extends React.Component {
 
     return (
       <section>
-        <form className='message-input-container' onSubmit={ this.submitMessage }>
+        <form className='message-input-container'
+              onSubmit={ this.submitMessage }>
           <input type='text'
                  placeholder={ placeholder }
                  value={ this.state.message }
