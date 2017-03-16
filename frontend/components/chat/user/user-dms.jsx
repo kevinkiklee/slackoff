@@ -83,26 +83,20 @@ class UserDMs extends React.Component {
   }
 
   render() {
-    if (this.props.user) {
-      return (
-        <section className='user-dms-container'>
-          <DirectMessage givenUser={ [] }/>
-          <button className='user-dms-button'
-                  onClick={ this.openDirectMessageForm }>
-            <h4>DIRECT MESSAGES</h4>
-            <i className="fa fa-plus-circle fa-2" aria-hidden="true"></i>
-          </button>
+    return (
+      <section className='user-dms-container'>
+        <DirectMessage givenUser={ [] }/>
+        <button className='user-dms-button'
+                onClick={ this.openDirectMessageForm }>
+          <h4>DIRECT MESSAGES</h4>
+          <i className="fa fa-plus-circle fa-2" aria-hidden="true"></i>
+        </button>
 
-          <ul className='user-dms-list'>
-            { this.buildDMItems() }
-          </ul>
-        </section>
-      );
-    } else {
-      return (
-        <div></div>
-      );
-    }
+        <ul className='user-dms-list'>
+          { this.buildDMItems() }
+        </ul>
+      </section>
+    );
   }
 }
 
