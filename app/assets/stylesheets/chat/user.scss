@@ -498,7 +498,7 @@ button {
       display: block;
       text-decoration: none;
       padding: 5px 0px;
-      color: white;
+      color: #cdcdcd;
       transition: all 0.3s ease 0s;
 
       i {
@@ -507,7 +507,7 @@ button {
       }
 
       &:hover {
-        color: $green;
+        color: white;
         border-radius: 5px;
         transition: all 0.3s ease 0s;
       }
