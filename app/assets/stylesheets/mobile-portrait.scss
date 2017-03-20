@@ -68,6 +68,44 @@
     }
   }
 
+  .session-form-container {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+
+    .session-form {
+      width: 90%;
+      height: 80%;
+
+      input[type=submit] {
+        margin-top: 20px;
+        zoom: 2.5;
+      }
+
+      .avatar-upload-container {
+        display: none;
+      }
+
+      .session-form-title {
+        font-size: 100px;
+      }
+
+      .session-form-direction {
+        font-size: 35px;
+      }
+
+      .session-form-inputs {
+        margin-top: 40px;
+        width: 90%;
+
+        .session-form-input {
+          width: 90%;
+          font-size: 40px;
+          padding: 45px;
+        }
+      }
+    }
+  }
 }
 
 /* Landscape */

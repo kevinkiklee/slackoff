@@ -177,7 +177,7 @@ class SessionForm extends React.Component {
 
             { this.errorItems.call(this) }
 
-            <form onSubmit={ this.submitForm }>
+            <form className='session-form-inputs' onSubmit={ this.submitForm }>
               <input className='session-form-input'
                      placeholder='Username'
                      type='text'
