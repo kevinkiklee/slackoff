@@ -1,41 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
 
-class UserChannelItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props.state;
-  }
+const UserChannelItem = (props) => {
+  let itemClass = 'user-channels-item';
 
-  render() {
-    if (this.props.currentChannel.id == this.props.channel.id) {
-      return (
-        <li className='user-channels-item selected-channel'>
-          <span className='channel-tag'># </span>
-          { this.props.channel.name }
-        </li>
-      );
-    } else {
-      return (
-        <li className='user-channels-item'>
-          <span className='channel-tag'># </span>
-          { this.props.channel.name }
-        </li>
-      );
-    }
-  }
+  if (props.currentChannel.id == props.channel.id)
+    itemClass = itemClass + ' selected-channel';
+
+    return (
+      <li className={ itemClass }>
+        <span className='channel-tag'># </span>
+        { props.channel.name }
+      </li>
+    );
 }
 
-const mapStateToProps = (state, ownProps) => ({
-
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(UserChannelItem));
+export default UserChannelItem;

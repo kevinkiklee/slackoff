@@ -19,7 +19,6 @@
 - `POST /api/channels` - create a channel
 - `PATCH /api/channels/:id` - update a channel
 - `DELETE /api/channels/:id` - delete a channel
-<!-- - `GET /api/users/:user_id/channels` - retrieve all channels of a user -->
 
 ### Messages
 - `GET /api/messages` - retrieve all messages
@@ -28,7 +27,6 @@
 - `POST /api/messages/` - create a message
 - `PATCH /api/messages/:id` - update a message
 - `DELETE /api/messages/:id` - delete a message
-<!-- - `GET /api/channels/:channel_id/messages` - retrieve all messages of a channel -->
 
 ### Subscriptions
 - `GET /api/users/:user_id/subscriptions` - retrieve the channels of a user
