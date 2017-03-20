@@ -35,7 +35,7 @@ class Banner extends React.Component {
   buildButtons() {
     if (this.props.currentUser) {
       return (
-        <div>
+        <div className='bannerBtns'>
           <Link className='banner-btn shadow' to='/chat'>
             Return to Chat
           </Link><br /><br /><br />
@@ -43,7 +43,7 @@ class Banner extends React.Component {
       );
     } else {
       return (
-        <div>
+        <div className='bannerBtns'>
           <Link className='banner-btn shadow' to='/signup'>
             Join SlackOff
           </Link><br /><br /><br />
