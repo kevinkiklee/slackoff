@@ -126,4 +126,37 @@
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: landscape) {
 
+  .bannerBtns {
+    display: none;
+  }
+
+  .landing-page-logo {
+    display: none;
+  }
+
+
+  .landing-page-nav {
+    width: 100%;
+    bottom: 0px;
+    height: inherit;
+    position: fixed;
+    background-color: black;
+
+    .session-control-container {
+      width: 100%;
+      zoom: 1.5;
+      padding-bottom: 5px;
+
+      .session-control-btn {
+        color: black;
+      }
+
+      .session-control-guest-btn {
+        height: 35px;
+        margin-top: 5px;
+        color: black;
+      }
+    }
+  }
+
 }
