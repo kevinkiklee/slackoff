@@ -9,11 +9,13 @@
 }
 
 /* Portrait */
-@media only screen
-  and (min-device-width: 350px)
-  and (max-device-width: 800px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+// @media only screen
+//   and (min-device-width: 350px)
+//   and (max-device-width: 800px)
+//   and (-webkit-min-device-pixel-ratio: 2)
+//   and (orientation: portrait) {
+
+@media screen and (max-aspect-ratio: 13/9) {
 
   .bannerBtns {
     display: none;
