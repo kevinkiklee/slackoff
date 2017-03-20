@@ -19,14 +19,11 @@
       display: none;
     }
   }
-}
 
-/* Portrait */
-// @media only screen
-//   and (min-device-width: 350px)
-//   and (max-device-width: 800px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: portrait) {
+  .user-section {
+    display: none;
+  }
+}
 
 @media screen and (max-aspect-ratio: 13/9) {
   .landing-page-nav {
@@ -120,6 +117,24 @@
         }
       }
     }
+  }
+
+  .messages-container {
+    left: 0px;
+    zoom: 2.5;
+  }
+
+  .message-input-container {
+    left: 0px;
+    zoom: 2.5;
+  }
+
+  .header-container {
+    zoom: 2.5;
+  }
+
+  .channel-section {
+    display: none !important;
   }
 }
 
@@ -219,4 +234,7 @@
       }
     }
   }
+
+
+
 }
