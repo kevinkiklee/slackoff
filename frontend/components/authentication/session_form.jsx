@@ -91,7 +91,11 @@ class SessionForm extends React.Component {
   emailField() {
     return (
       <div>
-        <input className='session-form-input' placeholder='E-mail Address' type='text' onChange={ this.updateInput('email') } /><br />
+        <input className='session-form-input'
+               placeholder='E-mail Address'
+               type='text'
+               onChange={ this.updateInput('email') }
+        /><br />
       </div>
     );
   }
@@ -108,7 +112,9 @@ class SessionForm extends React.Component {
 
   errorItems() {
     if(this.props.errors.length > 0) {
-      const errors = this.props.errors.map((error, i) => <li className='session-form-error' key={i}>{ error }</li>);
+      const errors = this.props.errors.map((error, i) =>
+        <li className='session-form-error' key={i}>{ error }</li>
+      );
 
       return (
         <ul className='session-form-error-container'>
@@ -120,7 +126,10 @@ class SessionForm extends React.Component {
 
   guestButton() {
     return (
-      <button className='guest-btn shadow' onClick={ this.guestLogin }>Guest Login</button>
+      <button className='guest-btn shadow'
+              onClick={ this.guestLogin }>
+        Guest Login
+      </button>
     );
   }
 
@@ -169,15 +178,27 @@ class SessionForm extends React.Component {
             { this.errorItems.call(this) }
 
             <form onSubmit={ this.submitForm }>
-              <input className='session-form-input' placeholder='Username' type='text' onChange={ this.updateInput('username') } /><br />
+              <input className='session-form-input'
+                     placeholder='Username'
+                     type='text'
+                     onChange={ this.updateInput('username') }
+              /><br />
 
               { email }
 
-              <input className='session-form-input' placeholder='Password' type='password' onChange={ this.updateInput('password') } /><br />
-              { avatarUpload }
+              <input className='session-form-input'
+                     placeholder='Password'
+                     type='password'
+                     onChange={ this.updateInput('password') }
+              /><br />
+
+            { avatarUpload }
 
               <div className='session-form-submit-button'>
-                <input className='shadow-sm' type='submit' value={ buttonText } />
+                <input className='shadow-sm'
+                       type='submit'
+                       value={ buttonText }
+                />
               </div>
             </form>
           </div>
