@@ -30,6 +30,7 @@
     bottom: 0px;
     height: inherit;
     position: fixed;
+    background-color: black;
 
     .session-control-container {
       width: 100%;
@@ -83,8 +84,9 @@
     top: 0px;
 
     .session-form {
-      width: 90%;
-      height: 60%;
+      width: 100%;
+      height: 100%;
+      padding: 0px 0px 25px 0px;
 
       input[type=submit] {
         margin-top: 20px;
