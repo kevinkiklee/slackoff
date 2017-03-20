@@ -13,6 +13,12 @@
   .landing-page-logo {
     display: none;
   }
+
+  .chat-container {
+    .aboutWrapper {
+      display: none;
+    }
+  }
 }
 
 /* Portrait */
@@ -128,6 +134,24 @@
     .modal {
       top: 0px;
       background-color: rgba(0, 0, 0, 0.0);
+    }
+  }
+
+  .banner-container {
+    .banner-logo {
+      width: 15%;
+    }
+
+    .banner-subtitle {
+      h2 {
+        font-size: 35px;
+      }
+    }
+
+    .banner-title {
+      h1 {
+        font-size: 50px;
+      }
     }
   }
 
