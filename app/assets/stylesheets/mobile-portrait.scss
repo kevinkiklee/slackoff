@@ -68,6 +68,13 @@
     }
   }
 
+  .app-container {
+    .modal {
+      top: 0px;
+      background-color: rgba(0, 0, 0, 0.0);
+    }
+  }
+
   .session-form-container {
     width: 100%;
     height: 100%;
