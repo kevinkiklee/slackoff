@@ -3,7 +3,7 @@
 /* Portrait and Landscape */
 @media only screen
   and (min-device-width: 350px)
-  and (max-device-width: 800px)
+  and (max-device-width: 768px)
   and (-webkit-min-device-pixel-ratio: 2) {
 
   .bannerBtns {
@@ -19,11 +19,14 @@
       display: none;
     }
   }
-
-
 }
 
-@media screen and (max-aspect-ratio: 13/9) {
+@media screen
+  and (max-aspect-ratio: 13/9)
+  and (min-device-width: 350px)
+  and (max-device-width: 768px)
+  and (orientation: portrait) {
+
   .landing-page-nav {
     width: 100%;
     bottom: 0px;
@@ -143,8 +146,8 @@
 /* Landscape */
 @media only screen
   and (min-device-width: 350px)
-  and (max-device-width: 800px)
-  and (-webkit-min-device-pixel-ratio: 2)
+  and (max-device-width: 768px)
+  and (min-aspect-ratio: 13/9)
   and (orientation: landscape) {
 
   .app-container {
@@ -238,7 +241,7 @@
   }
 
   .messages-container {
-    left: 218px;
+    left: 220px;
     zoom: 1.3;
   }
 
@@ -259,5 +262,15 @@
 
   .channel-section {
     zoom: 1.3;
+  }
+
+  .channels-view-container,
+  .dm-container {
+    zoom: 1.3;
+  }
+
+  .ReactModal__Content {
+    top: 25px !important;
+    bottom: 25px !important;
   }
 }
