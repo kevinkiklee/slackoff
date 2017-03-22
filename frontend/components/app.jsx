@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Navbar from './frontpage/navbar'
 import VideoBackground from './frontpage/video_background';
