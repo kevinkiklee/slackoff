@@ -1,15 +1,12 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
-
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { setChannel } from '../../../actions/current_channel_actions';
 import { fetchChannel } from '../../../actions/channel_actions';
 import { getUser } from '../../../actions/session_actions';
-
 import { openChannelsViewModal } from '../../../actions/modal_actions';
+
 import UserChannelItem from './user-channel-item';
 import ChannelsView from '../channel/channels-view.jsx';
 
@@ -61,40 +58,31 @@ class UserChannels extends React.Component {
   }
 
   render() {
-    if (this.props.user) {
-      const channelCount = this.props.user.subscriptions.length;
+    const channelCount = this.props.user.subscriptions.length;
 
-      return (
-        <section className='user-channels-container'>
-          <ChannelsView />
+    return (
+      <section className='user-channels-container'>
+        <ChannelsView />
 
-          <button onClick={ this.props.openChannelsViewModal }>
-            <h4>CHANNELS
-              <span className='user-channels-count'>({ channelCount })</span>
-            </h4>
-          </button>
+        <button onClick={ this.props.openChannelsViewModal }>
+          <h4>CHANNELS
+            <span className='user-channels-count'>({ channelCount })</span>
+          </h4>
+        </button>
 
-          <ul className='user-channels-list'>
-            { this.buildChannelItems() }
-          </ul>
-        </section>
-      );
-    } else {
-      return (
-        <div></div>
-      );
-    }
+        <ul className='user-channels-list'>
+          { this.buildChannelItems() }
+        </ul>
+      </section>
+    );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  if (state.session.currentUser) {
-
-    return {
-      user: state.session.currentUser,
-      userChannels: state.session.currentUser.subscriptions,
-      currentChannel: state.channel
-    };
+  return {
+    user: state.session.currentUser,
+    userChannels: state.session.currentUser.subscriptions,
+    currentChannel: state.channel
   }
 };
 
@@ -108,4 +96,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(UserChannels));
+)(UserChannels);
