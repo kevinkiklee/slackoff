@@ -13,6 +13,7 @@
 class Emoticon < ApplicationRecord
   belongs_to :user
   belongs_to :message
-  
+
   validates :user, :message, :icon, presence: true
+  validates :icon, uniqueness: { scope: [:user_id, :message_id] }
 end

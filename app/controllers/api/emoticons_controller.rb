@@ -13,8 +13,6 @@ class Api::EmoticonsController < ApplicationController
                        message: @message,
                        emoticons: @message.emoticons
                      });
-    else
-      render json: @emoticon.errors.full_messages, status: 422
     end
   end
 
@@ -24,5 +22,4 @@ class Api::EmoticonsController < ApplicationController
   def emoticon_params
     params.require(:emoticon).permit(:user_id, :message_id, :icon)
   end
-
 end

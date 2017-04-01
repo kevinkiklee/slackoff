@@ -72,9 +72,8 @@ class Messages extends React.Component {
     this.setState(newProps.channel);
   }
 
-  componentWillUnmount() {
-    this.pusher.disconnect();
-  }
+  // componentWillUnmount() {
+  // }
 
   buildMessageItems() {
     if (this.state.messages) {
