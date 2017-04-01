@@ -78,7 +78,7 @@
 }
 
 .emoji-mart-search {
-  font-size: 16px;
+  font-size: 14px;
   display: block;
   width: 100%;
   padding: .2em .6em;
@@ -117,6 +117,8 @@
   display: block;
   width: 100%;
   font-weight: 500;
+  font-size: 14px;
+  font-family: 'Lato';
   padding: 5px 6px;
   background-color: #fff;
   background-color: rgba(255, 255, 255, .95);
@@ -290,11 +292,17 @@
   border-radius: 5px;
   display: flex;
   align-items: center;
+  transition: all 0.3s ease 0s;
 
   p {
     font-family: 'Lato';
     font-size: 12px;
     color: #888;
     padding-left: 3px;
+  }
+
+  &:hover {
+    border: 1px rgb(0, 133, 255) solid;
+    transition: all 0.3s ease 0s;
   }
 }
