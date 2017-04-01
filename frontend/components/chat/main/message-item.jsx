@@ -24,7 +24,6 @@ class MessageItem extends React.Component {
       icons: [ { id: 'joy', author: 'guest' },
                { id: '+1', author: 'guest2' },
                { id: 'heart', author: 'jon.snow' },
-               { id: 'heavy_check_mark', author: 'arya.stark' },
                { id: 'joy', author: 'guest2' },
              ]
     };

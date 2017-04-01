@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311174543) do
+ActiveRecord::Schema.define(version: 20170401182559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20170311174543) do
     t.datetime "updated_at",                   null: false
     t.string   "display_name"
     t.index ["name"], name: "index_channels_on_name", unique: true, using: :btree
+  end
+
+  create_table "emoticons", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "message_id", null: false
+    t.string   "icon",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|

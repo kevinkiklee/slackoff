@@ -32,6 +32,7 @@ class User < ApplicationRecord
 
   has_many :subscriptions
   has_many :messages
+	has_many :emoticons
   has_many :channels, through: :subscriptions
 
 	after_initialize :ensure_session_token
