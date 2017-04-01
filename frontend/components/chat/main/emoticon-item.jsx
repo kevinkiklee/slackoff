@@ -8,10 +8,14 @@ class EmoticonItem extends React.Component {
   }
 
   render() {
+    const emojiSize = 14;
+
     return (
-      <div className='emoticonItemContainer'>
-        
-      </div>
+      <button className='emoticonItem'>
+        <Emoji emoji={ this.props.icon.id }
+               size={ emojiSize } />
+        <p>1</p>
+      </button>
     )
   }
 }

@@ -266,10 +266,23 @@
 .emoji-mart-skin-tone-5 { background-color: #9b643d }
 .emoji-mart-skin-tone-6 { background-color: #594539 }
 
+//////////////////////////////////////////////
+
 .emoji-mart {
   width: 100% !important;
 }
 
 .emoji-mart-bar {
   zoom: 0.7;
+}
+
+.emoticonsList {
+  display: flex;
+}
+
+.emoticonItem {
+  padding: 5px;
+  border: 1px #eeeeee solid;
+  border-radius: 5px;
+  display: flex;
 }

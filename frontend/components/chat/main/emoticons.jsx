@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import EmoticonItem from './emoticon-item';
-import { Emoji } from 'emoji-mart';
 
 class Emoticons extends React.Component {
   constructor(props) {
@@ -22,8 +21,6 @@ class Emoticons extends React.Component {
   }
 
   render() {
-    const emojiSize = 18;
-
     return (
       <div className='emoticonsContainer'>
         <ul className='emoticonsList'>
