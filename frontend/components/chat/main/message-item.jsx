@@ -21,11 +21,7 @@ class MessageItem extends React.Component {
       content: this.props.message.content,
       contentAction: 'show',
       emoticonPicker: 'hide',
-      icons: [ { id: 'joy', author: 'guest' },
-               { id: '+1', author: 'guest2' },
-               { id: 'heart', author: 'jon.snow' },
-               { id: 'joy', author: 'guest2' },
-             ]
+      icons: this.props.message.emoticons
     };
 
     this.editMessage = this.editMessage.bind(this);
@@ -45,7 +41,8 @@ class MessageItem extends React.Component {
     if (this.props !== newProps) {
       this.setState({ message: newProps.message,
                       content: newProps.message.content,
-                      contentAction: 'show' });
+                      contentAction: 'show',
+                      icons: newProps.message.emoticons });
     }
   }
 

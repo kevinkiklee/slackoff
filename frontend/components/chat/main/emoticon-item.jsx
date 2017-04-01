@@ -12,7 +12,7 @@ class EmoticonItem extends React.Component {
 
     return (
       <button className='emoticonItem'>
-        <Emoji emoji={ this.props.icon.id }
+        <Emoji emoji={ this.props.icon.icon }
                size={ emojiSize } />
         <p>1</p>
       </button>
