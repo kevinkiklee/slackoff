@@ -14,6 +14,10 @@ class Emoticons extends React.Component {
     this.buildIcons = this.buildIcons.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({ icons: newProps.icons });
+  }
+
   buildIcons() {
     return this.state.icons.map((icon, i) => (
       <li><EmoticonItem key={ i } icon={ icon } /></li>

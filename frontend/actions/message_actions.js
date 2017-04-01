@@ -15,9 +15,9 @@ export const receiveMessage = (message, channel, user) => ({
   user
 });
 
-export const editMessage = (message) => ({
+export const editMessage = (data) => ({
   type: EDIT_MESSAGE,
-  message
+  data
 });
 
 export const removeMessage = (id) => ({

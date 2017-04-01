@@ -33,7 +33,7 @@ class Messages extends React.Component {
     }, this);
 
     this.channel.bind('editMessage', (data) => {
-      this.props.editMessage(data.message);
+      this.props.editMessage(data);
     }, this);
 
     this.channel.bind('deleteMessage', (data) => {
@@ -61,7 +61,7 @@ class Messages extends React.Component {
       }, this);
 
       this.channel.bind('editMessage', (data) => {
-        this.props.editMessage(data.message);
+        this.props.editMessage(data);
       }, this);
 
       this.channel.bind('deleteMessage', (data) => {

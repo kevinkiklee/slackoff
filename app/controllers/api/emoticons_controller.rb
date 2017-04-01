@@ -6,27 +6,13 @@ class Api::EmoticonsController < ApplicationController
     if @emoticon.save
       @message = @emoticon.message
       @channel = @message.channel
-      # @emoticons = @message.emoticons.all
-      # author = User.find(@message.user_id)
-      #
-      # message = {
-      #   "id" => @message.id,
-      #   "content" => @message.content,
-      #   "content_type" => @message.content_type,
-      #   "updated_at" => @message.updated_at,
-      #   "author"  => {
-      #     "id" => author.id,
-      #     "username" => author.username,
-      #     "photo_url" => ActionController::Base.helpers.asset_path(author.avatar.url)
-      #   },
-      #   "emoticons" => @emoticons
-      # }
 
-      Pusher.trigger(@channel.id, 'editMessage', { message: @message });
-
-      # Pusher.trigger(@channel.id, 'message', {
-      #   messages: message
-      # })
+      Pusher.trigger(@channel.id,
+                     'editMessage',
+                     {
+                       message: @message,
+                       emoticons: @message.emoticons
+                     });
     else
       render json: @emoticon.errors.full_messages, status: 422
     end
