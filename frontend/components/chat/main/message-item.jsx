@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
+
 import AlertContainer from 'react-alert';
+
+import EmoticonPicker from './emoticon-picker';
+import Emoticons from './emoticons';
 
 import moment from 'moment';
 import merge from 'lodash/merge';
@@ -15,11 +19,20 @@ class MessageItem extends React.Component {
     this.state = {
       message: this.props.message,
       content: this.props.message.content,
-      contentAction: 'show'
+      contentAction: 'show',
+      emoticonPicker: 'hide',
+      icons: [ { id: 'joy', author: 'guest' },
+               { id: '+1', author: 'guest2' },
+               { id: 'heart', author: 'jon.snow' },
+               { id: 'heavy_check_mark', author: 'arya.stark' },
+               { id: 'joy', author: 'guest2' },
+             ]
     };
 
     this.editMessage = this.editMessage.bind(this);
     this.deleteMessage = this.deleteMessage.bind(this);
+
+    this.toggleEmoticonPicker = this.toggleEmoticonPicker.bind(this);
 
     this.toggleEditForm = this.toggleEditForm.bind(this);
     this.buildEditMessageForm = this.buildEditMessageForm.bind(this);
@@ -65,8 +78,6 @@ class MessageItem extends React.Component {
   }
 
   toggleEditForm(e) {
-    e.preventDefault();
-
     if (this.state.message.author.id === this.props.user.id) {
       if (this.state.contentAction === 'show') {
         this.setState({ contentAction: 'edit' });
@@ -75,6 +86,14 @@ class MessageItem extends React.Component {
       }
     } else {
       this.showAuthorAlert();
+    }
+  }
+
+  toggleEmoticonPicker(e) {
+    if (this.state.emoticonPicker === 'show') {
+      this.setState({ emoticonPicker: 'hide' });
+    } else {
+      this.setState({ emoticonPicker: 'show' });
     }
   }
 
@@ -114,11 +133,16 @@ class MessageItem extends React.Component {
 
   render() {
     let content = '';
+    let emoticonPicker = '';
 
     if (this.state.contentAction === 'show') {
       content = this.buildShowMessage();
     } else {
       content = this.buildEditMessageForm();
+    }
+
+    if (this.state.emoticonPicker === 'show') {
+      emoticonPicker = <EmoticonPicker />
     }
 
     return (
@@ -137,6 +161,9 @@ class MessageItem extends React.Component {
                 <span> | </span>{ moment(this.props.message.updated_at).fromNow() }
                 </div>
                 <div className='message-btn-container'>
+                  <button className='emoticonPicker-btn' onClick={ this.toggleEmoticonPicker }>
+                    <i className="fa fa-smile-o fa-6" aria-hidden="true"></i>
+                  </button>
                   <button className='message-edit-btn' onClick={ this.toggleEditForm }>
                     <i className="fa fa-pencil-square-o fa-6" aria-hidden="true"></i>
                   </button>
@@ -147,10 +174,10 @@ class MessageItem extends React.Component {
               </div>
 
               { content }
-
+              <Emoticons icons={ this.state.icons }/>
+              { emoticonPicker }
             </div>
           </div>
-
       </li>
     );
   }

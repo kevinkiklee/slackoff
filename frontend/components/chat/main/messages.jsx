@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
+
 import moment from 'moment';
 import merge from 'lodash/merge';
 

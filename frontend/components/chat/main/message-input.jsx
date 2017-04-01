@@ -9,7 +9,7 @@ class MessageInput extends React.Component {
     super(props);
 
     this.state = {
-      message: ''
+      message: '',
     };
 
     this.handleInput = this.handleInput.bind(this);
