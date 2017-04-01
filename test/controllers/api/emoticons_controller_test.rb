@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EmoticonsControllerTest < ActionDispatch::IntegrationTest
+class Api::EmoticonsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

@@ -38,6 +38,7 @@ const ChannelReducer = (state = initialState, action) => {
       let messageIndex = findIndex(editStateMessages, (message) => (message.id === action.message.id));
 
       editState.messages[messageIndex].content = action.message.content;
+      editState.messages[messageIndex].emoticons = action.message.emoticons;
       return editState;
 
     case REMOVE_MESSAGE:

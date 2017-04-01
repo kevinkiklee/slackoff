@@ -8,7 +8,7 @@ class EmoticonItem extends React.Component {
   }
 
   render() {
-    const emojiSize = 14;
+    const emojiSize = 16;
 
     return (
       <button className='emoticonItem'>

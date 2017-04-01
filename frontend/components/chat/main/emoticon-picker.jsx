@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import merge from 'lodash/merge';
 import { Picker } from 'emoji-mart';
 
-import { updateMessage } from '../../../actions/message_actions';
+import { addEmoticon } from '../../../actions/message_actions';
 
 class EmoticonPicker extends React.Component {
   constructor(props) {
@@ -14,8 +14,12 @@ class EmoticonPicker extends React.Component {
   }
 
   addEmoticon(event) {
-    let message = merge({}, this.state.message);
-    message.emoticons.push();
+    const emoticon = {
+      user_id: this.props.userId,
+      message_id: this.props.messageId,
+      icon: event.id
+    }
+    this.props.addEmoticon(emoticon);
   }
 
   render() {
@@ -28,12 +32,12 @@ class EmoticonPicker extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  message: ownProps.message,
-  user: state.session.currentUser
+  messageId: ownProps.message.id,
+  userId: state.session.currentUser.id
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateMessage: (message) => dispatch(updateMessage(message))
+  addEmoticon: (icon) => dispatch(addEmoticon(icon))
 });
 
 export default connect(
