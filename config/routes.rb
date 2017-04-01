@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'channels/public' => 'channels#public'
 
     resources :messages, only: [:create, :update, :destroy]
+    resources :emoticons, only: [:create, :destroy]
 
     resource :session, only: [:create, :destroy, :show]
   end

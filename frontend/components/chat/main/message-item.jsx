@@ -138,7 +138,7 @@ class MessageItem extends React.Component {
     }
 
     if (this.state.emoticonPicker === 'show') {
-      emoticonPicker = <EmoticonPicker />
+      emoticonPicker = <EmoticonPicker message={ this.state.message }/>
     }
 
     return (
