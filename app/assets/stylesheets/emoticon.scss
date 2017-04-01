@@ -278,11 +278,23 @@
 
 .emoticonsList {
   display: flex;
+
+  li {
+    margin-right: 5px;
+  }
 }
 
 .emoticonItem {
-  padding: 5px;
+  padding: 2px 4px;
   border: 1px #eeeeee solid;
   border-radius: 5px;
   display: flex;
+  align-items: center;
+
+  p {
+    font-family: 'Lato';
+    font-size: 12px;
+    color: #888;
+    padding-left: 3px;
+  }
 }
