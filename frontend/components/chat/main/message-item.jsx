@@ -39,7 +39,6 @@ class MessageItem extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      // debugger
       this.setState({ message: newProps.message,
                       content: newProps.message.content,
                       contentAction: 'show',

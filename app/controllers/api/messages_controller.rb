@@ -43,8 +43,16 @@ class Api::MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @message.update(message_params)
     @channel = @message.channel
+    @emoticon = []
 
-    Pusher.trigger(@channel.id, 'editMessage', { message: @message });
+    # Pusher.trigger(@channel.id, 'editMessage', { message: @message });
+    Pusher.trigger(@channel.id,
+                   'editMessage',
+                   {
+                     message: @message,
+                     emoticons: @message.emoticons
+                   });
+                   
     render json: @message
   end
 

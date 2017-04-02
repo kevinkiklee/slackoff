@@ -1,6 +1,5 @@
 class Api::EmoticonsController < ApplicationController
   def create
-    # debugger
     @emoticon = Emoticon.new(emoticon_params)
 
     if @emoticon.save

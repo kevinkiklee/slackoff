@@ -17,6 +17,7 @@
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-alert": "^1.0.14",
+    "react-click-outside": "^2.2.0",
     "react-dom": "^15.4.2",
     "react-modal": "^1.6.5",
     "react-redux": "^5.0.2",

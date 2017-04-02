@@ -8,7 +8,8 @@ class Emoticons extends React.Component {
     super(props);
 
     this.state = {
-      icons: this.props.icons
+      icons: this.props.icons,
+      isOpened: true
     }
 
     this.buildIcons = this.buildIcons.bind(this);
@@ -20,18 +21,24 @@ class Emoticons extends React.Component {
 
   buildIcons() {
     return this.state.icons.map((icon, i) => (
-      <li><EmoticonItem key={ i } icon={ icon } /></li>
+      <li key={ i } ><EmoticonItem icon={ icon } /></li>
     ));
   }
 
   render() {
-    return (
-      <div className='emoticonsContainer'>
-        <ul className='emoticonsList'>
-          { this.buildIcons() }
-        </ul>
-      </div>
-    )
+    if (this.state.isOpened) {
+      return (
+        <div className='emoticonsContainer'>
+          <ul className='emoticonsList'>
+            { this.buildIcons() }
+          </ul>
+        </div>
+      )
+    } else {
+      return (
+        <div></div>
+      )
+    }
   }
 }
 
