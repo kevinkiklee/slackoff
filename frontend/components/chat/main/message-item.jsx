@@ -10,7 +10,11 @@ import Emoticons from './emoticons';
 import moment from 'moment';
 import merge from 'lodash/merge';
 
-import { updateMessage, deleteMessage } from '../../../actions/message_actions';
+import { updateMessage,
+         deleteMessage } from '../../../actions/message_actions';
+
+import { openEmoticonPicker,
+         closeEmoticonPicker } from '../../../actions/modal_actions';
 
 class MessageItem extends React.Component {
   constructor(props) {
@@ -39,15 +43,26 @@ class MessageItem extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props !== newProps) {
-      this.setState({ message: newProps.message,
-                      content: newProps.message.content,
-                      contentAction: 'show',
-                      icons: newProps.message.emoticons });
+      if (this.props.currentChannel === newProps.currentChannel) {
+        this.setState({ message: newProps.message,
+          content: newProps.message.content,
+          contentAction: 'show',
+          icons: newProps.message.emoticons,
+        });
+      } else {
+        this.setState({ message: newProps.message,
+          content: newProps.message.content,
+          contentAction: 'show',
+          icons: newProps.message.emoticons,
+          emoticonPicker: 'hide',
+        });
+      }
     }
   }
 
   componentWillUnmount() {
-    this.setState({ contentAction: 'show' });
+    this.setState({ contentAction: 'show',
+                    emoticonPicker: 'hide' });
   }
 
   showAuthorAlert(){
@@ -86,11 +101,18 @@ class MessageItem extends React.Component {
   }
 
   toggleEmoticonPicker(e) {
-    if (this.state.emoticonPicker === 'show') {
-      this.setState({ emoticonPicker: 'hide' });
+    // debugger
+    if (this.props.emoticonPicker === true) {
+      this.props.closeEmoticonPicker();
     } else {
-      this.setState({ emoticonPicker: 'show' });
+      // debugger
+      this.props.openEmoticonPicker(this.props.message.id);
     }
+    // if (this.state.emoticonPicker === 'show') {
+    //   this.setState({ emoticonPicker: 'hide' });
+    // } else {
+    //   this.setState({ emoticonPicker: 'show' });
+    // }
   }
 
   editMessage(e) {
@@ -125,7 +147,7 @@ class MessageItem extends React.Component {
       content = this.buildEditMessageForm();
     }
 
-    if (this.state.emoticonPicker === 'show') {
+    if (this.props.emoticonPicker) {
       emoticonPicker = <EmoticonPicker message={ this.state.message }/>
     }
 
@@ -171,12 +193,16 @@ class MessageItem extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
   message: ownProps.message,
-  user: state.session.currentUser
+  user: state.session.currentUser,
+  currentChannel: state.currentChannel,
+  emoticonPicker: state.modal.emoticonPicker,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   updateMessage: (message) => dispatch(updateMessage(message)),
-  deleteMessage: (id) => dispatch(deleteMessage(id))
+  deleteMessage: (id) => dispatch(deleteMessage(id)),
+  openEmoticonPicker: (messageId) => dispatch(openEmoticonPicker(messageId)),
+  closeEmoticonPicker: () => dispatch(closeEmoticonPicker()),
 });
 
 export default connect(

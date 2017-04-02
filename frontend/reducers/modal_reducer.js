@@ -7,7 +7,9 @@ import { OPEN_CHANNELS_VIEW_MODAL,
          OPEN_EDIT_USER_FORM_MODAL,
          CLOSE_EDIT_USER_FORM_MODAL,
          OPEN_USER_MENU_MODAL,
-         CLOSE_USER_MENU_MODAL
+         CLOSE_USER_MENU_MODAL,
+         OPEN_EMOTICON_PICKER,
+         CLOSE_EMOTICON_PICKER,
        } from '../actions/modal_actions';
 
 import merge from 'lodash/merge';
@@ -22,7 +24,9 @@ const initialState = {
   directMessageUser: [],
 
   editUserForm: false,
-  userMenu: false
+  userMenu: false,
+  emoticonPicker: false,
+  messageId: null,
 };
 
 const ModalReducer = (state = initialState, action) => {
@@ -59,6 +63,13 @@ const ModalReducer = (state = initialState, action) => {
       return merge({}, { userMenu: action.open });
 
     case CLOSE_USER_MENU_MODAL:
+      return initialState;
+
+    case OPEN_EMOTICON_PICKER:
+      return merge({}, { emoticonPicker: action.open,
+                         messageId: action.messageId });
+
+    case CLOSE_EMOTICON_PICKER:
       return initialState;
 
     default:

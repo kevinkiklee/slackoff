@@ -65,3 +65,17 @@ export const closeUserMenuModal = () => ({
   type: CLOSE_USER_MENU_MODAL,
   open: false
 });
+
+export const OPEN_EMOTICON_PICKER = 'OPEN_EMOTICON_PICKER';
+export const CLOSE_EMOTICON_PICKER = 'CLOSE_EMOTICON_PICKER';
+
+export const openEmoticonPicker = (messageId) => ({
+  type: OPEN_EMOTICON_PICKER,
+  open: true,
+  messageId
+});
+
+export const closeEmoticonPicker = () => ({
+  type: CLOSE_EMOTICON_PICKER,
+  open: false
+});

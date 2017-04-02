@@ -23,17 +23,25 @@ class EmoticonPicker extends React.Component {
   }
 
   render() {
-    return (
-      <div className='emojiPickerContainer'>
-        <Picker onClick={ this.addEmoticon }/>
-      </div>
-    )
+    if (this.props.emoticonPicker && this.props.messageId === this.props.pickerMsgId) {
+      return (
+        <div className='emojiPickerContainer'>
+          <Picker onClick={ this.addEmoticon }/>
+        </div>
+      )
+    } else {
+      return (
+        <div></div>
+      )
+    }
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
   messageId: ownProps.message.id,
-  userId: state.session.currentUser.id
+  userId: state.session.currentUser.id,
+  emoticonPicker: state.modal.emoticonPicker,
+  pickerMsgId: state.modal.messageId,
 });
 
 const mapDispatchToProps = (dispatch) => ({

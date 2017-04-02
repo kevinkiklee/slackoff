@@ -47,11 +47,6 @@ class Messages extends React.Component {
     const channelLoaded = this.props.channel.name !== undefined;
 
     if(channelLoaded && this.props.channel.name !== newProps.channel.name){
-      // this.pusher.disconnect();
-
-      // this.pusher = new Pusher('d46870f8b7c4c1636fca', {
-      //   encrypted: true
-      // });
       this.pusher.unsubscribe(this.props.channel.id.toString());
 
       this.channel = this.pusher.subscribe(newProps.channel.id.toString());
@@ -104,7 +99,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchChannel: (userId, channelId) => dispatch(fetchChannel(userId, channelId)),
   receiveMessage: (message) => dispatch(receiveMessage(message)),
   removeMessage: (id) => dispatch(removeMessage(id)),
-  editMessage: (message) => dispatch(editMessage(message))
+  editMessage: (message) => dispatch(editMessage(message)),
 });
 
 export default connect(
