@@ -12,17 +12,20 @@ class EmoticonItem extends React.Component {
 
     return (
       <button className='emoticonItem'>
-        <Emoji emoji={ this.props.icon.icon }
+        <Emoji emoji={ this.props.emoticon }
                size={ emojiSize } />
-        <p>1</p>
+        <p>{ this.props.count }</p>
       </button>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  user: state.session.currentUser,
-  icon: ownProps.icon
+  userId: state.session.currentUser.id,
+  channelId: state.channel.id,
+  emoticon: ownProps.emoticon,
+  authors: ownProps.authors,
+  users: state.users,
 });
 
 const mapDispatchToProps = (dispatch) => ({

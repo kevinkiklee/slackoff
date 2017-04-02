@@ -8,43 +8,65 @@ class Emoticons extends React.Component {
     super(props);
 
     this.state = {
-      icons: this.props.icons,
+      emoticons: this.props.emoticons,
       isOpened: true
     }
 
     this.buildIcons = this.buildIcons.bind(this);
+    this.buildIconsData = this.buildIconsData.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({ icons: newProps.icons });
+    this.setState({ emoticons: newProps.icons });
   }
 
   buildIcons() {
-    return this.state.icons.map((icon, i) => (
-      <li key={ i } ><EmoticonItem icon={ icon } /></li>
-    ));
+    let count = 2;
+
+    if (this.state.emoticons.length > 0) {
+      const iconsData = this.buildIconsData();
+
+      return Object.keys(iconsData).map((emoticon, i) => (
+        <li key={ i } >
+          <EmoticonItem emoticon={ emoticon }
+                        count={ iconsData[emoticon].count }
+                        authors={ iconsData[emoticon].authors }
+          />
+        </li>
+      ));
+    }
+  }
+
+  buildIconsData() {
+    const iconsData = {}
+
+    this.state.emoticons.forEach((emoticon) => {
+      if (iconsData.hasOwnProperty(emoticon.icon)) {
+        iconsData[emoticon.icon].count += 1;
+        iconsData[emoticon.icon].authors.push(emoticon.user_id);
+      } else {
+        iconsData[emoticon.icon] = { count: 1,
+                                     authors: [emoticon.user_id] };
+      }
+    });
+
+    // debugger
+    return iconsData;
   }
 
   render() {
-    if (this.state.isOpened) {
-      return (
-        <div className='emoticonsContainer'>
-          <ul className='emoticonsList'>
-            { this.buildIcons() }
-          </ul>
-        </div>
-      )
-    } else {
-      return (
-        <div></div>
-      )
-    }
+    return (
+      <div className='emoticonsContainer'>
+        <ul className='emoticonsList'>
+          { this.buildIcons() }
+        </ul>
+      </div>
+    )
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  user: state.session.currentUser,
-  icons: ownProps.icons
+  emoticons: ownProps.icons,
 });
 
 const mapDispatchToProps = (dispatch) => ({

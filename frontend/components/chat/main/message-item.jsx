@@ -19,9 +19,9 @@ class MessageItem extends React.Component {
     this.state = {
       message: this.props.message,
       content: this.props.message.content,
+      icons: this.props.message.emoticons,
       contentAction: 'show',
       emoticonPicker: 'hide',
-      icons: this.props.message.emoticons
     };
 
     this.editMessage = this.editMessage.bind(this);
