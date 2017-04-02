@@ -95,20 +95,8 @@ class MessageItem extends React.Component {
 
   editMessage(e) {
     e.preventDefault();
-
     let editedMessage = merge({}, this.state.message, { content: this.state.content});
-
     this.props.updateMessage(editedMessage);
-      // .then((data) => {
-      //   let copiedData = merge({}, data);
-      //   copiedData.message.author = { id: data.message.user_id };
-      //
-      //   this.setState({
-      //     message: copiedData.message,
-      //     content: copiedData.message.content,
-      //     contentAction: 'show'
-      //   });
-      // });
   }
 
   buildEditMessageForm() {

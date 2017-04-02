@@ -9,7 +9,6 @@ class Emoticons extends React.Component {
 
     this.state = {
       emoticons: this.props.emoticons,
-      isOpened: true
     }
 
     this.buildIcons = this.buildIcons.bind(this);

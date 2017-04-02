@@ -12,7 +12,9 @@ if messages.empty?
   json.messages []
 else
   json.messages messages do |message|
-    json.extract! message, :id, :content, :content_type, :updated_at, :emoticons
+    json.extract! message, :id, :content, :content_type, :updated_at
+
+    json.emoticons message.emoticons
 
     json.author do
       json.id message.user.id

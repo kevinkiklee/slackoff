@@ -69,8 +69,7 @@ class EmoticonItem extends React.Component {
   findEmoticonId() {
     return find(this.props.allEmoticons,
                 { 'user_id': this.props.userId,
-                  'icon': this.props.emoticon
-                }).id
+                  'icon': this.props.emoticon }).id
   }
 
   handleClick(e) {

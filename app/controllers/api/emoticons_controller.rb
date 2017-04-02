@@ -5,7 +5,7 @@ class Api::EmoticonsController < ApplicationController
     if emoticon.save
       message = emoticon.message
       channel = message.channel
-      emoticons = message.emoticons.order(:created_at)
+      emoticons = message.emoticons.order(created_at: :asc)
 
       Pusher.trigger(channel.id,
                      'editMessage',
@@ -20,7 +20,7 @@ class Api::EmoticonsController < ApplicationController
 
     message = emoticon.message
     channel = message.channel
-    emoticons = message.emoticons.order(:created_at)
+    emoticons = message.emoticons.order(created_at: :asc)
 
     Pusher.trigger(channel.id, 'editMessage',
                    { message: message,
