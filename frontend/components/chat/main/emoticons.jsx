@@ -21,20 +21,16 @@ class Emoticons extends React.Component {
   }
 
   buildIcons() {
-    let count = 2;
+    const iconsData = this.buildIconsData();
 
-    if (this.state.emoticons.length > 0) {
-      const iconsData = this.buildIconsData();
-
-      return Object.keys(iconsData).map((emoticon, i) => (
-        <li key={ i } >
-          <EmoticonItem emoticon={ emoticon }
-                        count={ iconsData[emoticon].count }
-                        authors={ iconsData[emoticon].authors }
-          />
-        </li>
-      ));
-    }
+    return Object.keys(iconsData).map((emoticon, i) => (
+      <li key={ i } >
+        <EmoticonItem emoticon={ emoticon }
+                      count={ iconsData[emoticon].count }
+                      authors={ iconsData[emoticon].authors }
+        />
+      </li>
+    ));
   }
 
   buildIconsData() {
@@ -50,7 +46,6 @@ class Emoticons extends React.Component {
       }
     });
 
-    // debugger
     return iconsData;
   }
 

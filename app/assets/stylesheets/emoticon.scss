@@ -311,3 +311,26 @@
     transition: all 0.3s ease 0s;
   }
 }
+
+.authorsTooltip {
+  transition: all 0.3s ease 0s;
+  display: inline-block;
+  position: relative;
+  background-color: black;
+  color: white;
+  top: -50px;
+}
+
+.__react_component_tooltip {
+  transition: all 0.3s ease 0s;
+  font-family: 'Lato';
+  font-size: 13px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  font-weight: 600 !important;
+}
+
+.__react_component_tooltip.place-top {
+  margin-top: -5px;
+}
