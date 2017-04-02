@@ -47,11 +47,12 @@ class Messages extends React.Component {
     const channelLoaded = this.props.channel.name !== undefined;
 
     if(channelLoaded && this.props.channel.name !== newProps.channel.name){
-      this.pusher.disconnect();
+      // this.pusher.disconnect();
 
-      this.pusher = new Pusher('d46870f8b7c4c1636fca', {
-        encrypted: true
-      });
+      // this.pusher = new Pusher('d46870f8b7c4c1636fca', {
+      //   encrypted: true
+      // });
+      this.pusher.unsubscribe(this.props.channel.id.toString());
 
       this.channel = this.pusher.subscribe(newProps.channel.id.toString());
 

@@ -8,10 +8,8 @@ class Api::EmoticonsController < ApplicationController
 
       Pusher.trigger(@channel.id,
                      'editMessage',
-                     {
-                       message: @message,
-                       emoticons: @message.emoticons
-                     });
+                     { message: @message,
+                       emoticons: @message.emoticons });
     end
   end
 

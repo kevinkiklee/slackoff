@@ -27,7 +27,7 @@ export const removeMessage = (id) => ({
 
 export const updateMessage = (message) => dispatch => {
   return MessageAPIUtil.updateMessage(message)
-    .then((message) => dispatch(editMessage(message)));
+    // .then((message) => dispatch(editMessage(message)));
 };
 
 export const deleteMessage = (id) => dispatch => {
@@ -37,10 +37,8 @@ export const deleteMessage = (id) => dispatch => {
 
 export const addEmoticon = (icon) => dispatch => {
   return EmoticonAPIUtil.createEmoticon(icon)
-    // .then((message) => dispatch(receiveMessage(message)));
 };
 
 export const deleteEmoticon = (id) => dispatch => {
   return EmoticonAPIUtil.deleteEmoticon(id)
-    // .then((message) => dispatch(removeEmoticon(message)));
 };
