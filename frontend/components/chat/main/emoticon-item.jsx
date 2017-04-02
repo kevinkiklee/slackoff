@@ -25,14 +25,16 @@ class EmoticonItem extends React.Component {
   getUsernames(userIds) {
     const usernames = [];
 
-    userIds.forEach((id) => {
-      if (id === this.props.userId) {
-        usernames.unshift('@you');
-      } else {
-        const username = find(this.props.users, { 'id': id }).username
-        usernames.push('@' + username);
-      }
-    });
+    if (this.props.users.length > 0) {
+      userIds.forEach((id) => {
+        if (id === this.props.userId) {
+          usernames.unshift('@you');
+        } else {
+          const username = find(this.props.users, { 'id': id }).username
+          usernames.push('@' + username);
+        }
+      });
+    }
 
     return usernames;
   }
