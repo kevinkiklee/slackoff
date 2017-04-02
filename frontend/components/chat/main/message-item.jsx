@@ -170,7 +170,9 @@ class MessageItem extends React.Component {
               </div>
 
               { content }
-              <Emoticons icons={ this.state.icons }/>
+              <Emoticons icons={ this.state.icons }
+                         message={ this.props.message }
+                         allEmoticons={ this.props.message.emoticons }/>
               { emoticonPicker }
             </div>
           </div>

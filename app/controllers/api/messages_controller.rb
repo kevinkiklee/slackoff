@@ -5,7 +5,7 @@ class Api::MessagesController < ApplicationController
     if @message.save
       @channel = Channel.includes(:messages, :users).find(params[:message][:channel_id])
       @messages = @channel.messages.order(:created_at).reverse
-      @emoticons = @message.emoticons.all
+      @emoticons = @message.emoticons.all.order(:created_at)
       author = User.find(@message.user_id)
 
       new_message = {
@@ -43,13 +43,13 @@ class Api::MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @message.update(message_params)
     @channel = @message.channel
-    @emoticon = @message.emoticons
+    @emoticons = @message.emoticons.order(:created_at)
 
     Pusher.trigger(@channel.id,
                    'editMessage',
                    {
                      message: @message,
-                     emoticons: @message.emoticons
+                     emoticons: @emoticons
                    });
 
     render json: @message

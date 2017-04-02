@@ -21,16 +21,19 @@ class Emoticons extends React.Component {
   }
 
   buildIcons() {
-    const iconsData = this.buildIconsData();
+    if (this.state.emoticons) {
+      const iconsData = this.buildIconsData();
 
-    return Object.keys(iconsData).map((emoticon, i) => (
-      <li key={ i } >
-        <EmoticonItem emoticon={ emoticon }
-                      count={ iconsData[emoticon].count }
-                      authors={ iconsData[emoticon].authors }
-        />
-      </li>
-    ));
+      return Object.keys(iconsData).map((emoticon, i) => (
+        <li key={ i } >
+          <EmoticonItem emoticon={ emoticon }
+            count={ iconsData[emoticon].count }
+            authors={ iconsData[emoticon].authors }
+            messageId={ this.props.messageId }
+            allEmoticons={ this.props.allEmoticons } />
+        </li>
+      ));
+    }
   }
 
   buildIconsData() {
@@ -62,10 +65,8 @@ class Emoticons extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
   emoticons: ownProps.icons,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-
+  messageId: ownProps.message.id,
+  allEmoticons: ownProps.allEmoticons,
 });
 
 export default connect(

@@ -38,6 +38,6 @@ export const addEmoticon = (icon) => dispatch => {
   return EmoticonAPIUtil.createEmoticon(icon)
 };
 
-export const deleteEmoticon = (id) => dispatch => {
+export const removeEmoticon = (id) => dispatch => {
   return EmoticonAPIUtil.deleteEmoticon(id)
 };

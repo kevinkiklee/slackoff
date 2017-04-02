@@ -5,27 +5,22 @@ import { Emoji } from 'emoji-mart';
 import ReactTooltip from 'react-tooltip'
 import find from 'lodash/find';
 
+import { addEmoticon,
+         removeEmoticon } from '../../../actions/message_actions';
+
 class EmoticonItem extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      // showAuthors: false
-    }
-
     this.handleClick = this.handleClick.bind(this);
-    // this.showAuthors = this.showAuthors.bind(this);
-    // this.hideAuthors = this.hideAuthors.bind(this);
     this.getUsernames = this.getUsernames.bind(this);
     this.authorsTooltip = this.authorsTooltip.bind(this);
+
+    this.removeAuthor = this.removeAuthor.bind(this);
+    this.addAuthor = this.addAuthor.bind(this);
+    this.checkAuthor = this.checkAuthor.bind(this);
+    this.findEmoticonId = this.findEmoticonId.bind(this);
   }
-
-  // Onclick:
-    // If authors contain currentuser, destroy
-    // If authors do not contain currentuser, create
-
-  // Onhover:
-    // Show the authors
 
   getUsernames(userIds) {
     const usernames = [];
@@ -34,7 +29,7 @@ class EmoticonItem extends React.Component {
       if (id === this.props.userId) {
         usernames.unshift('@you');
       } else {
-        let username = find(this.props.users, { 'id': id }).username
+        const username = find(this.props.users, { 'id': id }).username
         usernames.push('@' + username);
       }
     });
@@ -52,8 +47,38 @@ class EmoticonItem extends React.Component {
     return tooltipString;
   }
 
+  removeAuthor() {
+    const emoticonId = this.findEmoticonId();
+    this.props.removeEmoticon(emoticonId);
+  }
+
+  addAuthor() {
+    const emoticon = {
+      user_id: this.props.userId,
+      message_id: this.props.messageId,
+      icon: this.props.emoticon
+    }
+
+    this.props.addEmoticon(emoticon);
+  }
+
+  checkAuthor() {
+    return this.props.authors.includes(this.props.userId);
+  }
+
+  findEmoticonId() {
+    return find(this.props.allEmoticons,
+                { 'user_id': this.props.userId,
+                  'icon': this.props.emoticon
+                }).id
+  }
+
   handleClick(e) {
-    
+    if (this.checkAuthor()) {
+      this.removeAuthor();
+    } else {
+      this.addAuthor();
+    }
   }
 
   render() {
@@ -77,16 +102,19 @@ class EmoticonItem extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
   userId: state.session.currentUser.id,
   channelId: state.channel.id,
+  messageId: ownProps.messageId,
   emoticon: ownProps.emoticon,
+  allEmoticons: ownProps.allEmoticons,
   authors: ownProps.authors,
   users: state.users,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  addEmoticon: (icon) => dispatch(addEmoticon(icon)),
+  removeEmoticon: (id) => dispatch(removeEmoticon(id)),
 });
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(EmoticonItem);
