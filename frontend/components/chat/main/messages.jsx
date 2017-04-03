@@ -48,7 +48,7 @@ class Messages extends React.Component {
 
     if(channelLoaded && this.props.channel.name !== newProps.channel.name){
       // this.pusher.unsubscribe(this.props.channel.id.toString());
-      this.pusher.disconnect(this.props.channel.id.toString());
+      this.pusher.disconnect();
 
       this.channel = this.pusher.subscribe(newProps.channel.id.toString());
 
