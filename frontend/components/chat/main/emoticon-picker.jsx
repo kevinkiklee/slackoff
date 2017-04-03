@@ -1,16 +1,33 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
 import merge from 'lodash/merge';
 import { Picker } from 'emoji-mart';
 
 import { addEmoticon } from '../../../actions/message_actions';
+import { closeEmoticonPicker } from '../../../actions/modal_actions';
 
 class EmoticonPicker extends React.Component {
   constructor(props) {
     super(props);
 
     this.addEmoticon = this.addEmoticon.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentWillMount() {
+    document.addEventListener('click', this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClick, false);
+  }
+
+  handleClick(e) {
+    if(!ReactDOM.findDOMNode(this).contains(e.target)) {
+      this.props.closeEmoticonPicker();
+    }
   }
 
   addEmoticon(event) {
@@ -45,7 +62,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addEmoticon: (icon) => dispatch(addEmoticon(icon))
+  addEmoticon: (icon) => dispatch(addEmoticon(icon)),
+  closeEmoticonPicker: () => dispatch(closeEmoticonPicker()),
 });
 
 export default connect(

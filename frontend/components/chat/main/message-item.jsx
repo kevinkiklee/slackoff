@@ -140,7 +140,7 @@ class MessageItem extends React.Component {
       content = this.buildEditMessageForm();
     }
 
-    if (this.state.emoticonPicker) {
+    if (this.props.emoticonPicker) {
       emoticonPicker = <EmoticonPicker message={ this.state.message }/>
     }
 
