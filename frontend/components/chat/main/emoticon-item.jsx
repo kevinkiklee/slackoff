@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Emoji } from 'emoji-mart';
+import {findDOMNode} from 'react-dom'
 
+import { Emoji } from 'emoji-mart';
 import ReactTooltip from 'react-tooltip'
 import find from 'lodash/find';
 
@@ -20,6 +21,10 @@ class EmoticonItem extends React.Component {
     this.addAuthor = this.addAuthor.bind(this);
     this.checkAuthor = this.checkAuthor.bind(this);
     this.findEmoticonId = this.findEmoticonId.bind(this);
+  }
+
+  componentWillUnmount() {
+    ReactTooltip.hide(findDOMNode(this.refs.tooltip));
   }
 
   getUsernames(userIds) {
@@ -87,7 +92,7 @@ class EmoticonItem extends React.Component {
     const tooltip = this.authorsTooltip();
 
     return (
-      <p className='emoticonToolip' data-tip={ tooltip }>
+      <p ref='tooltip' className='emoticonToolip' data-tip={ tooltip }>
         <button className='emoticonItem'
                 onClick={ this.handleClick }>
           <ReactTooltip place="top" type="dark" effect="solid"/>
