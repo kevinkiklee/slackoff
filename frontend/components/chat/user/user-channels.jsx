@@ -29,6 +29,10 @@ class UserChannels extends React.Component {
     this.changeChannel = this.changeChannel.bind(this);
   }
 
+  componentWillUnmount() {
+    this.pusher.disconnect();
+  }
+
   changeChannel(channel) {
     return (e) => {
       this.props.fetchChannel(this.props.user.id, channel.id)

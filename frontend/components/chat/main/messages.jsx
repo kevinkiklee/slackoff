@@ -43,6 +43,10 @@ class Messages extends React.Component {
     this.buildMessageItems = this.buildMessageItems.bind(this);
   }
 
+  componentWillUnmount() {
+    this.pusher.disconnect();
+  }
+
   componentWillReceiveProps(newProps) {
     const channelLoaded = this.props.channel.name !== undefined;
 

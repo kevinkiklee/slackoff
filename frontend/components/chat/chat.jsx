@@ -43,6 +43,10 @@ class Chat extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.pusher.disconnect();
+  }
+
   componentWillMount() {
     this.props.fetchChannel(this.props.user.id, this.props.user.current_channel)
               .then(() => {
