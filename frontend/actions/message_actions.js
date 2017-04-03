@@ -1,5 +1,6 @@
 import * as MessageAPIUtil from '../util/message_api_util';
 import * as EmoticonAPIUtil from '../util/emoticon_api_util';
+
 import { closeEmoticonPicker } from './modal_actions';
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';

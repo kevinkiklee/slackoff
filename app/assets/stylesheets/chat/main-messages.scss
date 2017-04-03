@@ -22,6 +22,7 @@
   overflow-y: scroll;
 
   .message-container {
+    position: relative;
     padding-left: 20px;
     padding-right: 25px;
     padding-top: 10px;
@@ -67,6 +68,7 @@
         display: flex;
         align-items: center;
         margin-bottom: 5px;
+        position: relative;
 
         .message-username {
           font-weight: bold;

@@ -100,21 +100,12 @@ class MessageItem extends React.Component {
     }
   }
 
-
-
   toggleEmoticonPicker(e) {
-    // debugger
     if (this.props.emoticonPicker === true) {
       this.props.closeEmoticonPicker();
     } else {
-      // debugger
       this.props.openEmoticonPicker(this.props.message.id);
     }
-    // if (this.state.emoticonPicker === 'show') {
-    //   this.setState({ emoticonPicker: 'hide' });
-    // } else {
-    //   this.setState({ emoticonPicker: 'show' });
-    // }
   }
 
   editMessage(e) {
