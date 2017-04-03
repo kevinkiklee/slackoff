@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {findDOMNode} from 'react-dom'
+import {findDOMNode} from 'react-dom';
 
 import { Emoji } from 'emoji-mart';
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from 'react-tooltip';
 import find from 'lodash/find';
 
 import { addEmoticon,
@@ -35,7 +35,7 @@ class EmoticonItem extends React.Component {
         if (id === this.props.userId) {
           usernames.unshift('@you');
         } else {
-          const username = find(this.props.users, { 'id': id }).username
+          const username = find(this.props.users, { 'id': id }).username;
           usernames.push('@' + username);
         }
       });
@@ -64,7 +64,7 @@ class EmoticonItem extends React.Component {
       user_id: this.props.userId,
       message_id: this.props.messageId,
       icon: this.props.emoticon
-    }
+    };
 
     this.props.addEmoticon(emoticon);
   }
@@ -76,7 +76,7 @@ class EmoticonItem extends React.Component {
   findEmoticonId() {
     return find(this.props.allEmoticons,
                 { 'user_id': this.props.userId,
-                  'icon': this.props.emoticon }).id
+                  'icon': this.props.emoticon }).id;
   }
 
   handleClick(e) {
@@ -101,7 +101,7 @@ class EmoticonItem extends React.Component {
           <p>{ this.props.count }</p>
         </button>
       </p>
-    )
+    );
   }
 }
 

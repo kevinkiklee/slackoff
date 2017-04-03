@@ -10,12 +10,12 @@ const Root = ({ store }) => {
   const redirectIfLoggedIn = (nextState, replace) => {
     if (store.getState().session.currentUser)
       replace('/');
-  }
+  };
 
   const redirectUnlessLoggedIn = (nextState, replace) => {
     if (!store.getState().session.currentUser)
       replace('/login');
-  }
+  };
 
   return (
     <Provider store={ store }>

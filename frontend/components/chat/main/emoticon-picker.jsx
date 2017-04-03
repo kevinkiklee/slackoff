@@ -36,12 +36,14 @@ class EmoticonPicker extends React.Component {
       user_id: this.props.userId,
       message_id: this.props.messageId,
       icon: event.id
-    }
+    };
+
     this.props.addEmoticon(emoticon);
   }
 
   render() {
-    if (this.props.emoticonPicker && this.props.messageId === this.props.pickerMsgId) {
+    if (this.props.emoticonPicker
+        && this.props.messageId === this.props.pickerMsgId) {
       return (
         <div className='emojiPickerContainer'>
           <Picker onClick={ this.addEmoticon }/>

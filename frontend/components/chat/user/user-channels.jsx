@@ -87,7 +87,7 @@ const mapStateToProps = (state, ownProps) => {
     user: state.session.currentUser,
     userChannels: state.session.currentUser.subscriptions,
     currentChannel: state.channel
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

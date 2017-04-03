@@ -12,6 +12,6 @@ const UserChannelItem = (props) => {
         { props.channel.name }
       </li>
     );
-}
+};
 
 export default UserChannelItem;

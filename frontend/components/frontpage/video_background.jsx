@@ -9,6 +9,6 @@ const VideoBackground = () => {
       </video>
     </div>
   );
-}
+};
 
 export default VideoBackground;

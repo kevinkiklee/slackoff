@@ -9,7 +9,7 @@ class Emoticons extends React.Component {
 
     this.state = {
       emoticons: this.props.emoticons,
-    }
+    };
 
     this.buildIcons = this.buildIcons.bind(this);
     this.buildIconsData = this.buildIconsData.bind(this);
@@ -36,7 +36,7 @@ class Emoticons extends React.Component {
   }
 
   buildIconsData() {
-    const iconsData = {}
+    const iconsData = {};
 
     this.state.emoticons.forEach((emoticon) => {
       if (iconsData.hasOwnProperty(emoticon.icon)) {
@@ -58,7 +58,7 @@ class Emoticons extends React.Component {
           { this.buildIcons() }
         </ul>
       </div>
-    )
+    );
   }
 }
 

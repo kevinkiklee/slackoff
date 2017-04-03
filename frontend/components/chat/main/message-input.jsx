@@ -27,7 +27,7 @@ class MessageInput extends React.Component {
     const message = {
       channel_id: this.props.channel.id,
       user_id: this.props.user.id,
-      content: this.state.message
+      content: this.state.message,
     };
 
     this.props.createMessage(message).then(
@@ -62,7 +62,7 @@ class MessageInput extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
   user: state.session.currentUser,
-  channel: state.channel
+  channel: state.channel,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

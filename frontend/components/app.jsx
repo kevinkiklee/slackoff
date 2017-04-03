@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Navbar from './frontpage/navbar'
+import Navbar from './frontpage/navbar';
 import VideoBackground from './frontpage/video_background';
 import Banner from './frontpage/banner';
 

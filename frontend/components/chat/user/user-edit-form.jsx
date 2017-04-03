@@ -29,7 +29,7 @@ class UserEditForm extends React.Component {
       this.setState({
         photo_url: fileReader.result
       });
-    }
+    };
 
     if (file) {
       fileReader.readAsDataURL(file);

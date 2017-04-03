@@ -10,11 +10,9 @@ class MainSection extends React.Component {
   render() {
     return (
       <section className='main-section'>
-
         <Header />
         <Messages />
         <MessageInput />
-
       </section>
     );
   }
