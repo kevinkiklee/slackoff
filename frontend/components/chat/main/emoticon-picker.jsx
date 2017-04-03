@@ -25,10 +25,8 @@ class EmoticonPicker extends React.Component {
   }
 
   handleClick(e) {
-    // debugger
     if(!ReactDOM.findDOMNode(this).contains(e.target)
-        && e.target.className !== "emoji-mart-search"
-        && e.target.nodeName !== "svg") {
+        && e.target.className !== "emoji-mart-search") {
       this.props.closeEmoticonPicker();
     }
   }
