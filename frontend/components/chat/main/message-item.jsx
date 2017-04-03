@@ -100,6 +100,8 @@ class MessageItem extends React.Component {
     }
   }
 
+
+
   toggleEmoticonPicker(e) {
     // debugger
     if (this.props.emoticonPicker === true) {
@@ -147,7 +149,7 @@ class MessageItem extends React.Component {
       content = this.buildEditMessageForm();
     }
 
-    if (this.props.emoticonPicker) {
+    if (this.state.emoticonPicker) {
       emoticonPicker = <EmoticonPicker message={ this.state.message }/>
     }
 

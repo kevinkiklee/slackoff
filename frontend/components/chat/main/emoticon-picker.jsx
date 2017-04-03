@@ -9,9 +9,27 @@ import { addEmoticon } from '../../../actions/message_actions';
 class EmoticonPicker extends React.Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   open: false
+    // }
 
     this.addEmoticon = this.addEmoticon.bind(this);
   }
+  //
+  // componentWillMount() {
+  //   document.addEventListener('click', this.handleClick, false);
+  // }
+  //
+  // componentWillUnmount() {
+  //   document.removeEventListener('click', this.handleClick, false);
+  // }
+  //
+  // handleClick(e) {
+  //   if(!ReactDOM.findDOMNode(this).contains(e.target) && e.target.className !== "emojiPickerContainer") {
+  //     // this.props.toggleEditForm();
+  //     this.setState({ open: false })
+  //   }
+  // }
 
   addEmoticon(event) {
     const emoticon = {
@@ -24,15 +42,16 @@ class EmoticonPicker extends React.Component {
 
   render() {
     if (this.props.emoticonPicker && this.props.messageId === this.props.pickerMsgId) {
+    // if (this.state.open) {
       return (
         <div className='emojiPickerContainer'>
           <Picker onClick={ this.addEmoticon }/>
         </div>
-      )
+      );
     } else {
       return (
         <div></div>
-      )
+      );
     }
   }
 }

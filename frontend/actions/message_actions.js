@@ -1,5 +1,6 @@
 import * as MessageAPIUtil from '../util/message_api_util';
 import * as EmoticonAPIUtil from '../util/emoticon_api_util';
+import { closeEmoticonPicker } from './modal_actions';
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const REMOVE_MESSAGE = 'REMOVE_MESSAGE';
@@ -36,6 +37,7 @@ export const deleteMessage = (id) => dispatch => {
 
 export const addEmoticon = (icon) => dispatch => {
   return EmoticonAPIUtil.createEmoticon(icon)
+    .then(() => dispatch(closeEmoticonPicker()));
 };
 
 export const removeEmoticon = (id) => dispatch => {
