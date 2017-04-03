@@ -21,6 +21,7 @@
 }
 
 .emoji-mart-bar:first-child {
+  display: none;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -30,7 +31,7 @@
 }
 
 .emoji-mart-anchors {
-  display: flex;
+  display: none;
   justify-content: space-between;
   padding: 0 6px;
   color: #858585;
@@ -75,8 +76,8 @@
   overflow-y: scroll;
   height: 210px;
   padding: 0 6px 6px 6px;
-  border: solid #d9d9d9;
-  border-width: 1px 0;
+  // border: solid #d9d9d9;
+  // border-width: 1px 0;
 }
 
 .emoji-mart-search {
