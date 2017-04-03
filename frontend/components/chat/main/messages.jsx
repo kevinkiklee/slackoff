@@ -50,6 +50,10 @@ class Messages extends React.Component {
       // this.pusher.unsubscribe(this.props.channel.id.toString());
       this.pusher.disconnect();
 
+      this.pusher = new Pusher('d46870f8b7c4c1636fca', {
+        encrypted: true
+      });
+
       this.channel = this.pusher.subscribe(newProps.channel.id.toString());
 
       this.channel.bind('message', (message) => {
