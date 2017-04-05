@@ -154,7 +154,7 @@ updateFile(e) {
 
   fileReader.onloadend = () => {
     this.setState({ photo_url: fileReader.result });
-  }
+  };
 
   if (file)
     fileReader.readAsDataURL(file);
@@ -183,7 +183,7 @@ export const updateUser = (formData) => {
     contentType: false,
     processData: false,
     data: formData
-  })
+  });
 }
 ```
 
@@ -191,9 +191,21 @@ The user can upload an avatar during the signup process, or the user can edit hi
 
 ### Emoticons
 
+![Emoticons](/docs/screenshots/emoticons.png)
+
 A Slack clone is not truly a Slack clone unless it has emoticons.  How we can convey so much meaning with 16x16 pixels is quite remarkable.  SlackOff utilizes the EmojiMart node module for the emoticons.
 
+```javascript
+import { Picker } from 'emoji-mart';
 
+render () {
+  return (
+    <Picker onClick={ this.addEmoticon }/>
+  );
+}
+```
+
+The EmojiMart provides the `Picker` component.
 
 ## Design
 
@@ -248,6 +260,6 @@ SlackOff is designed with satisfying UI/UX in mind.  Through React animation API
 
 * [X] Notification
 * [X] Avatar Upload
-* [ ] Emoticons
+* [X] Emoticons
+* [ ] Giphy Support
 * [ ] Multiple Sessions
-* [ ] Messages Search
