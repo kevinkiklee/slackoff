@@ -40,6 +40,7 @@ class Api::MessagesController < ApplicationController
 
   def update
     @message = Message.includes(:channel, :emoticons).find(params[:id])
+
     @message.update(message_params)
     @channel = @message.channel
     @emoticons = @message.emoticons.order(created_at: :asc)
