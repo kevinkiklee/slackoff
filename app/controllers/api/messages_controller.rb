@@ -5,8 +5,6 @@ class Api::MessagesController < ApplicationController
     if @message.save
       @channel = Channel.includes(:messages, :users).find(params[:message][:channel_id])
       @messages = @channel.messages.order(:created_at).reverse
-      # @emoticons = @message.emoticons.all.order(created_at: :asc)
-      # @emoticons = []
       author = User.find(@message.user_id)
 
       new_message = {
@@ -41,7 +39,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def update
-    @message = Message.find(params[:id])
+    @message = Message.includes(:channel, :emoticons).find(params[:id])
     @message.update(message_params)
     @channel = @message.channel
     @emoticons = @message.emoticons.order(created_at: :asc)
@@ -54,7 +52,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def destroy
-    @message = Message.find(params[:id])
+    @message = Message.includes(:channel).find(params[:id])
     @channel = @message.channel
     @message.destroy
 
