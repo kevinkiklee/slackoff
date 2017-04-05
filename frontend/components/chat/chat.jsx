@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router';
 import { fetchChannel } from '../../actions/channel_actions';
 import { setChannel } from '../../actions/current_channel_actions';
 
+import Spinner from './spinner';
 import UserSection from './user/user-section';
 import MainSection from './main/main-section';
 import ChannelSection from './channel/channel-section';
@@ -61,7 +62,7 @@ class Chat extends React.Component {
   }
 
   render() {
-    if (this.props.user) {
+    if (this.props.user && this.props.channel.name) {
       return (
         <div className='chat-container'>
           <UserSection />
@@ -71,7 +72,7 @@ class Chat extends React.Component {
       );
     } else {
       return (
-        <div></div>
+        <Spinner />
       );
     }
   }
