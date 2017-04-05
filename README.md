@@ -24,6 +24,8 @@ SlackOff utilizes the following:
 - jBuilder
 - react-modal
 - react-alert
+- emoji-mart
+- react-tooltip
 
 ## Features
 
@@ -139,7 +141,7 @@ this.channel.bind('notify', (data) => {
 
 When a new message is dispatched through Pusher from the Rails backend, an alert popup is displayed to notify the user that a new direct message was received. This alert, created with `react-alert` package, is only triggered when the channel the user is currently browsing is not the channel the user is currently viewing.
 
-## Avatar
+### Avatar
 
 ![Avatar Upload](/docs/screenshots/avatar-upload.png)
 
@@ -186,6 +188,12 @@ export const updateUser = (formData) => {
 ```
 
 The user can upload an avatar during the signup process, or the user can edit his or her profile through the user menu within the main application.  The image data is stored through the FormData interface, then submitted to the Rails API where the Paperclip gem automatically stores the file into AWS S3.
+
+### Emoticons
+
+A Slack clone is not truly a Slack clone unless it has emoticons.  How we can convey so much meaning with 16x16 pixels is quite remarkable.  SlackOff utilizes the EmojiMart node module for the emoticons.
+
+
 
 ## Design
 
