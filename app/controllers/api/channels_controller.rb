@@ -72,7 +72,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    @channel = Channel.includes(:users, :messages => [:user]).find(params[:id])
+    @channel = Channel.includes(:users, :messages => [:user, :emoticons]).find(params[:id])
     @users = @channel.users.order(:username)
     @messages = @channel.messages.order(:created_at).reverse
     @user_count = @channel.users.count

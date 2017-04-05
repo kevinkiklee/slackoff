@@ -71,12 +71,31 @@ class DirectMessage extends React.Component {
       id: this.props.currentUser.id,
       username: this.props.currentUser.username,
       photo_url: this.props.currentUser.photo_url
-    };  
+    };
 
-    let selectedUsersCopy = [...this.state.selectedUsers]
+    let selectedUsersCopy = [...this.state.selectedUsers];
+                              // .sort((a, b) => {
+                              //   let nameA = a.username.toUpperCase();
+                              //   let nameB = b.username.toUpperCase();
+                              //
+                              //   if (nameA < nameB) {
+                              //     return -1;
+                              //   }
+                              //
+                              //   if (nameA > nameB) {
+                              //     return 1;
+                              //   }
+                              //
+                              //   return 0;
+                              // });
+
+    let selectedUsers = [currentUser, ...selectedUsersCopy];
+
+    const channelName = selectedUsers
+                              .map((user) => (user.username))
                               .sort((a, b) => {
-                                let nameA = a.username.toUpperCase();
-                                let nameB = b.username.toUpperCase();
+                                let nameA = a.toUpperCase();
+                                let nameB = b.toUpperCase();
 
                                 if (nameA < nameB) {
                                   return -1;
@@ -87,13 +106,9 @@ class DirectMessage extends React.Component {
                                 }
 
                                 return 0;
-                              });
-
-    let selectedUsers = [currentUser, ...selectedUsersCopy];
-
-    const channelName = selectedUsers
-                              .map((user) => (user.username))
-                              .join('').replace(/\./g, '');
+                              })
+                              .join('')
+                              .replace(/\./g, '');
 
     const filtered = this.props.directMessages.filter((dm) => (dm.name === channelName));
 
