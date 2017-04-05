@@ -5,7 +5,8 @@ class Api::MessagesController < ApplicationController
     if @message.save
       @channel = Channel.includes(:messages, :users).find(params[:message][:channel_id])
       @messages = @channel.messages.order(:created_at).reverse
-      @emoticons = @message.emoticons.all.order(created_at: :asc)
+      # @emoticons = @message.emoticons.all.order(created_at: :asc)
+      # @emoticons = []
       author = User.find(@message.user_id)
 
       new_message = {
@@ -18,7 +19,7 @@ class Api::MessagesController < ApplicationController
           "username" => author.username,
           "photo_url" => ActionController::Base.helpers.asset_path(author.avatar.url)
         },
-        "emoticons" => @emoticons
+        "emoticons" => []
       }
 
       Pusher.trigger(@channel.id, 'message', {

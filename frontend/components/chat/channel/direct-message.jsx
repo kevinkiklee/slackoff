@@ -71,23 +71,23 @@ class DirectMessage extends React.Component {
       id: this.props.currentUser.id,
       username: this.props.currentUser.username,
       photo_url: this.props.currentUser.photo_url
-    };
+    };  
 
     let selectedUsersCopy = [...this.state.selectedUsers]
                               .sort((a, b) => {
-                                      let nameA = a.username.toUpperCase();
-                                      let nameB = b.username.toUpperCase();
+                                let nameA = a.username.toUpperCase();
+                                let nameB = b.username.toUpperCase();
 
-                                      if (nameA < nameB) {
-                                        return -1;
-                                      }
+                                if (nameA < nameB) {
+                                  return -1;
+                                }
 
-                                      if (nameA > nameB) {
-                                        return 1;
-                                      }
+                                if (nameA > nameB) {
+                                  return 1;
+                                }
 
-                                      return 0;
-                                    });
+                                return 0;
+                              });
 
     let selectedUsers = [currentUser, ...selectedUsersCopy];
 
