@@ -193,6 +193,8 @@ The user can upload an avatar during the signup process, or the user can edit hi
 
 ![Emoticons](/docs/screenshots/emoticons.png)
 
+![EmoticonPicker](/docs/screenshots/emoticon-picker.png)
+
 A Slack clone is not truly a Slack clone unless it has emoticons.  How we can convey so much meaning with 16x16 pixels is quite remarkable.  SlackOff utilizes the EmojiMart node module for the emoticons.
 
 ```javascript
@@ -205,7 +207,7 @@ render () {
 }
 ```
 
-The EmojiMart provides the `Picker` component.
+The EmojiMart provides the `Picker` component.  When an icon is picked, the `Picker` component returns the name of the chosen icon, and the `addEmoticon` action is triggered which sends an AJAX call to the Rails backend.  
 
 ## Design
 
