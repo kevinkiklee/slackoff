@@ -83,7 +83,7 @@
         }
 
         .message-btn-container {
-          background-color: #efefef;
+          background-color: #f7f7f7;
           display: none;
           position: absolute;
           right: -11px;
@@ -93,6 +93,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            
             margin-left: -1px;
             padding: 5px;
             transition: all 0.3s ease 0s;
@@ -118,10 +119,10 @@
 
             &:hover {
               transition: all 0.3s ease 0s;
+
               i {
                 transition: all 0.3s ease 0s;
                 color: #1c73ff;
-
               }
             }
           }
