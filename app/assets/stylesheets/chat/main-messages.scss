@@ -89,15 +89,20 @@
           right: -11px;
           transition: all 0.3s ease 0s;
 
+          border-radius: 5px;
+          -webkit-box-shadow: 1px 1px 1px 0px rgba(50, 50, 50, 0.50);
+          -moz-box-shadow:    1px 1px 1px 0px rgba(50, 50, 50, 0.50);
+          box-shadow:         1px 1px 1px 0px rgba(50, 50, 50, 0.50);
+
           button {
             display: flex;
             justify-content: center;
             align-items: center;
-            
+
             margin-left: -1px;
             padding: 5px;
             transition: all 0.3s ease 0s;
-            border: 1px solid #999;
+            border: 1px solid #ddd;
 
             &:first-child {
               border-top-left-radius: 5px;
