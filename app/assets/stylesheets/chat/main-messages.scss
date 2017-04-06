@@ -83,21 +83,46 @@
         }
 
         .message-btn-container {
+          background-color: #efefef;
           display: none;
           position: absolute;
-          right: 0px;
+          right: -11px;
           transition: all 0.3s ease 0s;
 
           button {
-            margin-left: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -1px;
+            padding: 5px;
             transition: all 0.3s ease 0s;
+            border: 1px solid #999;
+
+            &:first-child {
+              border-top-left-radius: 5px;
+              border-bottom-left-radius: 5px;
+            }
+
+            &:last-child {
+              border-top-right-radius: 5px;
+              border-bottom-right-radius: 5px;
+            }
 
             i {
+              color: #999;
               font-size: 20px;
+              margin-left: 2px;
+              margin-right: 2px;
+              transition: all 0.3s ease 0s;
             }
 
             &:hover {
-              color: black;
+              transition: all 0.3s ease 0s;
+              i {
+                transition: all 0.3s ease 0s;
+                color: #1c73ff;
+
+              }
             }
           }
         }

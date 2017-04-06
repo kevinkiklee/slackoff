@@ -28,7 +28,7 @@ class MessageItem extends React.Component {
       emoticonPicker: 'hide',
     };
 
-    this.messageIcons = this.messageIcons.bind(this);
+    this.messageButtons = this.messageButtons.bind(this);
     this.editMessage = this.editMessage.bind(this);
     this.deleteMessage = this.deleteMessage.bind(this);
 
@@ -131,7 +131,7 @@ class MessageItem extends React.Component {
     );
   }
 
-  messageIcons() {
+  messageButtons() {
     return (
       <div className='message-btn-container'>
         <button className='emoticonPicker-btn' onClick={ this.toggleEmoticonPicker }>
@@ -176,7 +176,7 @@ class MessageItem extends React.Component {
                 { moment(this.props.message.updated_at).format('LT') }
                 <span> | </span>{ moment(this.props.message.updated_at).fromNow() }
                 </div>
-                { this.messageIcons() }
+                { this.messageButtons() }
               </div>
 
               { content }
