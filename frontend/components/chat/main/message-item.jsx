@@ -28,6 +28,7 @@ class MessageItem extends React.Component {
       emoticonPicker: 'hide',
     };
 
+    this.messageIcons = this.messageIcons.bind(this);
     this.editMessage = this.editMessage.bind(this);
     this.deleteMessage = this.deleteMessage.bind(this);
 
@@ -130,6 +131,22 @@ class MessageItem extends React.Component {
     );
   }
 
+  messageIcons() {
+    return (
+      <div className='message-btn-container'>
+        <button className='emoticonPicker-btn' onClick={ this.toggleEmoticonPicker }>
+          <i className="fa fa-smile-o fa-6" aria-hidden="true"></i>
+        </button>
+        <button className='message-edit-btn' onClick={ this.toggleEditForm }>
+          <i className="fa fa-pencil-square-o fa-6" aria-hidden="true"></i>
+        </button>
+        <button className='message-delete-btn' onClick={ this.deleteMessage }>
+          <i className="fa fa-times-circle-o fa-6" aria-hidden="true"></i>
+        </button>
+      </div>
+    );
+  }
+
   render() {
     let content = '';
     let emoticonPicker = '';
@@ -159,17 +176,7 @@ class MessageItem extends React.Component {
                 { moment(this.props.message.updated_at).format('LT') }
                 <span> | </span>{ moment(this.props.message.updated_at).fromNow() }
                 </div>
-                <div className='message-btn-container'>
-                  <button className='emoticonPicker-btn' onClick={ this.toggleEmoticonPicker }>
-                    <i className="fa fa-smile-o fa-6" aria-hidden="true"></i>
-                  </button>
-                  <button className='message-edit-btn' onClick={ this.toggleEditForm }>
-                    <i className="fa fa-pencil-square-o fa-6" aria-hidden="true"></i>
-                  </button>
-                  <button className='message-delete-btn' onClick={ this.deleteMessage }>
-                    <i className="fa fa-times-circle-o fa-6" aria-hidden="true"></i>
-                  </button>
-                </div>
+                { this.messageIcons() }
               </div>
 
               { content }

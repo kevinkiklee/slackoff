@@ -56,7 +56,6 @@ class Chat extends React.Component {
                   name: this.props.channel.name,
                   description: this.props.channel.description
                 };
-
                 this.props.setChannel(channel);
               });
   }
