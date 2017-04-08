@@ -8,6 +8,20 @@ SlackOff is an App Academy portfolio project inspired by Slack.
 
 Live Site: [http://slackoff.today]
 
+## Table of Contents
+1. [Implementation](#implementation)
+2. [Features](#features)
+  1. [Authentication](#authentication)
+  2. [Live Chat](#live-chat)
+  3. [Channels](#channels)
+  4. [Direct Messaging](#direct/team-messaging)
+  5. [Avatar](#avatar)
+  6. [Emoticons](#emoticons)
+3. [Design](#design)
+  1. [Wireframe](#wireframe)
+  2. [UI/UX](#ui/ux)
+3. [Future Release](#future-release)
+
 ## Implementation
 
 SlackOff utilizes the following:
