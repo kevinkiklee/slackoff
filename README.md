@@ -209,6 +209,12 @@ render () {
 
 The EmojiMart provides the `Picker` component.  When an icon is picked, the `Picker` component returns the name of the chosen icon, and the `addEmoticon` action is triggered which sends an AJAX call to the Rails backend.  
 
+### Image / Giphy
+
+![Giphy](/docs/screenshots/giphy.gif)
+
+SLackOff also comes with Giphy support.  The `/giphy [search terms]` command can be utilized to display a random Giphy animation.
+
 ## Design
 
 ### Wireframe
