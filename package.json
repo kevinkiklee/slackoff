@@ -29,6 +29,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
+    "superagent": "^3.5.2",
     "webpack": "^2.2.1"
   },
   "engines": {
