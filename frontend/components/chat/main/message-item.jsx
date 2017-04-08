@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
@@ -38,9 +39,13 @@ class MessageItem extends React.Component {
     this.toggleEditForm = this.toggleEditForm.bind(this);
     this.buildEditMessageForm = this.buildEditMessageForm.bind(this);
     this.buildShowMessage = this.buildShowMessage.bind(this);
-    this.handleInput = this.handleInput.bind(this);
-
     this.showAuthorAlert = this.showAuthorAlert.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentWillMount() {
+    document.addEventListener('click', this.handleClick, false);
   }
 
   componentWillReceiveProps(newProps) {
@@ -63,8 +68,19 @@ class MessageItem extends React.Component {
   }
 
   componentWillUnmount() {
+    document.removeEventListener('click', this.handleClick, false);
     this.setState({ contentAction: 'show',
                     emoticonPicker: 'hide' });
+  }
+
+  handleClick(e) {
+    if(!ReactDOM.findDOMNode(this).contains(e.target)
+      && e.target.className !== "message-edit-input"
+      && this.state.contentAction === 'edit') {
+
+      this.setState({ contentAction: 'show',
+                      emoticonPicker: 'hide' });
+    }
   }
 
   showAuthorAlert(){
