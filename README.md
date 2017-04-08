@@ -1,6 +1,7 @@
 # SlackOff
 
-<!-- ![SlackOff Main Application](/docs/screenshots/slackoff-main.png) -->
+![Giphy](/docs/screenshots/giphy.gif)
+
 ![SlackOff Main Application](/docs/screenshots/slackoff.gif)
 
 SlackOff is an App Academy portfolio project inspired by Slack.
@@ -209,12 +210,6 @@ render () {
 
 The EmojiMart provides the `Picker` component.  When an icon is picked, the `Picker` component returns the name of the chosen icon, and the `addEmoticon` action is triggered which sends an AJAX call to the Rails backend.  
 
-### Image / Giphy
-
-![Giphy](/docs/screenshots/giphy.gif)
-
-SLackOff also comes with Giphy support.  The `/giphy [search terms]` command can be utilized to display a random Giphy animation.
-
 ## Design
 
 ### Wireframe
@@ -269,5 +264,4 @@ SlackOff is designed with satisfying UI/UX in mind.  Through React animation API
 * [X] Notification
 * [X] Avatar Upload
 * [X] Emoticons
-* [ ] Giphy Support
-* [ ] Multiple Sessions
+* [X] Giphy Support
