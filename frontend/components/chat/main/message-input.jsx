@@ -24,10 +24,17 @@ class MessageInput extends React.Component {
   submitMessage(e) {
     e.preventDefault();
 
+    if (this.state.message === '') {
+      return;
+    }
+
+    const content_type = 'regular';
+
     const message = {
       channel_id: this.props.channel.id,
       user_id: this.props.user.id,
       content: this.state.message,
+      content_type
     };
 
     this.props.createMessage(message).then(

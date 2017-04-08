@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {findDOMNode} from 'react-dom';
+import { findDOMNode } from 'react-dom';
 
 import { Emoji } from 'emoji-mart';
 import ReactTooltip from 'react-tooltip';
