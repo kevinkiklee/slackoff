@@ -11,15 +11,15 @@ Live Site: [http://slackoff.today]
 ## Table of Contents
 1. [Implementation](#implementation)
 2. [Features](#features)
-  - [Authentication](#authentication)
-  - [Live Chat](#live-chat)
-  - [Channels](#channels)
-  - [Direct Messaging](#direct-messaging)
-  - [Avatar](#avatar)
-  - [Emoticons](#emoticons)
+    - [Authentication](#authentication)
+    - [Live Chat](#live-chat)
+    - [Channels](#channels)
+    - [Direct Messaging](#direct-messaging)
+    - [Avatar](#avatar)
+    - [Emoticons](#emoticons)
 3. [Design](#design)
-  - [Wireframe](#wireframe)
-  - [UI/UX](#ui-ux)
+    - [Wireframe](#wireframe)
+    - [UI/UX](#uiux)
 4. [Future Release](#future-release)
 
 ## Implementation
