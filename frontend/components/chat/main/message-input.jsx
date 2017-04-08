@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
 
 import { createMessage } from '../../../actions/channel_actions';
 import { fetchGiphyUrl } from '../../../actions/message_actions';
@@ -29,8 +28,6 @@ class MessageInput extends React.Component {
 
     if (msg === '')
       return;
-
-    // debugger
 
     if (msg.slice(0, 6) === '/giphy') {
       const query = msg.slice(7, msg.length).split(' ').join('+');;
@@ -100,4 +97,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(MessageInput));
+)(MessageInput);
