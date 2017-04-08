@@ -28,6 +28,7 @@ class MessageItem extends React.Component {
       emoticonPicker: 'hide',
     };
 
+    this.isGiphy = this.isGiphy.bind(this);
     this.messageButtons = this.messageButtons.bind(this);
     this.editMessage = this.editMessage.bind(this);
     this.deleteMessage = this.deleteMessage.bind(this);
@@ -147,15 +148,25 @@ class MessageItem extends React.Component {
     );
   }
 
+  isGiphy() {
+    const msg = this.props.message.content;
+    return msg.slice(msg.length - 4, msg.length) === '.gif';
+  }
+
   render() {
     let content = '';
     let emoticonPicker = '';
 
     if (this.state.contentAction === 'show') {
-      content = this.buildShowMessage();
+      if (this.isGiphy()) {
+        content = <img src={this.props.message.content} />
+      } else {
+        content = this.buildShowMessage();
+      }
     } else {
       content = this.buildEditMessageForm();
     }
+
 
     if (this.props.emoticonPicker) {
       emoticonPicker = <EmoticonPicker message={ this.state.message }/>
@@ -184,7 +195,7 @@ class MessageItem extends React.Component {
                          message={ this.props.message }
                          allEmoticons={ this.props.message.emoticons }/>
               { emoticonPicker }
-            </div>
+          </div>
           </div>
       </li>
     );

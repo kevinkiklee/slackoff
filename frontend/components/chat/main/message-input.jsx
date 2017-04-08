@@ -24,8 +24,12 @@ class MessageInput extends React.Component {
   submitMessage(e) {
     e.preventDefault();
 
-    if (this.state.message === '') {
+    if (this.state.message === '')
       return;
+
+    if (this.state.message.slice(0, 7) === '/giphy') {
+      console.log(this.state.message);
+      console.log('giphy');
     }
 
     const content_type = 'regular';
