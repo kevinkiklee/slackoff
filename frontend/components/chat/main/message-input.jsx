@@ -25,22 +25,27 @@ class MessageInput extends React.Component {
   submitMessage(e) {
     e.preventDefault();
 
-    if (this.state.message === '')
+    const msg = this.state.message;
+
+    if (msg === '')
       return;
 
-    if (this.state.message.slice(0, 7) === '/giphy') {
-      this.props.fetchGiphyUrl(this.buildGiphyQuery('a'))
-        .then((giphy) => {
-          debugger
-        // debugger
-        // console.log(giphy);
+    // debugger
+
+    if (msg.slice(0, 6) === '/giphy') {
+      const query = msg.slice(7, msg.length).split(' ').join('+');;
+
+      this.props.fetchGiphyUrl(query)
+        .then((giphies) => {
+          const idx = Math.floor(Math.random() * giphies.data.length);
+
           const message = {
             channel_id: this.props.channel.id,
             user_id: this.props.user.id,
-            content: this.state.message,
+            content: giphies.data[idx].images.original.url,
           };
 
-          return (message) => this.props.createMessage(message).then(
+          this.props.createMessage(message).then(
             () => (this.setState({ message: '' }))
           );
         });
@@ -48,17 +53,13 @@ class MessageInput extends React.Component {
       const message = {
         channel_id: this.props.channel.id,
         user_id: this.props.user.id,
-        content: this.state.message,
+        content: msg,
       };
 
       this.props.createMessage(message).then(
         () => (this.setState({ message: '' }))
       );
     }
-  }
-
-  buildGiphyQuery(string) {
-    return 'rick+and+morty'
   }
 
   render() {
