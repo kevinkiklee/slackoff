@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 
 import { createMessage } from '../../../actions/channel_actions';
+import { fetchGiphyUrl } from '../../../actions/message_actions';
 
 class MessageInput extends React.Component {
   constructor(props) {
@@ -28,22 +29,36 @@ class MessageInput extends React.Component {
       return;
 
     if (this.state.message.slice(0, 7) === '/giphy') {
-      console.log(this.state.message);
-      console.log('giphy');
+      this.props.fetchGiphyUrl(this.buildGiphyQuery('a'))
+        .then((giphy) => {
+          debugger
+        // debugger
+        // console.log(giphy);
+          const message = {
+            channel_id: this.props.channel.id,
+            user_id: this.props.user.id,
+            content: this.state.message,
+          };
+
+          return (message) => this.props.createMessage(message).then(
+            () => (this.setState({ message: '' }))
+          );
+        });
+    } else {
+      const message = {
+        channel_id: this.props.channel.id,
+        user_id: this.props.user.id,
+        content: this.state.message,
+      };
+
+      this.props.createMessage(message).then(
+        () => (this.setState({ message: '' }))
+      );
     }
+  }
 
-    const content_type = 'regular';
-
-    const message = {
-      channel_id: this.props.channel.id,
-      user_id: this.props.user.id,
-      content: this.state.message,
-      content_type
-    };
-
-    this.props.createMessage(message).then(
-      () => (this.setState({ message: '' }))
-    );
+  buildGiphyQuery(string) {
+    return 'rick+and+morty'
   }
 
   render() {
@@ -77,7 +92,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  createMessage: (message) => dispatch(createMessage(message))
+  createMessage: (message) => dispatch(createMessage(message)),
+  fetchGiphyUrl: (query) => dispatch(fetchGiphyUrl(query))
 });
 
 export default connect(

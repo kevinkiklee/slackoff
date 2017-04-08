@@ -1,5 +1,6 @@
 import * as MessageAPIUtil from '../util/message_api_util';
 import * as EmoticonAPIUtil from '../util/emoticon_api_util';
+import * as GiphyAPIUtil from '../util/giphy_api_util';
 
 import { closeEmoticonPicker } from './modal_actions';
 
@@ -44,3 +45,7 @@ export const addEmoticon = (icon) => dispatch => {
 export const removeEmoticon = (id) => dispatch => {
   return EmoticonAPIUtil.deleteEmoticon(id)
 };
+
+export const fetchGiphyUrl = (query) => dispatch => {
+  return GiphyAPIUtil.fetchGiphyUrl(query);
+}
