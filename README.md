@@ -11,16 +11,16 @@ Live Site: [http://slackoff.today]
 ## Table of Contents
 1. [Implementation](#implementation)
 2. [Features](#features)
-  1. [Authentication](#authentication)
-  2. [Live Chat](#live-chat)
-  3. [Channels](#channels)
-  4. [Direct Messaging](#direct/team-messaging)
-  5. [Avatar](#avatar)
-  6. [Emoticons](#emoticons)
+  - [Authentication](#authentication)
+  - [Live Chat](#live-chat)
+  - [Channels](#channels)
+  - [Direct Messaging](#direct-messaging)
+  - [Avatar](#avatar)
+  - [Emoticons](#emoticons)
 3. [Design](#design)
-  1. [Wireframe](#wireframe)
-  2. [UI/UX](#ui/ux)
-3. [Future Release](#future-release)
+  - [Wireframe](#wireframe)
+  - [UI/UX](#ui-ux)
+4. [Future Release](#future-release)
 
 ## Implementation
 
@@ -126,7 +126,7 @@ matches() {
 
 The auto-completion for the channels search is implemented by updating the state of the channel list with the user's search input.
 
-### Direct/Team Messaging
+### Direct Messaging
 
 ![Direct Message View](/docs/screenshots/direct-message.png)
 
