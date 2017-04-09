@@ -60,6 +60,10 @@ class User < ApplicationRecord
 		self.session_token
 	end
 
+	def sorted_direct_messages(user)
+		user.channels.includes(:users).where(private: true)
+	end
+
 	private
 
 	def ensure_session_token
