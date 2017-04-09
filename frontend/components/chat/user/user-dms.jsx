@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import merge from 'lodash/merge';
 
 import UserDMItem from './user-dm-item';
 import DirectMessage from '../channel/direct-message.jsx';
@@ -27,6 +28,7 @@ class UserDMs extends React.Component {
       this.props.getUser(this.props.user.id);
     }, this);
 
+    this.sortDMItems = this.sortDMItems.bind(this);
     this.buildDMItems = this.buildDMItems.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.openDirectMessageForm = this.openDirectMessageForm.bind(this);
@@ -63,8 +65,13 @@ class UserDMs extends React.Component {
     this.props.openDirectMessageModal([]);
   }
 
+  sortDMItems() {
+    let copiedDMs = [...this.state.directMessages];
+    return copiedDMs;
+  }
+
   buildDMItems() {
-    return this.state.directMessages.map((directMessage, i) => {
+    return this.sortDMItems().map((directMessage, i) => {
       if (directMessage.users.length < 1) {
         return;
       }
@@ -77,8 +84,7 @@ class UserDMs extends React.Component {
           />
         </button>
       );
-    }
-  );
+    });
   }
 
   render() {
