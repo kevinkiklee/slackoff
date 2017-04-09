@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
 
 import Header from './header';
 import Messages from './messages';
@@ -18,4 +17,4 @@ class MainSection extends React.Component {
   }
 }
 
-export default withRouter(MainSection);
+export default MainSection;

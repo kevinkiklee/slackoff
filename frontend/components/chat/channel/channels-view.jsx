@@ -2,7 +2,6 @@ import React from 'react';
 import Modal from 'react-modal';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -180,4 +179,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(ChannelsView));
+)(ChannelsView);

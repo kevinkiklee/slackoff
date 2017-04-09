@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
 
 import { fetchChannel } from '../../actions/channel_actions';
 import { setChannel } from '../../actions/current_channel_actions';
@@ -90,4 +89,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(Chat));
+)(Chat);

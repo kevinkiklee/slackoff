@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
 
 import moment from 'moment';
 import merge from 'lodash/merge';
@@ -109,4 +108,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(Messages));
+)(Messages);

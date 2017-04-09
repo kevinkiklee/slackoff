@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
 
 import UserDMItem from './user-dm-item';
 import DirectMessage from '../channel/direct-message.jsx';
@@ -120,4 +119,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(UserDMs));
+)(UserDMs);

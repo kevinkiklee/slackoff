@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
+
+import moment from 'moment';
+import merge from 'lodash/merge';
 
 import AlertContainer from 'react-alert';
 
 import EmoticonPicker from './emoticon-picker';
 import Emoticons from './emoticons';
-
-import moment from 'moment';
-import merge from 'lodash/merge';
 
 import { updateMessage,
          deleteMessage } from '../../../actions/message_actions';
@@ -29,16 +28,17 @@ class MessageItem extends React.Component {
       emoticonPicker: 'hide',
     };
 
-    this.isImage = this.isImage.bind(this);
     this.messageButtons = this.messageButtons.bind(this);
     this.editMessage = this.editMessage.bind(this);
     this.deleteMessage = this.deleteMessage.bind(this);
 
     this.toggleEmoticonPicker = this.toggleEmoticonPicker.bind(this);
-
     this.toggleEditForm = this.toggleEditForm.bind(this);
+
     this.buildEditMessageForm = this.buildEditMessageForm.bind(this);
     this.buildShowMessage = this.buildShowMessage.bind(this);
+
+    this.isImage = this.isImage.bind(this);
     this.showAuthorAlert = this.showAuthorAlert.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -135,7 +135,9 @@ class MessageItem extends React.Component {
   buildEditMessageForm() {
     return (
       <form className='message-edit-form' onSubmit={ this.editMessage }>
-        <input className='message-edit-input' type='text' onChange={ this.handleInput } value={ this.state.content }/>
+        <input className='message-edit-input'
+               type='text' onChange={ this.handleInput }
+               value={ this.state.content }/>
       </form>
     );
   }
@@ -238,4 +240,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(MessageItem));
+)(MessageItem);

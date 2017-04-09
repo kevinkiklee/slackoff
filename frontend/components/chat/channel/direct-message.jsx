@@ -1,10 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { connect } from 'react-redux';
 
 import remove from 'lodash/remove';
-
-import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -296,4 +294,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(DirectMessage));
+)(DirectMessage);
