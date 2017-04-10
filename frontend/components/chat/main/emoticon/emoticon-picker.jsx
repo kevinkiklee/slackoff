@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import merge from 'lodash/merge';
 import { Picker } from 'emoji-mart';
 
-import { addEmoticon } from '../../../actions/message_actions';
-import { closeEmoticonPicker } from '../../../actions/modal_actions';
+import { addEmoticon } from '../../../../actions/message_actions';
+import { closeEmoticonPicker } from '../../../../actions/modal_actions';
 
 class EmoticonPicker extends React.Component {
   constructor(props) {

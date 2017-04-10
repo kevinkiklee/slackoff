@@ -7,7 +7,7 @@ import ReactTooltip from 'react-tooltip';
 import find from 'lodash/find';
 
 import { addEmoticon,
-         removeEmoticon } from '../../../actions/message_actions';
+         removeEmoticon } from '../../../../actions/message_actions';
 
 class EmoticonItem extends React.Component {
   constructor(props) {

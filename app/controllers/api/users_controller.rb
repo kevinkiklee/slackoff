@@ -21,7 +21,7 @@ class Api::UsersController < ApplicationController
       @user.subscriptions.create(channel_id: @user.current_channel)
 
       @channels = @user.channels.where(private: false).order(:name)
-      @direct_messages = @user.channels.includes(:users).where(private: true).order(:name)
+      @direct_messages = @user.direct_messages
 
       login(@user)
       render "api/users/show"
@@ -40,7 +40,7 @@ class Api::UsersController < ApplicationController
 
     login(@user)
     @channels = @user.channels.where(private: false).order(:name)
-    @direct_messages = @user.channels.includes(:users).where(private: true).order(:name)
+    @direct_messages = @user.direct_messages
     render 'api/users/show'
   end
 

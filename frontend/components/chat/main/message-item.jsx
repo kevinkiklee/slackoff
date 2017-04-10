@@ -7,8 +7,8 @@ import merge from 'lodash/merge';
 
 import AlertContainer from 'react-alert';
 
-import EmoticonPicker from './emoticon-picker';
-import Emoticons from './emoticons';
+import EmoticonPicker from './emoticon/emoticon-picker';
+import Emoticons from './emoticon/emoticons';
 
 import { updateMessage,
          deleteMessage } from '../../../actions/message_actions';
