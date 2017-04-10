@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { createMessage } from '../../../actions/channel_actions';
-import { fetchGiphyUrl } from '../../../actions/message_actions';
+import { createMessage } from '../../../../actions/channel_actions';
+import { fetchGiphyUrl } from '../../../../actions/message_actions';
 
 class MessageInput extends React.Component {
   constructor(props) {

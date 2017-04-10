@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import merge from 'lodash/merge';
 
-import { getUser } from '../../../actions/session_actions';
-import { removeMessage,
-         editMessage} from '../../../actions/message_actions.js';
-
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+import { getUser } from '../../../../actions/session_actions';
+import { removeMessage,
+         editMessage} from '../../../../actions/message_actions.js';
+
 import { fetchChannel,
-         receiveMessage } from '../../../actions/channel_actions';
+         receiveMessage } from '../../../../actions/channel_actions';
 
 import MessageItem from './message-item';
 

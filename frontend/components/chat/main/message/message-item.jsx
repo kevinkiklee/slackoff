@@ -7,14 +7,14 @@ import merge from 'lodash/merge';
 
 import AlertContainer from 'react-alert';
 
-import EmoticonPicker from './emoticon/emoticon-picker';
-import Emoticons from './emoticon/emoticons';
+import EmoticonPicker from '../emoticon/emoticon-picker';
+import Emoticons from '../emoticon/emoticons';
 
 import { updateMessage,
-         deleteMessage } from '../../../actions/message_actions';
+         deleteMessage } from '../../../../actions/message_actions';
 
 import { openEmoticonPicker,
-         closeEmoticonPicker } from '../../../actions/modal_actions';
+         closeEmoticonPicker } from '../../../../actions/modal_actions';
 
 class MessageItem extends React.Component {
   constructor(props) {
