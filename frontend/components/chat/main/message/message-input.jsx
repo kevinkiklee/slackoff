@@ -30,7 +30,7 @@ class MessageInput extends React.Component {
       return;
 
     if (msg.slice(0, 6) === '/giphy') {
-      const query = msg.slice(7, msg.length).split(' ').join('+');;
+      const query = msg.slice(7, msg.length).split(' ').join('+');
 
       this.props.fetchGiphyUrl(query)
         .then((giphies) => {

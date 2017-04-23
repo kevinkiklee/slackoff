@@ -34,7 +34,7 @@ class SessionForm extends React.Component {
       email: this.props.user.email,
       password: this.props.user.password,
       photo_url: this.props.user.photo_url,
-    }
+    };
 
     this.submitForm = this.submitForm.bind(this);
     this.updateInput = this.updateInput.bind(this);
@@ -59,7 +59,7 @@ class SessionForm extends React.Component {
       this.setState({
         photo_url: fileReader.result
       });
-    }
+    };
 
     if (file) {
       fileReader.readAsDataURL(file);
@@ -181,16 +181,14 @@ class SessionForm extends React.Component {
               <input className='session-form-input'
                      placeholder='Username'
                      type='text'
-                     onChange={ this.updateInput('username') }
-              /><br />
+                     onChange={ this.updateInput('username') }/><br />
 
               { email }
 
               <input className='session-form-input'
                      placeholder='Password'
                      type='password'
-                     onChange={ this.updateInput('password') }
-              /><br />
+                     onChange={ this.updateInput('password') }/><br />
 
             { avatarUpload }
 

@@ -27,7 +27,7 @@ const Root = ({ store }) => {
         <Route path='/chat' component={ Chat } onEnter={ redirectUnlessLoggedIn }/>
       </Router>
     </Provider>
-  )
+  );
 };
 
 export default Root;

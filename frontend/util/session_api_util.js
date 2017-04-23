@@ -15,8 +15,8 @@ export const updateUser = (formData) => {
     contentType: false,
     processData: false,
     data: formData
-  })
-}
+  });
+};
 
 export const login = (user) => {
   return $.ajax({

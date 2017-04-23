@@ -153,7 +153,8 @@ class MessageItem extends React.Component {
   messageButtons() {
     return (
       <div className='message-btn-container'>
-        <button className='emoticonPicker-btn' onClick={ this.toggleEmoticonPicker }>
+        <button className='emoticonPicker-btn'
+                onClick={ this.toggleEmoticonPicker }>
           <i className="fa fa-smile-o fa-6" aria-hidden="true"></i>
         </button>
         <button className='message-edit-btn' onClick={ this.toggleEditForm }>
@@ -181,7 +182,7 @@ class MessageItem extends React.Component {
 
     if (this.state.contentAction === 'show') {
       if (this.isImage()) {
-        content = <img className='messageImg' src={ this.props.message.content } />
+        content = <img className='messageImg' src={ this.props.message.content } />;
       } else {
         content = this.buildShowMessage();
       }
@@ -190,7 +191,7 @@ class MessageItem extends React.Component {
     }
 
     if (this.props.emoticonPicker) {
-      emoticonPicker = <EmoticonPicker message={ this.state.message }/>
+      emoticonPicker = <EmoticonPicker message={ this.state.message }/>;
     }
 
     return (

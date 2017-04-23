@@ -40,16 +40,33 @@ class SessionControl extends React.Component {
     if (this.props.currentUser) {
       return (
         <section className='session-control'>
-          <button className='session-control-btn' onClick={ this.signout }>LOGOUT</button>
+          <button className='session-control-btn'
+                  onClick={ this.signout }>
+            LOGOUT
+          </button>
         </section>
       );
     } else {
       return (
         <section className='session-control'>
-          <Link className='session-control-btn join-btn' to='/signup'>JOIN</Link>
-          <Link className='session-control-btn' to='/login'>LOGIN</Link>
-          <button className='session-control-guest-btn' onClick={ this.guestLogin }>GUEST</button>
-          <button className='session-control-guest-btn' onClick={ this.guest2Login }>GUEST2</button>
+          <Link className='session-control-btn join-btn'
+                to='/signup'>
+            JOIN
+          </Link>
+
+          <Link className='session-control-btn' to='/login'>
+            LOGIN
+          </Link>
+
+          <button className='session-control-guest-btn'
+            onClick={ this.guestLogin }>
+            GUEST
+          </button>
+
+          <button className='session-control-guest-btn'
+                  onClick={ this.guest2Login }>
+            GUEST2
+          </button>
         </section>
       );
     }

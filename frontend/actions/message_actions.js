@@ -29,7 +29,7 @@ export const removeMessage = (id) => ({
 });
 
 export const updateMessage = (message) => dispatch => {
-  return MessageAPIUtil.updateMessage(message)
+  return MessageAPIUtil.updateMessage(message);
 };
 
 export const deleteMessage = (id) => dispatch => {
@@ -43,7 +43,7 @@ export const addEmoticon = (icon) => dispatch => {
 };
 
 export const removeEmoticon = (id) => dispatch => {
-  return EmoticonAPIUtil.deleteEmoticon(id)
+  return EmoticonAPIUtil.deleteEmoticon(id);
 };
 
 export const fetchGiphyUrl = (query) => dispatch => {

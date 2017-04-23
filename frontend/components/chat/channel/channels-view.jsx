@@ -72,7 +72,9 @@ class ChannelsView extends React.Component {
   }
 
   matches() {
-    return this.state.channels.filter((channel) => channel.name.includes(this.state.searchInput));
+    return this.state.channels.filter((channel) =>
+      channel.name.includes(this.state.searchInput)
+    );
   }
 
   buildChannelItems() {
@@ -89,7 +91,8 @@ class ChannelsView extends React.Component {
       return matches.map((channel, i) => {
         return (
           <li className='channels-view-item-container' key={ i }>
-            <button className='channels-view-item-btn' onClick={ this.joinChannel(channel) }>
+            <button className='channels-view-item-btn'
+                    onClick={ this.joinChannel(channel) }>
               <div className='channels-view-item-name'>
                 <h2># { channel.name }</h2>
                 <h3>Created on { moment(channel.created_at).format('MMMM Do YYYY') }</h3>
