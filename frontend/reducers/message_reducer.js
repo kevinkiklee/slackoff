@@ -5,7 +5,7 @@ import merge from 'lodash/merge';
 const initialState = {};
 
 const MessageReducer = (state = initialState, action) => {
-  Object.freeze();
+  Object.freeze(state);
 
   switch (action.type) {
     case SWITCH_CHANNEL:

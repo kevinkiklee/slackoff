@@ -6,7 +6,7 @@ import merge from 'lodash/merge';
 const initialState = {};
 
 const CurrentChannelReducer = (state = initialState, action) => {
-  Object.freeze();
+  Object.freeze(state);
 
   switch (action.type) {
     case SET_CHANNEL:

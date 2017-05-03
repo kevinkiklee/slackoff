@@ -30,7 +30,7 @@ const initialState = {
 };
 
 const ModalReducer = (state = initialState, action) => {
-  Object.freeze();
+  Object.freeze(state);
 
   switch (action.type) {
     case OPEN_CHANNELS_VIEW_MODAL:

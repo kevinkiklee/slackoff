@@ -11,7 +11,7 @@ import findIndex from 'lodash/findIndex';
 const initialState = {};
 
 const ChannelReducer = (state = initialState, action) => {
-  Object.freeze();
+  Object.freeze(state);
 
   switch (action.type) {
     case RECEIVE_CHANNEL:

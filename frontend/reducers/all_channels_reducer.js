@@ -6,7 +6,7 @@ import merge from 'lodash/merge';
 const initialState = [];
 
 const AllChannelsReducer = (state = initialState, action) => {
-  Object.freeze();
+  Object.freeze(state);
 
   switch (action.type) {
     case RECEIVE_ALL_PUBLIC_CHANNELS:
