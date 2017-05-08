@@ -104,6 +104,26 @@
     }
   }
 
+  .dm-list::-webkit-scrollbar-track
+  {
+    border-radius: 5px;
+    background-color: #f3f3f3;
+  }
+
+  .dm-list::-webkit-scrollbar
+  {
+    width: 8px;
+    padding-top: 2px;
+    border-radius: 5px;
+    background-color: #d9d9de;
+  }
+
+  .dm-list::-webkit-scrollbar-thumb
+  {
+    border-radius: 5px;
+    background-color: #d9d9de;
+  }
+
   .dm-list {
     width: 60%;
     min-width: 400px;
