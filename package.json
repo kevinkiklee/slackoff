@@ -38,6 +38,8 @@
   },
   "devDependencies": {},
   "scripts": {
+    "build": "webpack",
+    "watch": "webpack -w",
     "heroku-postbuild": "webpack --config webpack.config.prod.js"
   },
   "repository": {
