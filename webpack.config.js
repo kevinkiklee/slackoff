@@ -17,17 +17,12 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress:{
-        warnings: true
+        warnings: false
       }
     })
   ],
   module: {
     loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -35,6 +30,11 @@ module.exports = {
         query: {
           presets: ['react', 'es2015']
         }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
       }
     ]
   },
