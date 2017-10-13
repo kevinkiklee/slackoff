@@ -8,19 +8,37 @@ SlackOff is an App Academy portfolio project inspired by Slack.
 
 Live Site: [http://slackoff.today]
 
+## SlackOff 2.0
+
 ## Table of Contents
-1. [Implementation](#implementation)
-2. [Features](#features)
+1. [SlackOff 2.0 Plans](#slackoff-2.0-plans)
+2. [Implementation](#implementation)
+3. [Features](#features)
     - [Authentication](#authentication)
     - [Live Chat](#live-chat)
     - [Channels](#channels)
     - [Direct Messaging](#direct-messaging)
     - [Avatar](#avatar)
     - [Emoticons](#emoticons)
-3. [Design](#design)
+4. [Design](#design)
     - [Wireframe](#wireframe)
     - [UI/UX](#uiux)
-4. [Future Release](#future-release)
+
+## SlackOff 2.0 Plans
+
+* [ ] Frontend Refactor
+  - Lint JS/CSS
+  - Normalize Redux store
+  - Implement async/await
+
+* [ ] Backend Refactor
+  - Publish API v2
+  - Rewrite controllers and models
+  - Fix N+1 queries
+
+* [ ] Testing Framework
+  - RSpec for Rails testing
+  - Tape/Enzyme for React testing
 
 ## Implementation
 
@@ -48,11 +66,11 @@ The chat application is composed of three main features:
 
 ### Authentication
 
-BCrypt gem is utilized in order to hash a password, and only the digest of the user is saved into the database.  A cookie storing a BCrypt token is used to keep track of the user's current session.  Without a valid matching session token, the user is redirected to the login page.  
+BCrypt gem is utilized in order to hash a password, and only the digest of the user is saved into the database.  A cookie storing a BCrypt token is used to keep track of the user's current session.  Without a valid matching session token, the user is redirected to the login page.
 
 ### Live Chat
 
-Pusher API is utilized for maintaining a Websocket TCP-based protocol connection which allows bi-directional communication between the server and the client.  
+Pusher API is utilized for maintaining a Websocket TCP-based protocol connection which allows bi-directional communication between the server and the client.
 
 ![Chat View](/docs/screenshots/chat.png)
 
@@ -105,7 +123,7 @@ When a channel name is changed, the changed name is broadcasted to all the clien
 
 ![Channel Browse View](/docs/screenshots/channels-browse.png)
 
-A user can browse through all the channels through the Channels View.  
+A user can browse through all the channels through the Channels View.
 
 ```javascript
 constructor(props) {
@@ -222,7 +240,7 @@ render () {
 }
 ```
 
-The EmojiMart provides the `Picker` component.  When an icon is picked, the `Picker` component returns the name of the chosen icon, and the `addEmoticon` action is triggered which sends an AJAX call to the Rails backend.  
+The EmojiMart provides the `Picker` component.  When an icon is picked, the `Picker` component returns the name of the chosen icon, and the `addEmoticon` action is triggered which sends an AJAX call to the Rails backend.
 
 ## Design
 
@@ -272,10 +290,3 @@ A detailed wireframe was produced during the earliest stages of the planning. Ea
 ```
 
 SlackOff is designed with satisfying UI/UX in mind.  Through React animation API, smooth transitional effects have been implemented to visually notify the user that he or she is interacting with an actionable item.  The usage of SCSS assures a streamlined workflow, and helps achieve the consistent overall visual of the website.
-
-## Future Release
-
-* [X] Notification
-* [X] Avatar Upload
-* [X] Emoticons
-* [X] Giphy Support
